@@ -1,9 +1,11 @@
 import React from "react";
 import Main from "../main/main.jsx";
 
-const App = () => {
+const App = (props) => {
+    const {rentalOffers} = props;
+
     return (
-        <Main />
+        <Main rentalOffers={rentalOffers} />
     );
 };
 
