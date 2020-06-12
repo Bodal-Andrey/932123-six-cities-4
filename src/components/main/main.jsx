@@ -1,7 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Main = (props) => {
-  // eslint-disable-next-line react/prop-types
   const {offersCount, offerName} = props;
 
   const getCardMarkup = (offerNameArray) => {
@@ -267,6 +267,11 @@ const Main = (props) => {
       </div>
     </React.Fragment>
   );
+};
+
+Main.propTypes = {
+  offersCount: PropTypes.number.isRequired,
+  offerName: PropTypes.array.isRequired,
 };
 
 export default Main;
