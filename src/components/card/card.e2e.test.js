@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Main from "./main.jsx";
+import Card from "./card.jsx";
 import {Offers} from "../../mock.js";
 
 Enzyme.configure({
@@ -11,17 +11,16 @@ Enzyme.configure({
 it(`Should link to city be pressed`, () => {
   const onCardNameClick = jest.fn();
 
-  const main = shallow(
-      <Main
-        offersCount={Offers.OFFERS_COUNT}
-        offerName={Offers.OFFER_NAMES}
+  const cardComponent = shallow(
+      <Card
+        name={Offers.OFFER_NAMES[1]}
         onCardNameClick={onCardNameClick}
       />
   );
 
-  const cardName = main.find(`place-card__name`);
+  const cardName = cardComponent.find(`.place-card__name`);
 
   cardName.simulate(`click`);
 
-  expect(onCardNameClick).toHaveBeenCalledTimes(1);
+  expect(onCardNameClick).toBeCalledTimes(1);
 });
