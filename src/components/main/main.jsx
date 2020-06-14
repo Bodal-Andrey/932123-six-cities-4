@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import CardsList from "../cards-list/cards-list.jsx";
 
 const Main = (props) => {
-  const {offersCount, offerName, onMainLinkClick} = props;
+  const {offersCount, offerName, onCardNameClick} = props;
 
   return (
     <React.Fragment>
@@ -37,32 +37,32 @@ const Main = (props) => {
             <section className="locations container">
               <ul className="locations__list tabs__list">
                 <li className="locations__item">
-                  <a onClick={onMainLinkClick} className="locations__item-link tabs__item" href="#">
+                  <a className="locations__item-link tabs__item" href="#">
                     <span>Paris</span>
                   </a>
                 </li>
                 <li className="locations__item">
-                  <a onClick={onMainLinkClick} className="locations__item-link tabs__item" href="#">
+                  <a className="locations__item-link tabs__item" href="#">
                     <span>Cologne</span>
                   </a>
                 </li>
                 <li className="locations__item">
-                  <a onClick={onMainLinkClick} className="locations__item-link tabs__item" href="#">
+                  <a className="locations__item-link tabs__item" href="#">
                     <span>Brussels</span>
                   </a>
                 </li>
                 <li className="locations__item">
-                  <a onClick={onMainLinkClick} className="locations__item-link tabs__item tabs__item--active">
+                  <a className="locations__item-link tabs__item tabs__item--active">
                     <span>Amsterdam</span>
                   </a>
                 </li>
                 <li className="locations__item">
-                  <a onClick={onMainLinkClick} className="locations__item-link tabs__item" href="#">
+                  <a className="locations__item-link tabs__item" href="#">
                     <span>Hamburg</span>
                   </a>
                 </li>
                 <li className="locations__item">
-                  <a onClick={onMainLinkClick} className="locations__item-link tabs__item" href="#">
+                  <a className="locations__item-link tabs__item" href="#">
                     <span>Dusseldorf</span>
                   </a>
                 </li>
@@ -87,7 +87,7 @@ const Main = (props) => {
                     <li className="places__option" tabIndex="0">Top rated first</li>
                   </ul>
                 </form>
-                <CardsList offerName={offerName} />
+                <CardsList offerName={offerName} onCardNameClick={onCardNameClick} />
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map"></section>
@@ -103,7 +103,7 @@ const Main = (props) => {
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
   offerName: PropTypes.array.isRequired,
-  onMainLinkClick: PropTypes.func.isRequired,
+  onCardNameClick: PropTypes.func.isRequired,
 };
 
 export default Main;

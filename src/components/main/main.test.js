@@ -8,7 +8,7 @@ it(`Main component test`, () => {
       <Main
         offersCount={Offers.OFFERS_COUNT}
         offerName={Offers.OFFER_NAMES}
-        onMainLinkClick={() => {}}
+        onCardNameClick={() => {}}
       />).toJSON();
 
   expect(tree).toMatchSnapshot();

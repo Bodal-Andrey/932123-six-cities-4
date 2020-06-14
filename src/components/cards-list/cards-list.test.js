@@ -7,6 +7,7 @@ it(`CardsList component test`, () => {
   const tree = renderer.create(
       <CardsList
         offerName={Offers.OFFER_NAMES}
+        onCardNameClick={() => {}}
       />).toJSON();
 
   expect(tree).toMatchSnapshot();

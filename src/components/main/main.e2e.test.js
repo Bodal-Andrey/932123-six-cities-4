@@ -9,19 +9,19 @@ Enzyme.configure({
 });
 
 it(`Should link to city be pressed`, () => {
-  const onMainLinkClick = jest.fn();
+  const onCardNameClick = jest.fn();
 
   const main = shallow(
       <Main
         offersCount={Offers.OFFERS_COUNT}
         offerName={Offers.OFFER_NAMES}
-        onMainLinkClick={onMainLinkClick}
+        onCardNameClick={onCardNameClick}
       />
   );
 
-  const mainLinkToCity = main.find(`a.locations__item-link`);
+  const cardName = main.find(`place-card__name`);
 
-  mainLinkToCity.props().onClick();
+  cardName.simulate(`click`);
 
-  expect(onMainLinkClick.mock.calls.length).toBe(1);
+  expect(onCardNameClick).toHaveBeenCalledTimes(1);
 });

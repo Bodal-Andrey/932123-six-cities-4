@@ -79,7 +79,6 @@ exports[`Main component test 1`] = `
             <a
               className="locations__item-link tabs__item"
               href="#"
-              onClick={[Function]}
             >
               <span>
                 Paris
@@ -92,7 +91,6 @@ exports[`Main component test 1`] = `
             <a
               className="locations__item-link tabs__item"
               href="#"
-              onClick={[Function]}
             >
               <span>
                 Cologne
@@ -105,7 +103,6 @@ exports[`Main component test 1`] = `
             <a
               className="locations__item-link tabs__item"
               href="#"
-              onClick={[Function]}
             >
               <span>
                 Brussels
@@ -117,7 +114,6 @@ exports[`Main component test 1`] = `
           >
             <a
               className="locations__item-link tabs__item tabs__item--active"
-              onClick={[Function]}
             >
               <span>
                 Amsterdam
@@ -130,7 +126,6 @@ exports[`Main component test 1`] = `
             <a
               className="locations__item-link tabs__item"
               href="#"
-              onClick={[Function]}
             >
               <span>
                 Hamburg
@@ -143,7 +138,6 @@ exports[`Main component test 1`] = `
             <a
               className="locations__item-link tabs__item"
               href="#"
-              onClick={[Function]}
             >
               <span>
                 Dusseldorf
@@ -308,6 +302,7 @@ exports[`Main component test 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
+                  onClick={[Function]}
                 >
                   <a
                     href="#"
@@ -409,6 +404,7 @@ exports[`Main component test 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
+                  onClick={[Function]}
                 >
                   <a
                     href="#"
@@ -510,6 +506,7 @@ exports[`Main component test 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
+                  onClick={[Function]}
                 >
                   <a
                     href="#"
@@ -611,6 +608,7 @@ exports[`Main component test 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
+                  onClick={[Function]}
                 >
                   <a
                     href="#"
