@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
+const mainLinkHandler = () => {};
+
 const App = (props) => {
   const {offersCount, offerName} = props;
 
@@ -9,6 +11,7 @@ const App = (props) => {
     <Main
       offersCount={offersCount}
       offerName={offerName}
+      onMainLinkClick={mainLinkHandler}
     />
   );
 };
