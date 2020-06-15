@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import CardsList from "../cards-list/cards-list.jsx";
 
 const Main = (props) => {
-  const {offersCount, offerName} = props;
+  const {offersCount, offerName, onCardNameClick} = props;
 
   return (
     <React.Fragment>
@@ -87,7 +87,7 @@ const Main = (props) => {
                     <li className="places__option" tabIndex="0">Top rated first</li>
                   </ul>
                 </form>
-                <CardsList offerName={offerName} />
+                <CardsList offerName={offerName} onCardNameClick={onCardNameClick} />
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map"></section>
@@ -103,6 +103,7 @@ const Main = (props) => {
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
   offerName: PropTypes.array.isRequired,
+  onCardNameClick: PropTypes.func.isRequired,
 };
 
 export default Main;

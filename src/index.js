@@ -1,16 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
-
-const Offers = {
-  OFFERS_COUNT: 100,
-  OFFER_NAMES: [
-    `Beautiful & luxurious apartment at great location`,
-    `Wood and stone place`,
-    `Nice, cozy, warm big bed apartment`,
-    `Canal View Prinsengracht`
-  ],
-};
+import {Offers} from "./mock.js";
 
 ReactDOM.render(
     <App
