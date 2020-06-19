@@ -1,10 +1,3 @@
-const TYPES = {
-  apartment: `Apartment`,
-  hotel: `Hotel`,
-  house: `House`,
-  privateRoom: `Private room`,
-};
-
 export default [
   {
     id: 1,
@@ -12,7 +5,7 @@ export default [
     title: `Beautiful & luxurious apartment at great location`,
     photo: `img/apartment-01.jpg`,
     price: 120,
-    type: TYPES.apartment,
+    type: `Apartment`,
     rating: 4,
     isPremium: true,
     isBookmark: false,
@@ -23,7 +16,7 @@ export default [
     title: `Wood and stone place`,
     photo: `img/room.jpg`,
     price: 80,
-    type: TYPES.privateRoom,
+    type: `Private room`,
     rating: 4,
     isPremium: false,
     isBookmark: true,
@@ -34,7 +27,7 @@ export default [
     title: `Canal View Prinsengracht`,
     photo: `img/apartment-02.jpg`,
     price: 132,
-    type: TYPES.apartment,
+    type: `House`,
     rating: 4,
     isPremium: false,
     isBookmark: false,
@@ -45,7 +38,7 @@ export default [
     title: `Nice, cozy, warm big bed apartment`,
     photo: `img/apartment-03.jpg`,
     price: 180,
-    type: TYPES.apartment,
+    type: `Hotel`,
     rating: 5,
     isPremium: true,
     isBookmark: false,

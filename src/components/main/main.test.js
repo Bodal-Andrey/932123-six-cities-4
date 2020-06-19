@@ -1,14 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
-import {Offers} from "../../data.js";
+import offers from "../../data-test.js";
 
 it(`Main component test`, () => {
   const tree = renderer.create(
       <Main
-        offersCount={Offers.OFFERS_COUNT}
-        offerName={Offers.OFFER_NAMES}
-        onCardNameClick={() => {}}
+        offersCount={100}
+        offers={offers}
       />).toJSON();
 
   expect(tree).toMatchSnapshot();

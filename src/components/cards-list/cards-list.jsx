@@ -23,14 +23,15 @@ class CardsList extends React.PureComponent {
     }));
   }
 
-  _onCardClick(offer) {
-    this.setState({activeCard: offer});
+  _onCardClick(id) {
+    this.setState({activeCard: id});
   }
 }
 
 CardsList.propTypes = {
   offers: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         photo: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,

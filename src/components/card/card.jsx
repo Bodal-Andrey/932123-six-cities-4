@@ -7,7 +7,7 @@ const Card = (props) => {
   const withOfRating = rating * 20;
 
   return (
-    <article onClick={() => onCardClick(offer)} className="cities__place-card place-card">
+    <article className="cities__place-card place-card">
       {isPremium && <div className="place-card__mark">
         <span>Premium</span>
       </div>}
@@ -35,7 +35,7 @@ const Card = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name">
+        <h2 onClick={() => onCardClick(offer.id)} className="place-card__name">
           <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
@@ -46,6 +46,7 @@ const Card = (props) => {
 
 Card.propTypes = {
   offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     photo: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
