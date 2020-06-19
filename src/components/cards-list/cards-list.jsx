@@ -37,7 +37,7 @@ CardsList.propTypes = {
         isPremium: PropTypes.bool.isRequired,
         isBookmark: PropTypes.bool.isRequired,
       })
-  )
+  ),
 };
 
 export default CardsList;
