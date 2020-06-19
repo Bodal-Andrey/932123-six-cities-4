@@ -22,5 +22,5 @@ it(`Should link to city be pressed`, () => {
 
   cardName.simulate(`click`);
 
-  expect(onCardClick).toHaveBeenCalledWidth(offers[0].id);
+  expect(onCardClick).toHaveBeenCalledWith(offers[0].id);
 });
