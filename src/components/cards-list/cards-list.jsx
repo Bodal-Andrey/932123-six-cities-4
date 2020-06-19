@@ -13,14 +13,11 @@ class CardsList extends React.PureComponent {
   render() {
     const {offers} = this.props;
 
-    return (offers.map((offer) => {
-      return (
-        // eslint-disable-next-line react/jsx-key
-        <div className="cities__places-list places__list tabs__content">
-          <Card key={offer.id} offer={offer} onCardClick={this._onCardClick} />
-        </div>
-      );
-    }));
+    return (
+      <div className="cities__places-list places__list tabs__content">
+        {offers.map((offer) => <Card key={offer.id} offer={offer} onCardClick={this._onCardClick} />)}
+      </div>
+    );
   }
 
   _onCardClick(id) {
