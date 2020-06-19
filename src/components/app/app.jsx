@@ -2,23 +2,30 @@ import React from "react";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
-const cardNameHandler = () => {};
-
 const App = (props) => {
-  const {offersCount, offerName} = props;
+  const {offersCount, offers} = props;
 
   return (
     <Main
       offersCount={offersCount}
-      offerName={offerName}
-      onCardNameClick={cardNameHandler}
+      offers={offers}
     />
   );
 };
 
 App.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  offerName: PropTypes.array.isRequired,
+  offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        photo: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        type: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        isPremium: PropTypes.bool.isRequired,
+        isBookmark: PropTypes.bool.isRequired,
+      })
+  ),
 };
 
 export default App;

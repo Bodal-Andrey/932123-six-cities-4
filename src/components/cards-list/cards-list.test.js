@@ -1,14 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import CardsList from "./cards-list.jsx";
-import {Offers} from "../../mock.js";
+import offers from "../../data-test.js";
 
 it(`CardsList component test`, () => {
   const tree = renderer.create(
-      <CardsList
-        offerName={Offers.OFFER_NAMES}
-        onCardNameClick={() => {}}
-      />).toJSON();
+      <CardsList offers={offers} />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

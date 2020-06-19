@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
-import {Offers} from "./mock.js";
+import offers from "./mocks/offers.js";
 
 ReactDOM.render(
     <App
-      offersCount={Offers.OFFERS_COUNT}
-      offerName={Offers.OFFER_NAMES}
+      offersCount={100}
+      offers={offers}
     />,
     document.querySelector(`#root`)
 );

@@ -1,13 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import App from "./app.jsx";
-import {Offers} from "../../mock.js";
+import offers from "../../data-test.js";
 
 it(`App component test`, () => {
   const tree = renderer.create(
       <App
-        offersCount={Offers.OFFERS_COUNT}
-        offerName={Offers.OFFER_NAMES}
+        offersCount={100}
+        offers={offers}
       />).toJSON();
 
   expect(tree).toMatchSnapshot();
