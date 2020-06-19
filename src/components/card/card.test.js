@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Card from "./card.jsx";
-import {Offers} from "../../mock.js";
+import {Offers} from "../../data.js";
 
 it(`Test Card with first offer name`, () => {
   const tree = renderer.create(
