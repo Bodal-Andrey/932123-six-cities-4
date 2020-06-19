@@ -2,19 +2,42 @@ import React from "react";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 
-const CardsList = (props) => {
-  const {offerName, onCardNameClick} = props;
+class CardsList extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {activeCard: null};
+  }
 
-  return (
-    <div className="cities__places-list places__list tabs__content">
-      {offerName.map((name) => <Card key={name} name={name} onCardNameClick={onCardNameClick} />)}
-    </div>
-  );
-};
+  render() {
+    const {offers} = this.props;
+
+    return (offers.map((offer) => {
+      return (
+        // eslint-disable-next-line react/jsx-key
+        <div className="cities__places-list places__list tabs__content">
+          <Card key={offer.id} offer={offer} onCardNameClick={this._onCardNameClick} />
+        </div>
+      );
+    }));
+  }
+
+  _onCardNameClick(offer) {
+    this.setState({activeCard: offer});
+  }
+}
 
 CardsList.propTypes = {
-  offerName: PropTypes.array.isRequired,
-  onCardNameClick: PropTypes.func.isRequired,
+  offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        photo: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        type: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        isPremium: PropTypes.bool.isRequired,
+        isBookmark: PropTypes.bool.isRequired,
+      })
+  )
 };
 
 export default CardsList;
