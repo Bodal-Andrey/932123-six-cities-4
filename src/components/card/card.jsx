@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Card = (props) => {
-  const {offer, onCardNameClick} = props;
+  const {offer, onCardClick} = props;
   const {title, photo, price, type, rating, isPremium, isBookmark} = offer;
   const withOfRating = rating * 20;
 
   return (
-    <article className="cities__place-card place-card">
+    <article onClick={() => onCardClick(offer)} className="cities__place-card place-card">
       {isPremium && <div className="place-card__mark">
         <span>Premium</span>
       </div>}
@@ -31,11 +31,11 @@ const Card = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={`width: ${withOfRating}%`} />
+            <span style={{width: `${withOfRating}%`}} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name" onClick={onCardNameClick}>
+        <h2 className="place-card__name">
           <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
@@ -54,7 +54,7 @@ Card.propTypes = {
     isPremium: PropTypes.bool.isRequired,
     isBookmark: PropTypes.bool.isRequired,
   }),
-  onCardNameClick: PropTypes.func.isRequired,
+  onCardClick: PropTypes.func.isRequired,
 };
 
 export default Card;

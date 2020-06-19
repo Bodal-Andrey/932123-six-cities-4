@@ -6,6 +6,8 @@ class CardsList extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {activeCard: null};
+
+    this._onCardClick = this._onCardClick.bind(this);
   }
 
   render() {
@@ -15,13 +17,13 @@ class CardsList extends React.PureComponent {
       return (
         // eslint-disable-next-line react/jsx-key
         <div className="cities__places-list places__list tabs__content">
-          <Card key={offer.id} offer={offer} onCardNameClick={this._onCardNameClick} />
+          <Card key={offer.id} offer={offer} onCardClick={this._onCardClick} />
         </div>
       );
     }));
   }
 
-  _onCardNameClick(offer) {
+  _onCardClick(offer) {
     this.setState({activeCard: offer});
   }
 }
