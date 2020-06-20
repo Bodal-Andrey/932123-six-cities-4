@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import InfoAboutOffer from "./info-about-offer.js";
+import InfoAboutOffer from "./info-about-offer.jsx";
 import offers from "../../data-test.js";
 
 it(`Render InfoAboutOffer`, () => {

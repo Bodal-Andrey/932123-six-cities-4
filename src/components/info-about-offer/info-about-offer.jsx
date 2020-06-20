@@ -286,7 +286,7 @@ const InfoAboutOffer = ({offer}) => {
   );
 };
 
-InfoAboutOffer.PropTypes = {
+InfoAboutOffer.propTypes = {
   offer: PropTypes.shape({
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
@@ -302,7 +302,7 @@ InfoAboutOffer.PropTypes = {
     owner: PropTypes.shape({
       avatar: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      isStar: PropTypes.string.isRequired,
+      isStar: PropTypes.bool.isRequired,
     }).isRequired,
   }).isRequired,
 };
