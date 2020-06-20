@@ -1,8 +1,8 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 
-class CardsList extends React.PureComponent {
+class CardsList extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {activeCard: null};
