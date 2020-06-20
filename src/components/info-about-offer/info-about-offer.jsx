@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const InfoAboutOffer = (props) => {
+const InfoAboutOffer = ({offer}) => {
   const {title, price, type, rating, isPremium, isBookmark, images, description, feature, guests, inside, owner} = offer;
   const {avatar, name, isStar} = owner;
-  const {offer} = props;
 
   return (
     <div className="page">
@@ -305,7 +304,7 @@ InfoAboutOffer.PropTypes = {
       name: PropTypes.string.isRequired,
       isStar: PropTypes.string.isRequired,
     }).isRequired,
-  }),
+  }).isRequired,
 };
 
 export default InfoAboutOffer;

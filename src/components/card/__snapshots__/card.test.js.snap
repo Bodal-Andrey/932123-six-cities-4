@@ -21,7 +21,7 @@ exports[`Test Card with first offer name 1`] = `
         alt="Place image"
         className="place-card__image"
         height={200}
-        src="img/apartment-01.jpg"
+        src="img-1"
         width={260}
       />
     </a>
@@ -94,13 +94,13 @@ exports[`Test Card with first offer name 1`] = `
       <a
         href="#"
       >
-        Beautiful & luxurious apartment at great location
+        Title-1
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Apartment
+      Type-1
     </p>
   </div>
 </article>
