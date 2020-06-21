@@ -8,9 +8,13 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      activeOffer: -1,
-    };
+    this.state = {activeOffer: -1};
+
+    this.onChangeScreen = this.onChangeScreen.bind(this);
+  }
+
+  onChangeScreen(id) {
+    this.setState({activeOffer: id});
   }
 
   _renderScreen() {
@@ -22,6 +26,7 @@ class App extends PureComponent {
         <Main
           offersCount={offersCount}
           offers={offers}
+          onChangeScreen={this.onChangeScreen}
         />
       );
     }

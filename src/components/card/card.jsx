@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Card = (props) => {
-  const {offer, onCardClick} = props;
+  const {offer, onChangeScreen} = props;
   const {title, photo, price, type, rating, isPremium, isBookmark} = offer;
 
   return (
@@ -34,7 +34,7 @@ const Card = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 onClick={() => onCardClick(offer.id)} className="place-card__name">
+        <h2 onClick={() => onChangeScreen(offer.id)} className="place-card__name">
           <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
@@ -54,7 +54,7 @@ Card.propTypes = {
     isPremium: PropTypes.bool.isRequired,
     isBookmark: PropTypes.bool.isRequired,
   }),
-  onCardClick: PropTypes.func.isRequired,
+  onChangeScreen: PropTypes.func.isRequired,
 };
 
 export default Card;

@@ -8,6 +8,7 @@ it(`App component test`, () => {
       <App
         offersCount={100}
         offers={offers}
+        onChangeScreen={() => {}}
       />).toJSON();
 
   expect(tree).toMatchSnapshot();

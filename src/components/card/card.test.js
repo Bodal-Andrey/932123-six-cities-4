@@ -7,7 +7,7 @@ it(`Test Card with first offer name`, () => {
   const tree = renderer.create(
       <Card
         offer={offers[0]}
-        onCardClick={() => {}}
+        onChangeScreen={() => {}}
       />).toJSON();
 
   expect(tree).toMatchSnapshot();
