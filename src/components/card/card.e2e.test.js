@@ -9,12 +9,12 @@ Enzyme.configure({
 });
 
 it(`Should link to city be pressed`, () => {
-  const onCardClick = jest.fn();
+  const onChangeScreen = jest.fn();
 
   const cardComponent = shallow(
       <Card
         offer={offers[0]}
-        onCardClick={onCardClick}
+        onChangeScreen={onChangeScreen}
       />
   );
 
@@ -22,5 +22,5 @@ it(`Should link to city be pressed`, () => {
 
   cardName.simulate(`click`);
 
-  expect(onCardClick).toHaveBeenCalledWith(offers[0].id);
+  expect(onChangeScreen).toHaveBeenCalledWith(offers[0].id);
 });

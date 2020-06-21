@@ -5,7 +5,10 @@ import offers from "../../data-test.js";
 
 it(`CardsList component test`, () => {
   const tree = renderer.create(
-      <CardsList offers={offers} />).toJSON();
+      <CardsList
+        offers={offers}
+        onChangeScreen={() => {}}
+      />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

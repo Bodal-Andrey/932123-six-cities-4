@@ -8,6 +8,7 @@ it(`Main component test`, () => {
       <Main
         offersCount={100}
         offers={offers}
+        onChangeScreen={() => {}}
       />).toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -235,7 +235,7 @@ exports[`App component test 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height={200}
-                    src="img/apartment-01.jpg"
+                    src="img-1"
                     width={260}
                   />
                 </a>
@@ -308,13 +308,13 @@ exports[`App component test 1`] = `
                   <a
                     href="#"
                   >
-                    Beautiful & luxurious apartment at great location
+                    Title-1
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Apartment
+                  Type-1
                 </p>
               </div>
             </article>
@@ -331,7 +331,7 @@ exports[`App component test 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height={200}
-                    src="img/room.jpg"
+                    src="img-1"
                     width={260}
                   />
                 </a>
@@ -373,7 +373,7 @@ exports[`App component test 1`] = `
                     <span
                       className="visually-hidden"
                     >
-                      To bookmarks
+                      In bookmarks
                     </span>
                   </button>
                 </div>
@@ -404,13 +404,13 @@ exports[`App component test 1`] = `
                   <a
                     href="#"
                   >
-                    Wood and stone place
+                    Title-2
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Private room
+                  Type-2
                 </p>
               </div>
             </article>
@@ -427,7 +427,7 @@ exports[`App component test 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height={200}
-                    src="img/apartment-02.jpg"
+                    src="img-1"
                     width={260}
                   />
                 </a>
@@ -500,13 +500,13 @@ exports[`App component test 1`] = `
                   <a
                     href="#"
                   >
-                    Canal View Prinsengracht
+                    Title-3
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  House
+                  Type-3
                 </p>
               </div>
             </article>
@@ -530,7 +530,7 @@ exports[`App component test 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height={200}
-                    src="img/apartment-03.jpg"
+                    src="img-1"
                     width={260}
                   />
                 </a>
@@ -603,13 +603,13 @@ exports[`App component test 1`] = `
                   <a
                     href="#"
                   >
-                    Nice, cozy, warm big bed apartment
+                    Title-4
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Hotel
+                  Type-4
                 </p>
               </div>
             </article>
