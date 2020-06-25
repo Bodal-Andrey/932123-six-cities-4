@@ -9,7 +9,13 @@ it(`Main component test`, () => {
         offersCount={100}
         offers={offers}
         onChangeScreen={() => {}}
-      />).toJSON();
+      />,
+      {
+        createNodeMock: () => {
+          return document.createElement(`div`);
+        }
+      }
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

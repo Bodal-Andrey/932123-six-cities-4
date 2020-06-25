@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CardsList from "../cards-list/cards-list.jsx";
+import Map from "../map/map.jsx";
 
 const Main = (props) => {
   const {offersCount, offers, onChangeScreen} = props;
@@ -90,7 +91,7 @@ const Main = (props) => {
                 <CardsList offers={offers} onChangeScreen={onChangeScreen} />
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map"></section>
+                <Map offers={offers} city={[52.38333, 4.9]} offerId={1} />
               </div>
             </div>
           </div>
