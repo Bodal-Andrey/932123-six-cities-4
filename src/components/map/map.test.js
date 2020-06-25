@@ -1,14 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import Map from "./map.jsx";
 import offers from "../../data-test.js";
 
-it(`Main component test`, () => {
+it(`Map component test`, () => {
   const tree = renderer.create(
-      <Main
-        offersCount={100}
+      <Map
         offers={offers}
-        onChangeScreen={() => {}}
+        city={offers[1].coordinates}
+        offerId={offers[1].id}
       />,
       {
         createNodeMock: () => {
