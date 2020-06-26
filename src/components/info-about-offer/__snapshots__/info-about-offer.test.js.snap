@@ -301,7 +301,7 @@ exports[`Render InfoAboutOffer 1`] = `
                       <span
                         style={
                           Object {
-                            "width": "80%",
+                            "width": "60%",
                           }
                         }
                       />
@@ -321,7 +321,7 @@ exports[`Render InfoAboutOffer 1`] = `
                     className="reviews__time"
                     dateTime="2019-04-24"
                   >
-                    April 2019
+                    December 24, 2018
                   </time>
                 </div>
               </li>
