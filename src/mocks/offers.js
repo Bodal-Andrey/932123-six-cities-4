@@ -50,7 +50,7 @@ export default [
     coordinates: [52.3909553943508, 4.85309666406198],
     additional: [
       {
-        id: 1,
+        id: 5,
         city: `Amsterdam`,
         title: `Beautiful & luxurious apartment at great location`,
         photo: `img/apartment-01.jpg`,
@@ -99,7 +99,7 @@ export default [
         },
       },
       {
-        id: 2,
+        id: 6,
         city: `Amsterdam`,
         title: `Wood and stone place`,
         photo: `img/room.jpg`,
@@ -148,7 +148,7 @@ export default [
         },
       },
       {
-        id: 3,
+        id: 7,
         city: `Amsterdam`,
         title: `Canal View Prinsengracht`,
         photo: `img/apartment-02.jpg`,
@@ -242,7 +242,7 @@ export default [
     coordinates: [52.369553943508, 4.85309666406198],
     additional: [
       {
-        id: 1,
+        id: 5,
         city: `Amsterdam`,
         title: `Beautiful & luxurious apartment at great location`,
         photo: `img/apartment-01.jpg`,
@@ -291,7 +291,7 @@ export default [
         },
       },
       {
-        id: 2,
+        id: 6,
         city: `Amsterdam`,
         title: `Wood and stone place`,
         photo: `img/room.jpg`,
@@ -340,7 +340,7 @@ export default [
         },
       },
       {
-        id: 3,
+        id: 7,
         city: `Amsterdam`,
         title: `Canal View Prinsengracht`,
         photo: `img/apartment-02.jpg`,
@@ -434,7 +434,7 @@ export default [
     coordinates: [52.3909553943508, 4.929309666406198],
     additional: [
       {
-        id: 1,
+        id: 5,
         city: `Amsterdam`,
         title: `Beautiful & luxurious apartment at great location`,
         photo: `img/apartment-01.jpg`,
@@ -483,7 +483,7 @@ export default [
         },
       },
       {
-        id: 2,
+        id: 6,
         city: `Amsterdam`,
         title: `Wood and stone place`,
         photo: `img/room.jpg`,
@@ -532,7 +532,7 @@ export default [
         },
       },
       {
-        id: 3,
+        id: 7,
         city: `Amsterdam`,
         title: `Canal View Prinsengracht`,
         photo: `img/apartment-02.jpg`,
@@ -626,7 +626,7 @@ export default [
     coordinates: [52.3809553943508, 4.939309666406198],
     additional: [
       {
-        id: 1,
+        id: 5,
         city: `Amsterdam`,
         title: `Beautiful & luxurious apartment at great location`,
         photo: `img/apartment-01.jpg`,
@@ -675,7 +675,7 @@ export default [
         },
       },
       {
-        id: 2,
+        id: 6,
         city: `Amsterdam`,
         title: `Wood and stone place`,
         photo: `img/room.jpg`,
@@ -724,7 +724,7 @@ export default [
         },
       },
       {
-        id: 3,
+        id: 7,
         city: `Amsterdam`,
         title: `Canal View Prinsengracht`,
         photo: `img/apartment-02.jpg`,

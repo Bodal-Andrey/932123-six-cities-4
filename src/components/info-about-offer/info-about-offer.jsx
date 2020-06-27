@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
+import Map from "../map/map.jsx";
 
 const InfoAboutOffer = ({offer}) => {
-  const {title, price, type, rating, isPremium, isBookmark, images, description, feature, guests, inside, owner} = offer;
+  const {title, price, type, rating, isPremium, isBookmark, images, description, feature, guests, inside, owner, additional} = offer;
   const {avatar, name, isStar} = owner;
 
   return (
@@ -112,7 +113,7 @@ const InfoAboutOffer = ({offer}) => {
               <ReviewsList offer={offer} />
             </div>
           </div>
-          <section className="property__map map" />
+          <Map offers={additional} city={[52.38333, 4.9]} offerId={1} className={`property__map map`} />
         </section>
         <div className="container">
           <section className="near-places places">
@@ -237,6 +238,7 @@ InfoAboutOffer.propTypes = {
       name: PropTypes.string.isRequired,
       isStar: PropTypes.bool.isRequired,
     }).isRequired,
+    additional: PropTypes.array.isRequired,
   }).isRequired,
 };
 

@@ -59,7 +59,8 @@ class Map extends React.PureComponent {
   }
 
   render() {
-    return <section ref={this._mapRef} className="cities__map map"></section>;
+    const {className} = this.props;
+    return <section ref={this._mapRef} className={className}></section>;
   }
 }
 
@@ -67,6 +68,7 @@ Map.propTypes = {
   offers: PropTypes.array.isRequired,
   city: PropTypes.array.isRequired,
   offerId: PropTypes.number.isRequired,
+  className: PropTypes.string.isRequired,
 };
 
 export default Map;

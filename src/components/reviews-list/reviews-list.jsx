@@ -7,7 +7,7 @@ const ReviewsList = ({offer}) => {
 
   return (
     <section className="property__reviews reviews">
-      <h2 className="reviews__title">Reviews · <span className="reviews__amount">1</span></h2>
+      <h2 className="reviews__title">Reviews · <span className="reviews__amount">{additional.length}</span></h2>
       <ul className="reviews__list">
         {additional.map((it, i) => (
           <ReviewsItem key={`${i}-${it}`} offer={it} />

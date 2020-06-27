@@ -91,7 +91,7 @@ const Main = (props) => {
                 <CardsList offers={offers} onChangeScreen={onChangeScreen} />
               </section>
               <div className="cities__right-section">
-                <Map offers={offers} city={[52.38333, 4.9]} offerId={1} />
+                <Map offers={offers} city={[52.38333, 4.9]} offerId={1} className={`cities__map map`} />
               </div>
             </div>
           </div>
