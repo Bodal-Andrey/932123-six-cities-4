@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import CardsList from "./cards-list.jsx";
+import NearbyList from "./nearby-list.jsx";
 import offers from "../../data-test.js";
 
-it(`CardsList component test`, () => {
+it(`NearbyList component test`, () => {
   const tree = renderer.create(
-      <CardsList
+      <NearbyList
         offers={offers}
         onChangeScreen={() => {}}
       />).toJSON();
