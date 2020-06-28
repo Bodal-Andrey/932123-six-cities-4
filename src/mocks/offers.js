@@ -48,6 +48,26 @@ export default [
       isStar: true,
     },
     coordinates: [52.3909553943508, 4.85309666406198],
+    reviews: [
+      {
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        rating: 3,
+        name: `Max`,
+        date: `December 24, 2018`
+      },
+      {
+        description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+        rating: 4,
+        name: `James`,
+        date: `October 20, 2018`
+      },
+      {
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        rating: 5,
+        name: `Ron`,
+        date: `July 14, 2018`
+      },
+    ],
     additional: [
       {
         id: 5,
@@ -91,12 +111,26 @@ export default [
           isStar: true,
         },
         coordinates: [52.3909553943508, 4.85309666406198],
-        review: {
-          description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-          rating: 3,
-          name: `Max`,
-          date: `December 24, 2018`
-        },
+        reviews: [
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 3,
+            name: `Max`,
+            date: `December 24, 2018`
+          },
+          {
+            description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+            rating: 4,
+            name: `James`,
+            date: `October 20, 2018`
+          },
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 5,
+            name: `Ron`,
+            date: `July 14, 2018`
+          },
+        ],
       },
       {
         id: 6,
@@ -140,23 +174,37 @@ export default [
           isStar: true,
         },
         coordinates: [52.369553943508, 4.85309666406198],
-        review: {
-          description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-          rating: 4,
-          name: `James`,
-          date: `October 20, 2018`
-        },
+        reviews: [
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 3,
+            name: `Max`,
+            date: `December 24, 2018`
+          },
+          {
+            description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+            rating: 4,
+            name: `James`,
+            date: `October 20, 2018`
+          },
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 5,
+            name: `Ron`,
+            date: `July 14, 2018`
+          },
+        ],
       },
       {
         id: 7,
         city: `Amsterdam`,
-        title: `Canal View Prinsengracht`,
-        photo: `img/apartment-02.jpg`,
-        price: 132,
-        type: TYPES.apartment,
-        rating: 3,
+        title: `Wood and stone place`,
+        photo: `img/room.jpg`,
+        price: 80,
+        type: TYPES.privateRoom,
+        rating: 4,
         isPremium: false,
-        isBookmark: false,
+        isBookmark: true,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -188,15 +236,29 @@ export default [
           name: `Angelina`,
           isStar: true,
         },
-        coordinates: [52.3909553943508, 4.929309666406198],
-        review: {
-          description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-          rating: 5,
-          name: `Ron`,
-          date: `July 14, 2018`
-        },
+        coordinates: [52.369553943508, 4.85309666406198],
+        reviews: [
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 3,
+            name: `Max`,
+            date: `December 24, 2018`
+          },
+          {
+            description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+            rating: 4,
+            name: `James`,
+            date: `October 20, 2018`
+          },
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 5,
+            name: `Ron`,
+            date: `July 14, 2018`
+          },
+        ],
       },
-    ],
+    ]
   },
   {
     id: 2,
@@ -240,6 +302,26 @@ export default [
       isStar: true,
     },
     coordinates: [52.369553943508, 4.85309666406198],
+    reviews: [
+      {
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        rating: 3,
+        name: `Max`,
+        date: `December 24, 2018`
+      },
+      {
+        description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+        rating: 4,
+        name: `James`,
+        date: `October 20, 2018`
+      },
+      {
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        rating: 5,
+        name: `Ron`,
+        date: `July 14, 2018`
+      },
+    ],
     additional: [
       {
         id: 5,
@@ -283,12 +365,26 @@ export default [
           isStar: true,
         },
         coordinates: [52.3909553943508, 4.85309666406198],
-        review: {
-          description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-          rating: 3,
-          name: `Max`,
-          date: `December 24, 2018`
-        },
+        reviews: [
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 3,
+            name: `Max`,
+            date: `December 24, 2018`
+          },
+          {
+            description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+            rating: 4,
+            name: `James`,
+            date: `October 20, 2018`
+          },
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 5,
+            name: `Ron`,
+            date: `July 14, 2018`
+          },
+        ],
       },
       {
         id: 6,
@@ -332,23 +428,37 @@ export default [
           isStar: true,
         },
         coordinates: [52.369553943508, 4.85309666406198],
-        review: {
-          description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-          rating: 4,
-          name: `James`,
-          date: `October 20, 2018`
-        },
+        reviews: [
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 3,
+            name: `Max`,
+            date: `December 24, 2018`
+          },
+          {
+            description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+            rating: 4,
+            name: `James`,
+            date: `October 20, 2018`
+          },
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 5,
+            name: `Ron`,
+            date: `July 14, 2018`
+          },
+        ],
       },
       {
         id: 7,
         city: `Amsterdam`,
-        title: `Canal View Prinsengracht`,
-        photo: `img/apartment-02.jpg`,
-        price: 132,
-        type: TYPES.apartment,
-        rating: 3,
+        title: `Wood and stone place`,
+        photo: `img/room.jpg`,
+        price: 80,
+        type: TYPES.privateRoom,
+        rating: 4,
         isPremium: false,
-        isBookmark: false,
+        isBookmark: true,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -380,15 +490,29 @@ export default [
           name: `Angelina`,
           isStar: true,
         },
-        coordinates: [52.3909553943508, 4.929309666406198],
-        review: {
-          description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-          rating: 5,
-          name: `Ron`,
-          date: `July 14, 2018`
-        },
+        coordinates: [52.369553943508, 4.85309666406198],
+        reviews: [
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 3,
+            name: `Max`,
+            date: `December 24, 2018`
+          },
+          {
+            description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+            rating: 4,
+            name: `James`,
+            date: `October 20, 2018`
+          },
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 5,
+            name: `Ron`,
+            date: `July 14, 2018`
+          },
+        ],
       },
-    ],
+    ]
   },
   {
     id: 3,
@@ -432,6 +556,26 @@ export default [
       isStar: true,
     },
     coordinates: [52.3909553943508, 4.929309666406198],
+    reviews: [
+      {
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        rating: 3,
+        name: `Max`,
+        date: `December 24, 2018`
+      },
+      {
+        description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+        rating: 4,
+        name: `James`,
+        date: `October 20, 2018`
+      },
+      {
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        rating: 5,
+        name: `Ron`,
+        date: `July 14, 2018`
+      },
+    ],
     additional: [
       {
         id: 5,
@@ -475,12 +619,26 @@ export default [
           isStar: true,
         },
         coordinates: [52.3909553943508, 4.85309666406198],
-        review: {
-          description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-          rating: 3,
-          name: `Max`,
-          date: `December 24, 2018`
-        },
+        reviews: [
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 3,
+            name: `Max`,
+            date: `December 24, 2018`
+          },
+          {
+            description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+            rating: 4,
+            name: `James`,
+            date: `October 20, 2018`
+          },
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 5,
+            name: `Ron`,
+            date: `July 14, 2018`
+          },
+        ],
       },
       {
         id: 6,
@@ -524,23 +682,37 @@ export default [
           isStar: true,
         },
         coordinates: [52.369553943508, 4.85309666406198],
-        review: {
-          description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-          rating: 4,
-          name: `James`,
-          date: `October 20, 2018`
-        },
+        reviews: [
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 3,
+            name: `Max`,
+            date: `December 24, 2018`
+          },
+          {
+            description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+            rating: 4,
+            name: `James`,
+            date: `October 20, 2018`
+          },
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 5,
+            name: `Ron`,
+            date: `July 14, 2018`
+          },
+        ],
       },
       {
         id: 7,
         city: `Amsterdam`,
-        title: `Canal View Prinsengracht`,
-        photo: `img/apartment-02.jpg`,
-        price: 132,
-        type: TYPES.apartment,
-        rating: 3,
+        title: `Wood and stone place`,
+        photo: `img/room.jpg`,
+        price: 80,
+        type: TYPES.privateRoom,
+        rating: 4,
         isPremium: false,
-        isBookmark: false,
+        isBookmark: true,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -572,15 +744,29 @@ export default [
           name: `Angelina`,
           isStar: true,
         },
-        coordinates: [52.3909553943508, 4.929309666406198],
-        review: {
-          description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-          rating: 5,
-          name: `Ron`,
-          date: `July 14, 2018`
-        },
+        coordinates: [52.369553943508, 4.85309666406198],
+        reviews: [
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 3,
+            name: `Max`,
+            date: `December 24, 2018`
+          },
+          {
+            description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+            rating: 4,
+            name: `James`,
+            date: `October 20, 2018`
+          },
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 5,
+            name: `Ron`,
+            date: `July 14, 2018`
+          },
+        ],
       },
-    ],
+    ]
   },
   {
     id: 4,
@@ -624,6 +810,26 @@ export default [
       isStar: true,
     },
     coordinates: [52.3809553943508, 4.939309666406198],
+    reviews: [
+      {
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        rating: 3,
+        name: `Max`,
+        date: `December 24, 2018`
+      },
+      {
+        description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+        rating: 4,
+        name: `James`,
+        date: `October 20, 2018`
+      },
+      {
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+        rating: 5,
+        name: `Ron`,
+        date: `July 14, 2018`
+      },
+    ],
     additional: [
       {
         id: 5,
@@ -667,12 +873,26 @@ export default [
           isStar: true,
         },
         coordinates: [52.3909553943508, 4.85309666406198],
-        review: {
-          description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-          rating: 3,
-          name: `Max`,
-          date: `December 24, 2018`
-        },
+        reviews: [
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 3,
+            name: `Max`,
+            date: `December 24, 2018`
+          },
+          {
+            description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+            rating: 4,
+            name: `James`,
+            date: `October 20, 2018`
+          },
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 5,
+            name: `Ron`,
+            date: `July 14, 2018`
+          },
+        ],
       },
       {
         id: 6,
@@ -716,23 +936,37 @@ export default [
           isStar: true,
         },
         coordinates: [52.369553943508, 4.85309666406198],
-        review: {
-          description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-          rating: 4,
-          name: `James`,
-          date: `October 20, 2018`
-        },
+        reviews: [
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 3,
+            name: `Max`,
+            date: `December 24, 2018`
+          },
+          {
+            description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+            rating: 4,
+            name: `James`,
+            date: `October 20, 2018`
+          },
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 5,
+            name: `Ron`,
+            date: `July 14, 2018`
+          },
+        ],
       },
       {
         id: 7,
         city: `Amsterdam`,
-        title: `Canal View Prinsengracht`,
-        photo: `img/apartment-02.jpg`,
-        price: 132,
-        type: TYPES.apartment,
-        rating: 3,
+        title: `Wood and stone place`,
+        photo: `img/room.jpg`,
+        price: 80,
+        type: TYPES.privateRoom,
+        rating: 4,
         isPremium: false,
-        isBookmark: false,
+        isBookmark: true,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -764,14 +998,28 @@ export default [
           name: `Angelina`,
           isStar: true,
         },
-        coordinates: [52.3909553943508, 4.929309666406198],
-        review: {
-          description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-          rating: 5,
-          name: `Ron`,
-          date: `July 14, 2018`
-        },
+        coordinates: [52.369553943508, 4.85309666406198],
+        reviews: [
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 3,
+            name: `Max`,
+            date: `December 24, 2018`
+          },
+          {
+            description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+            rating: 4,
+            name: `James`,
+            date: `October 20, 2018`
+          },
+          {
+            description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+            rating: 5,
+            name: `Ron`,
+            date: `July 14, 2018`
+          },
+        ],
       },
-    ],
+    ]
   },
 ];

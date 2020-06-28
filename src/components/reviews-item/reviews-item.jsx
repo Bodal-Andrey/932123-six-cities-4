@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ReviewsItem = ({offer}) => {
-  const {review} = offer;
+const ReviewsItem = (props) => {
+  const {review} = props;
   const {description, rating, name, date} = review;
 
   return (
@@ -32,13 +32,11 @@ const ReviewsItem = ({offer}) => {
 };
 
 ReviewsItem.propTypes = {
-  offer: PropTypes.shape({
-    review: PropTypes.shape({
-      description: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-    }).isRequired,
+  review: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
   }).isRequired,
 };
 

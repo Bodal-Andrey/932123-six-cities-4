@@ -6,7 +6,7 @@ import offers from "../../data-test.js";
 it(`Test ReviewsItem with first offer`, () => {
   const tree = renderer.create(
       <ReviewsItem
-        offer={offers[0]}
+        review={offers[0].reviews[0]}
       />).toJSON();
 
   expect(tree).toMatchSnapshot();

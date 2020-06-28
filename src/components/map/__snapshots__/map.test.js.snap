@@ -2,6 +2,6 @@
 
 exports[`Map component test 1`] = `
 <section
-  className="className"
+  className="cities__map map"
 />
 `;
