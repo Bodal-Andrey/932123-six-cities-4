@@ -34,7 +34,7 @@ class App extends PureComponent {
     if (offers[activeOffer]) {
       return (<InfoAboutOffer
         offerId={activeOffer}
-        offer={offers[activeOffer]}
+        offers={offers}
         onChangeScreen={this.onChangeScreen}
       />);
     }
@@ -54,7 +54,7 @@ class App extends PureComponent {
           <Route exact path="/dev-offer">
             <InfoAboutOffer
               offerId={1}
-              offer={offers[1]}
+              offers={offers}
               onChangeScreen={this.onChangeScreen}
             />
           </Route>

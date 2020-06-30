@@ -2,11 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
-import NearbyList from "../nearby-list/nearby-list.jsx";
+import CardsList from "../cards-list/cards-list.jsx";
 
 const InfoAboutOffer = (props) => {
-  const {offer, offerId, onChangeScreen} = props;
-  const {title, price, type, rating, isPremium, isBookmark, images, description, feature, guests, inside, owner, reviews, additional} = offer;
+  const {offers, offerId, onChangeScreen} = props;
+  const offer = offers.find((item) => item.id === offerId);
+  const nearby = offers.filter((item) => item.id !== offerId);
+  const {title, price, type, rating, isPremium, isBookmark, images, description, feature, guests, inside, owner, reviews} = offer;
   const {avatar, name, isStar} = owner;
 
   return (
@@ -160,12 +162,14 @@ const InfoAboutOffer = (props) => {
               </section>
             </div>
           </div>
-          <Map offers={additional} city={[52.38333, 4.9]} offerId={offerId} className={`property__map map`} />
+          <Map offers={offers} city={[52.38333, 4.9]} offerId={offerId} className={`property__map map`} />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <NearbyList offers={additional} onChangeScreen={onChangeScreen} />
+            <div className="near-places__list places__list">
+              <CardsList offers={nearby} onChangeScreen={onChangeScreen} isNearby={true} />
+            </div>
           </section>
         </div>
       </main>
@@ -174,26 +178,7 @@ const InfoAboutOffer = (props) => {
 };
 
 InfoAboutOffer.propTypes = {
-  offer: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    isBookmark: PropTypes.bool.isRequired,
-    images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    description: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    feature: PropTypes.string.isRequired,
-    guests: PropTypes.string.isRequired,
-    inside: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    owner: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      isStar: PropTypes.bool.isRequired,
-    }).isRequired,
-    reviews: PropTypes.array.isRequired,
-    additional: PropTypes.array.isRequired,
-  }).isRequired,
+  offers: PropTypes.array.isRequired,
   offerId: PropTypes.number.isRequired,
   onChangeScreen: PropTypes.func.isRequired,
 };

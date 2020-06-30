@@ -88,7 +88,9 @@ const Main = (props) => {
                     <li className="places__option" tabIndex="0">Top rated first</li>
                   </ul>
                 </form>
-                <CardsList offers={offers} onChangeScreen={onChangeScreen} />
+                <div className="cities__places-list places__list tabs__content">
+                  <CardsList offers={offers} onChangeScreen={onChangeScreen} />
+                </div>
               </section>
               <div className="cities__right-section">
                 <Map offers={offers} city={[52.38333, 4.9]} offerId={1} className={`cities__map map`} />

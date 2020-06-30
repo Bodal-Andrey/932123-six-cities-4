@@ -89,10 +89,10 @@ exports[`Test Card with first offer name 1`] = `
     </div>
     <h2
       className="place-card__name"
-      onClick={[Function]}
     >
       <a
         href="#"
+        onClick={[Function]}
       >
         Title-1
       </a>

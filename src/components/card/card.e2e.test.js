@@ -15,10 +15,11 @@ it(`Should link to city be pressed`, () => {
       <Card
         offer={offers[0]}
         onChangeScreen={onChangeScreen}
+        isNearby={false}
       />
   );
 
-  const cardName = cardComponent.find(`.place-card__name`);
+  const cardName = cardComponent.find(`.place-card__name a`);
 
   cardName.simulate(`click`);
 
