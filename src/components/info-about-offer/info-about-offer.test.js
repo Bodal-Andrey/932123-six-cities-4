@@ -6,8 +6,7 @@ import offers from "../../data-test.js";
 it(`Render InfoAboutOffer`, () => {
   const tree = renderer.create(
       <InfoAboutOffer
-        offers={offers}
-        offerId={1}
+        offer={offers[0]}
         onChangeScreen = {() => {}}
       />,
       {

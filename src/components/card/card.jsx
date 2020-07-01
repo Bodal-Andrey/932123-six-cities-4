@@ -2,15 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Card = (props) => {
-  const {offer, onChangeScreen, isNearby} = props;
+  const {offer, onChangeScreen, cardsClass} = props;
   const {title, photo, price, type, rating, isPremium, isBookmark} = offer;
 
   return (
-    <article className={`${isNearby ? `near-places__card` : `cities__place-card`} place-card`}>
+    <article className={`${cardsClass === `near-places` ? `near-places__card` : `cities__place-card`} place-card`}>
       {isPremium && <div className="place-card__mark">
         <span>Premium</span>
       </div>}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${cardsClass === `near-places` ? `near-places__image-wrapper` : `cities__image-wrapper`} place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={photo} width={260} height={200} alt="Place image" />
         </a>
@@ -35,7 +35,7 @@ const Card = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a onClick={() => onChangeScreen(offer.id)} href="#">{title}</a>
+          <a onClick={() => onChangeScreen(offer)} href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -55,7 +55,7 @@ Card.propTypes = {
     isBookmark: PropTypes.bool.isRequired,
   }),
   onChangeScreen: PropTypes.func.isRequired,
-  isNearby: PropTypes.bool.isRequired,
+  cardsClass: PropTypes.string.isRequired,
 };
 
 export default Card;

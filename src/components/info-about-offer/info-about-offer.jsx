@@ -3,12 +3,11 @@ import PropTypes from "prop-types";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import CardsList from "../cards-list/cards-list.jsx";
+import {CardsClass} from "../../const.js";
 
 const InfoAboutOffer = (props) => {
-  const {offers, offerId, onChangeScreen} = props;
-  const offer = offers.find((item) => item.id === offerId);
-  const nearby = offers.filter((item) => item.id !== offerId);
-  const {title, price, type, rating, isPremium, isBookmark, images, description, feature, guests, inside, owner, reviews} = offer;
+  const {offer, onChangeScreen} = props;
+  const {id, title, price, type, rating, isPremium, isBookmark, images, description, feature, guests, inside, owner, reviews, nearby} = offer;
   const {avatar, name, isStar} = owner;
 
   return (
@@ -162,14 +161,12 @@ const InfoAboutOffer = (props) => {
               </section>
             </div>
           </div>
-          <Map offers={offers} city={[52.38333, 4.9]} activeOfferId={offerId} className={`property__map map`} />
+          <Map offers={nearby} city={[52.38333, 4.9]} activeOfferId={id} className={`property__map map`} />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <div className="near-places__list places__list">
-              <CardsList offers={nearby} onChangeScreen={onChangeScreen} isNearby={true} />
-            </div>
+            <CardsList offers={nearby} onChangeScreen={onChangeScreen} cardsClass={CardsClass.NEAR_PLACES} />
           </section>
         </div>
       </main>
@@ -178,9 +175,30 @@ const InfoAboutOffer = (props) => {
 };
 
 InfoAboutOffer.propTypes = {
-  offers: PropTypes.array.isRequired,
-  offerId: PropTypes.number.isRequired,
-  onChangeScreen: PropTypes.func.isRequired,
+  offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    photo: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    isBookmark: PropTypes.bool.isRequired,
+    images: PropTypes.array.isRequired,
+    description: PropTypes.array.isRequired,
+    feature: PropTypes.string.isRequired,
+    guests: PropTypes.string.isRequired,
+    inside: PropTypes.array.isRequired,
+    owner: PropTypes.shape({
+      avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      isStar: PropTypes.bool.isRequired,
+    }).isRequired,
+    reviews: PropTypes.array.isRequired,
+    nearby: PropTypes.array.isRequired,
+  }).isRequired,
+  onChangeScreen: PropTypes.func,
+  offerId: PropTypes.number,
 };
 
 export default InfoAboutOffer;

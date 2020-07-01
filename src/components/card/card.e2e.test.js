@@ -15,7 +15,7 @@ it(`Should link to city be pressed`, () => {
       <Card
         offer={offers[0]}
         onChangeScreen={onChangeScreen}
-        isNearby={false}
+        cardsClass={`cities`}
       />
   );
 
@@ -23,5 +23,5 @@ it(`Should link to city be pressed`, () => {
 
   cardName.simulate(`click`);
 
-  expect(onChangeScreen).toHaveBeenCalledWith(offers[0].id);
+  expect(onChangeScreen).toHaveBeenCalledWith(offers[0]);
 });

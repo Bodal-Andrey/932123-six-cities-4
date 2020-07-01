@@ -8,7 +8,7 @@ it(`Test Card with first offer name`, () => {
       <Card
         offer={offers[0]}
         onChangeScreen={() => {}}
-        isNearby={false}
+        cardsClass={`cities`}
       />).toJSON();
 
   expect(tree).toMatchSnapshot();
