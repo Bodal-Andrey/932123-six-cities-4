@@ -4,7 +4,17 @@ import InfoAboutOffer from "./info-about-offer.jsx";
 import offers from "../../data-test.js";
 
 it(`Render InfoAboutOffer`, () => {
-  const tree = renderer.create(<InfoAboutOffer offer={offers[0]} />).toJSON();
+  const tree = renderer.create(
+      <InfoAboutOffer
+        offer={offers[0]}
+        onChangeScreen = {() => {}}
+      />,
+      {
+        createNodeMock: () => {
+          return document.createElement(`div`);
+        }
+      }
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

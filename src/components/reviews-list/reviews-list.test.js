@@ -1,14 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Card from "./card.jsx";
+import ReviewsList from './reviews-list.jsx';
 import offers from "../../data-test.js";
 
-it(`Test Card with first offer name`, () => {
+it(`Test ReviewsList`, () => {
   const tree = renderer.create(
-      <Card
-        offer={offers[0]}
-        onChangeScreen={() => {}}
-        cardsClass={`cities`}
+      <ReviewsList
+        reviews={offers[0].reviews}
       />).toJSON();
 
   expect(tree).toMatchSnapshot();

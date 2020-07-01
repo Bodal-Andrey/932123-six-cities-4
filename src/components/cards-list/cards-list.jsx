@@ -9,11 +9,11 @@ class CardsList extends PureComponent {
   }
 
   render() {
-    const {offers, onChangeScreen} = this.props;
+    const {offers, onChangeScreen, cardsClass} = this.props;
 
     return (
-      <div className="cities__places-list places__list tabs__content">
-        {offers.map((offer) => <Card key={offer.id} offer={offer} onChangeScreen={onChangeScreen} />)}
+      <div className={cardsClass === `cities` ? `cities__places-list places__list tabs__content` : `near-places__list places__list`}>
+        {offers.map((offer) => <Card key={offer.id} offer={offer} onChangeScreen={onChangeScreen} cardsClass={cardsClass} />)}
       </div>
     );
   }
@@ -37,6 +37,7 @@ CardsList.propTypes = {
       })
   ),
   onChangeScreen: PropTypes.func.isRequired,
+  cardsClass: PropTypes.string.isRequired,
 };
 
 export default CardsList;

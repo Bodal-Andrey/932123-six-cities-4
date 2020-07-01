@@ -8,34 +8,29 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {activeOffer: -1};
+    this.state = {activeOffer: null};
 
     this.onChangeScreen = this.onChangeScreen.bind(this);
   }
 
-  onChangeScreen(id) {
-    this.setState({activeOffer: id});
+  onChangeScreen(offer) {
+    this.setState({activeOffer: offer});
   }
 
   _renderScreen() {
     const {offersCount, offers} = this.props;
-    const {activeOffer} = this.state;
 
-    if (activeOffer === -1 || !offers[activeOffer]) {
+    if (this.state.activeOffer) {
       return (
-        <Main
-          offersCount={offersCount}
-          offers={offers}
-          onChangeScreen={this.onChangeScreen}
-        />
+        <InfoAboutOffer offer={this.state.activeOffer} onChangeScreen={this.onChangeScreen} />
       );
+    } else {
+      return (<Main
+        offersCount={offersCount}
+        offers={offers}
+        onChangeScreen={this.onChangeScreen}
+      />);
     }
-
-    if (offers[activeOffer]) {
-      return (<InfoAboutOffer offer={offers[activeOffer]} />);
-    }
-
-    return null;
   }
 
   render() {
@@ -48,7 +43,9 @@ class App extends PureComponent {
             {this._renderScreen()}
           </Route>
           <Route exact path="/dev-offer">
-            <InfoAboutOffer offer={offers[1]} />
+            <InfoAboutOffer
+              offer={offers[0]}
+            />
           </Route>
         </Switch>
       </BrowserRouter>

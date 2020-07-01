@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import CardsList from "../cards-list/cards-list.jsx";
 import Map from "../map/map.jsx";
+import {CardsClass} from "../../const.js";
 
 const Main = (props) => {
   const {offersCount, offers, onChangeScreen} = props;
@@ -88,10 +89,10 @@ const Main = (props) => {
                     <li className="places__option" tabIndex="0">Top rated first</li>
                   </ul>
                 </form>
-                <CardsList offers={offers} onChangeScreen={onChangeScreen} />
+                <CardsList offers={offers} onChangeScreen={onChangeScreen} cardsClass={CardsClass.CITIES} />
               </section>
               <div className="cities__right-section">
-                <Map offers={offers} city={[52.38333, 4.9]} offerId={1} />
+                <Map offers={offers} city={[52.38333, 4.9]} activeOfferId={1} className={`cities__map map`} />
               </div>
             </div>
           </div>

@@ -303,10 +303,10 @@ exports[`App component test 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
                     href="#"
+                    onClick={[Function]}
                   >
                     Title-1
                   </a>
@@ -399,10 +399,10 @@ exports[`App component test 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
                     href="#"
+                    onClick={[Function]}
                   >
                     Title-2
                   </a>
@@ -495,10 +495,10 @@ exports[`App component test 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
                     href="#"
+                    onClick={[Function]}
                   >
                     Title-3
                   </a>
@@ -598,10 +598,10 @@ exports[`App component test 1`] = `
                 </div>
                 <h2
                   className="place-card__name"
-                  onClick={[Function]}
                 >
                   <a
                     href="#"
+                    onClick={[Function]}
                   >
                     Title-4
                   </a>

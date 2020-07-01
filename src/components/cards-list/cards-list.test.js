@@ -8,8 +8,8 @@ it(`CardsList component test`, () => {
       <CardsList
         offers={offers}
         onChangeScreen={() => {}}
+        cardsClass={`cities`}
       />).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
-

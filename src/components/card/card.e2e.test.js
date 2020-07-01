@@ -15,12 +15,13 @@ it(`Should link to city be pressed`, () => {
       <Card
         offer={offers[0]}
         onChangeScreen={onChangeScreen}
+        cardsClass={`cities`}
       />
   );
 
-  const cardName = cardComponent.find(`.place-card__name`);
+  const cardName = cardComponent.find(`.place-card__name a`);
 
   cardName.simulate(`click`);
 
-  expect(onChangeScreen).toHaveBeenCalledWith(offers[0].id);
+  expect(onChangeScreen).toHaveBeenCalledWith(offers[0]);
 });
