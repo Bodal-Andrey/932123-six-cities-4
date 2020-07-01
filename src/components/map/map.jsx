@@ -7,21 +7,12 @@ class Map extends React.PureComponent {
     super(props);
 
     this._mapRef = React.createRef();
+    this._markersLayer = null;
   }
 
   componentDidMount() {
-    const {offers, city, offerId} = this.props;
+    const {city} = this.props;
     const currentMap = this._mapRef.current;
-
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
-    });
-
-    const activeIcon = leaflet.icon({
-      iconUrl: `img/pin-active.svg`,
-      iconSize: [30, 30]
-    });
 
     const zoom = 12;
 
@@ -40,22 +31,39 @@ class Map extends React.PureComponent {
       })
     .addTo(map);
 
+    this._markersLayer = leaflet.layerGroup().addTo(map);
+    this._renderMarkers();
+  }
+
+  componentDidUpdate() {
+    this._markersLayer.clearLayers();
+    this._renderMarkers();
+  }
+
+  _renderMarkers() {
+    const {activeOfferId, offers} = this.props;
+
+    const icon = leaflet.icon({
+      iconUrl: `img/pin.svg`,
+      iconSize: [30, 30]
+    });
+
+    const activeIcon = leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
+
     offers.forEach((item) => {
-      if (item.id === offerId) {
+      if (item.id === activeOfferId) {
         leaflet
         .marker(item.coordinates, {activeIcon})
-        .addTo(map);
+        .addTo(this._markersLayer);
       } else {
         leaflet
         .marker(item.coordinates, {icon})
-        .addTo(map);
+        .addTo(this._markersLayer);
       }
     });
-  }
-
-  componentWillUnmount() {
-    const currentMap = this._mapRef.current;
-    currentMap.remove();
   }
 
   render() {
@@ -67,7 +75,7 @@ class Map extends React.PureComponent {
 Map.propTypes = {
   offers: PropTypes.array.isRequired,
   city: PropTypes.array.isRequired,
-  offerId: PropTypes.number.isRequired,
+  activeOfferId: PropTypes.number.isRequired,
   className: PropTypes.string.isRequired,
 };
 

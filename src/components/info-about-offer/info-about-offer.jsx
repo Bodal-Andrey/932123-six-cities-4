@@ -162,7 +162,7 @@ const InfoAboutOffer = (props) => {
               </section>
             </div>
           </div>
-          <Map offers={offers} city={[52.38333, 4.9]} offerId={offerId} className={`property__map map`} />
+          <Map offers={offers} city={[52.38333, 4.9]} activeOfferId={offerId} className={`property__map map`} />
         </section>
         <div className="container">
           <section className="near-places places">

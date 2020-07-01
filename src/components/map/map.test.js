@@ -8,7 +8,7 @@ it(`Map component test`, () => {
       <Map
         offers={offers}
         city={offers[1].coordinates}
-        offerId={offers[1].id}
+        activeOfferId={offers[1].id}
         className={`cities__map map`}
       />,
       {

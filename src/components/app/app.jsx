@@ -8,20 +8,19 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {activeOffer: -1};
+    this.state = {offerId: -1};
 
     this.onChangeScreen = this.onChangeScreen.bind(this);
   }
 
   onChangeScreen(id) {
-    this.setState({activeOffer: id});
+    this.setState({offerId: id});
   }
 
   _renderScreen() {
     const {offersCount, offers} = this.props;
-    const {activeOffer} = this.state;
 
-    if (activeOffer === -1 || !offers[activeOffer]) {
+    if (this.state.offerId === -1) {
       return (
         <Main
           offersCount={offersCount}
@@ -29,17 +28,13 @@ class App extends PureComponent {
           onChangeScreen={this.onChangeScreen}
         />
       );
-    }
-
-    if (offers[activeOffer]) {
+    } else {
       return (<InfoAboutOffer
-        offerId={activeOffer}
+        offerId={this.state.offerId}
         offers={offers}
         onChangeScreen={this.onChangeScreen}
       />);
     }
-
-    return null;
   }
 
   render() {
