@@ -18,7 +18,7 @@ class App extends PureComponent {
   }
 
   _renderScreen() {
-    const {offersCount, offers} = this.props;
+    const {offers} = this.props;
 
     if (this.state.activeOffer) {
       return (
@@ -26,7 +26,6 @@ class App extends PureComponent {
       );
     } else {
       return (<Main
-        offersCount={offersCount}
         offers={offers}
         onChangeScreen={this.onChangeScreen}
       />);
