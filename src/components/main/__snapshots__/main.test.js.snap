@@ -77,43 +77,9 @@ exports[`Main component test 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item"
-              href="#"
-            >
-              <span>
-                Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-            >
-              <span>
-                Cologne
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-            >
-              <span>
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
               className="locations__item-link tabs__item tabs__item--active"
+              href="#"
+              onClick={[Function]}
             >
               <span>
                 Amsterdam
@@ -124,11 +90,12 @@ exports[`Main component test 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item"
+              className="locations__item-link tabs__item "
               href="#"
+              onClick={[Function]}
             >
               <span>
-                Hamburg
+                Paris
               </span>
             </a>
           </li>
@@ -136,11 +103,25 @@ exports[`Main component test 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item"
+              className="locations__item-link tabs__item "
               href="#"
+              onClick={[Function]}
             >
               <span>
-                Dusseldorf
+                Brussels
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
+              className="locations__item-link tabs__item "
+              href="#"
+              onClick={[Function]}
+            >
+              <span>
+                Hamburg
               </span>
             </a>
           </li>
@@ -164,8 +145,9 @@ exports[`Main component test 1`] = `
           <b
             className="places__found"
           >
-            100
-             places to stay in Amsterdam
+            4
+             places to stay in 
+            Amsterdam
           </b>
           <form
             action="#"
@@ -235,7 +217,7 @@ exports[`Main component test 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height={200}
-                    src="img-1"
+                    src="img/apartment-01.jpg"
                     width={260}
                   />
                 </a>
@@ -308,13 +290,13 @@ exports[`Main component test 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Title-1
+                    Beautiful & luxurious apartment at great location
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Type-1
+                  Apartment
                 </p>
               </div>
             </article>
@@ -331,7 +313,7 @@ exports[`Main component test 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height={200}
-                    src="img-1"
+                    src="img/room.jpg"
                     width={260}
                   />
                 </a>
@@ -404,13 +386,13 @@ exports[`Main component test 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Title-2
+                    Wood and stone place
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Type-2
+                  Private room
                 </p>
               </div>
             </article>
@@ -427,7 +409,7 @@ exports[`Main component test 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height={200}
-                    src="img-1"
+                    src="img/apartment-02.jpg"
                     width={260}
                   />
                 </a>
@@ -482,7 +464,7 @@ exports[`Main component test 1`] = `
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "60%",
                         }
                       }
                     />
@@ -500,13 +482,13 @@ exports[`Main component test 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Title-3
+                    Canal View Prinsengracht
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Type-3
+                  Apartment
                 </p>
               </div>
             </article>
@@ -530,7 +512,7 @@ exports[`Main component test 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height={200}
-                    src="img-1"
+                    src="img/apartment-03.jpg"
                     width={260}
                   />
                 </a>
@@ -603,13 +585,13 @@ exports[`Main component test 1`] = `
                     href="#"
                     onClick={[Function]}
                   >
-                    Title-4
+                    Nice, cozy, warm big bed apartment
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Type-4
+                  Apartment
                 </p>
               </div>
             </article>

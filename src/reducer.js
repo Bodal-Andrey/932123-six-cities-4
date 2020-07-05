@@ -3,7 +3,8 @@ import offers from "./mocks/offers.js";
 
 const initialState = {
   city: offers[0].city.name,
-  offers
+  offers,
+  cities: Array.from(new Set(offers.map((item) => item.city.name))),
 };
 
 const ActionType = {
