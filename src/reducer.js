@@ -2,7 +2,7 @@ import {extend} from "./utils.js";
 import offers from "./mocks/offers.js";
 
 const initialState = {
-  city: `Amsterdam`,
+  city: offers[0].city.name,
   offers
 };
 
@@ -25,4 +25,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {ActionCreator, reducer};
+export {ActionType, ActionCreator, reducer};
