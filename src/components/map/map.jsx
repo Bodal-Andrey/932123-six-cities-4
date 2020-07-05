@@ -38,7 +38,7 @@ class Map extends React.PureComponent {
 
   componentDidUpdate() {
     this._markersLayer.clearLayers();
-    this._map.setView(this.props.city, 12);
+    this._map.setView(this.props.city);
     this._renderMarkers();
   }
 

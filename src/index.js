@@ -14,7 +14,6 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
       <App
-        offersCount={100}
         offers={offers}
       />
     </Provider>,

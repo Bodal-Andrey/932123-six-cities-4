@@ -5,11 +5,9 @@ import CardsList from "../cards-list/cards-list.jsx";
 import Map from "../map/map.jsx";
 import {CardsClass} from "../../const.js";
 import CitiesList from "../cities-list/cities-list.jsx";
-import {ActionCreator} from "../../reducer.js";
 
 const Main = (props) => {
-  const {offers, onChangeScreen, city, activeOffers, onCityButtonClick} = props;
-  const cities = Array.from(new Set(offers.map((item) => item.city.name)));
+  const {onChangeScreen, city, activeOffers} = props;
 
   return (
     <React.Fragment>
@@ -41,7 +39,7 @@ const Main = (props) => {
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <CitiesList onCityButtonClick={onCityButtonClick} cities={cities} selectedCity={city} />
+              <CitiesList />
             </section>
           </div>
           <div className="cities">
@@ -76,41 +74,18 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offersCount: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        city: PropTypes.shape({
-          coordinates: PropTypes.array.isRequired,
-        }).isRequired,
-        title: PropTypes.string.isRequired,
-        photo: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        type: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        isPremium: PropTypes.bool.isRequired,
-        isBookmark: PropTypes.bool.isRequired,
-      })
-  ),
   onChangeScreen: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
   activeOffers: PropTypes.array.isRequired,
-  onCityButtonClick: PropTypes.func.isRequired,
 };
-
-const mapDispatchToProps = (dispatch) => ({
-  onCityButtonClick(city) {
-    dispatch(ActionCreator.cityChange(city));
-  }
-});
 
 const mapStateToProps = (state) => {
   return {
     activeOffers: state.offers.filter((item) => item.city.name === state.city),
-    offers: state.offers,
     city: state.city,
   };
 };
 
 export {Main};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, null)(Main);
