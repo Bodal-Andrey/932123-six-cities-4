@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import CardsList from "../cards-list/cards-list.jsx";
 import Map from "../map/map.jsx";
 import {CardsClass} from "../../const.js";
-import CitiesList from "../cities-list/cities-list.jsx";
+import {CitiesList} from "../cities-list/cities-list.jsx";
 
 const Main = (props) => {
   const {onChangeScreen, city, activeOffers} = props;
