@@ -1,10 +1,12 @@
 import {extend} from "./utils.js";
 import offers from "./mocks/offers.js";
 
+const cities = Array.from(new Set(offers.map((item) => item.city.name)));
+
 const initialState = {
   city: offers[0].city.name,
   offers,
-  cities: Array.from(new Set(offers.map((item) => item.city.name))),
+  cities,
 };
 
 const ActionType = {

@@ -18,9 +18,9 @@ it(`Reducer should change city name`, () => {
     cities
   }, {
     type: ActionType.CHANGE_CITY,
-    payload: `Brussels`,
+    payload: `Amsterdam`,
   })).toEqual({
-    city: `Brussels`,
+    city: `Amsterdam`,
     offers,
     cities
   });
@@ -28,9 +28,9 @@ it(`Reducer should change city name`, () => {
 
 describe(`Action creators work correctly`, () => {
   it(`Action creator for incrementing step returns correct action`, () => {
-    expect(ActionCreator.cityChange(`Brussels`)).toEqual({
-      type: ActionType.CHANGE_CITY,
-      payload: `Brussels`,
+    expect(ActionCreator.cityChange(`Amsterdam`)).toEqual({
+      type: ActionType.CITY_CHANGE,
+      payload: `Amsterdam`,
     });
   });
 });

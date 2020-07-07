@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import Main from "./main.jsx";
+import {Main} from "./main.jsx";
 import offers from "../../data-test.js";
 
 const mockStore = configureStore([]);

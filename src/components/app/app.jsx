@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {Main} from "../main/main.jsx";
+import Main from "../main/main.jsx";
 import InfoAboutOffer from "../info-about-offer/info-about-offer.jsx";
 
 class App extends PureComponent {
@@ -42,6 +42,7 @@ class App extends PureComponent {
           <Route exact path="/dev-offer">
             <InfoAboutOffer
               offer={offers[0]}
+              onChangeScreen={this.onChangeScreen}
             />
           </Route>
         </Switch>
