@@ -5,6 +5,8 @@ import CardsList from "../cards-list/cards-list.jsx";
 import Map from "../map/map.jsx";
 import {CardsClass} from "../../const.js";
 import CitiesList from "../cities-list/cities-list.jsx";
+import SortingOptions from '../sorting-options/sorting-options.jsx';
+import {SortingTypes} from "../../const.js";
 
 const Main = (props) => {
   const {onChangeScreen, city, activeOffers} = props;
@@ -47,19 +49,7 @@ const Main = (props) => {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{activeOffers.length} places to stay in {city}</b>
-                <form className="places__sorting" action="#" method="get">
-                  <span className="places__sorting-caption">Sort by</span>
-                  <span className="places__sorting-type" tabIndex="0">
-                  Popular
-
-                  </span>
-                  <ul className="places__options places__options--custom places__options--opened">
-                    <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                    <li className="places__option" tabIndex="0">Price: low to high</li>
-                    <li className="places__option" tabIndex="0">Price: high to low</li>
-                    <li className="places__option" tabIndex="0">Top rated first</li>
-                  </ul>
-                </form>
+                <SortingOptions />
                 <CardsList offers={activeOffers} onChangeScreen={onChangeScreen} cardsClass={CardsClass.CITIES} />
               </section>
               <div className="cities__right-section">
@@ -79,9 +69,32 @@ Main.propTypes = {
   activeOffers: PropTypes.array.isRequired,
 };
 
+const sortingOffers = (offers, sortType) => {
+  let sortedOffers = [];
+
+  switch (sortType) {
+    case SortingTypes.POPULAR:
+      sortedOffers = offers;
+      break;
+    case SortingTypes.PRICE_LOW_TO_HIGH:
+      sortedOffers = offers.slice().sort((a, b) => a.price - b.price);
+      break;
+    case SortingTypes.PRICE_HIGH_TO_LOW:
+      sortedOffers = offers.slice().sort((a, b) => b.price - a.price);
+      break;
+    case SortingTypes.TOP_RATED_FIRST:
+      sortedOffers = offers.slice().sort((a, b) => b.rating - a.rating);
+      break;
+  }
+
+  return sortedOffers;
+};
+
 const mapStateToProps = (state) => {
+  const filteredOffers = state.offers.filter((item) => item.city.name === state.city);
+
   return {
-    activeOffers: state.offers.filter((item) => item.city.name === state.city),
+    activeOffers: sortingOffers(filteredOffers, state.sortType),
     city: state.city,
   };
 };
