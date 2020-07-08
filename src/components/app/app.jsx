@@ -1,4 +1,5 @@
 import React, {PureComponent} from "react";
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Main from "../main/main.jsx";
@@ -18,16 +19,12 @@ class App extends PureComponent {
   }
 
   _renderScreen() {
-    const {offersCount, offers} = this.props;
-
     if (this.state.activeOffer) {
       return (
         <InfoAboutOffer offer={this.state.activeOffer} onChangeScreen={this.onChangeScreen} />
       );
     } else {
       return (<Main
-        offersCount={offersCount}
-        offers={offers}
         onChangeScreen={this.onChangeScreen}
       />);
     }
@@ -45,6 +42,7 @@ class App extends PureComponent {
           <Route exact path="/dev-offer">
             <InfoAboutOffer
               offer={offers[0]}
+              onChangeScreen={this.onChangeScreen}
             />
           </Route>
         </Switch>
@@ -54,8 +52,15 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  offersCount: PropTypes.number.isRequired,
   offers: PropTypes.array.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    offers: state.offers,
+  };
+};
+
+export {App};
+
+export default connect(mapStateToProps, null)(App);

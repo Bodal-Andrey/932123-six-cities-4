@@ -1,13 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import {Main} from "./main.jsx";
+import configureStore from "redux-mock-store";
+import {CitiesList} from "./cities-list.jsx";
 import offers from "../../data-test.js";
 
 const mockStore = configureStore([]);
 
-it(`Main component test`, () => {
+it(`Render CitiesList`, () => {
   const store = mockStore({
     offers,
     city: offers[0].city.name,
@@ -16,17 +16,12 @@ it(`Main component test`, () => {
 
   const tree = renderer.create(
       <Provider store={store}>
-        <Main
-          city={`Brussels`}
-          activeOffers={offers}
-          onChangeScreen={() => {}}
+        <CitiesList
+          cities={[`Amsterdam`, `Paris`, `Brussels`, `Hamburg`]}
+          city={`Amsterdam`}
+          onCityButtonClick={() => {}}
         />
-      </Provider>,
-      {
-        createNodeMock: () => {
-          return document.createElement(`div`);
-        }
-      }
+      </Provider>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
