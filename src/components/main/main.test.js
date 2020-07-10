@@ -11,7 +11,9 @@ it(`Main component test`, () => {
   const store = mockStore({
     offers,
     city: offers[0].city.name,
-    cities: Array.from(new Set(offers.map((item) => item.city.name)))
+    cities: Array.from(new Set(offers.map((item) => item.city.name))),
+    sortType: `popular`,
+    aciveOfferId: null,
   });
 
   const tree = renderer.create(

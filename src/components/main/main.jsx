@@ -5,9 +5,11 @@ import CardsList from "../cards-list/cards-list.jsx";
 import Map from "../map/map.jsx";
 import {CardsClass} from "../../const.js";
 import CitiesList from "../cities-list/cities-list.jsx";
+import SortingOptions from '../sorting-options/sorting-options.jsx';
+import {sortingOffers} from "../../utils.js";
 
 const Main = (props) => {
-  const {onChangeScreen, city, activeOffers} = props;
+  const {onChangeScreen, city, activeOffers, activeOfferId} = props;
 
   return (
     <React.Fragment>
@@ -47,23 +49,11 @@ const Main = (props) => {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{activeOffers.length} places to stay in {city}</b>
-                <form className="places__sorting" action="#" method="get">
-                  <span className="places__sorting-caption">Sort by</span>
-                  <span className="places__sorting-type" tabIndex="0">
-                  Popular
-
-                  </span>
-                  <ul className="places__options places__options--custom places__options--opened">
-                    <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                    <li className="places__option" tabIndex="0">Price: low to high</li>
-                    <li className="places__option" tabIndex="0">Price: high to low</li>
-                    <li className="places__option" tabIndex="0">Top rated first</li>
-                  </ul>
-                </form>
+                <SortingOptions />
                 <CardsList offers={activeOffers} onChangeScreen={onChangeScreen} cardsClass={CardsClass.CITIES} />
               </section>
               <div className="cities__right-section">
-                <Map offers={activeOffers} city={activeOffers[0].city.coordinates} activeOfferId={1} className={`cities__map map`} />
+                <Map offers={activeOffers} city={activeOffers[0].city.coordinates} activeOfferId={activeOfferId} className={`cities__map map`} />
               </div>
             </div>
           </div>
@@ -77,12 +67,16 @@ Main.propTypes = {
   onChangeScreen: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
   activeOffers: PropTypes.array.isRequired,
+  activeOfferId: PropTypes.any,
 };
 
 const mapStateToProps = (state) => {
+  const filteredOffers = state.offers.filter((item) => item.city.name === state.city);
+
   return {
-    activeOffers: state.offers.filter((item) => item.city.name === state.city),
+    activeOffers: sortingOffers(filteredOffers, state.sortType),
     city: state.city,
+    activeOfferId: state.activeOfferId,
   };
 };
 

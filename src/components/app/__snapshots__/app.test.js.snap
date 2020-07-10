@@ -161,33 +161,39 @@ exports[`App component test 1`] = `
             </span>
             <span
               className="places__sorting-type"
+              onClick={[Function]}
               tabIndex="0"
             >
               Popular
             </span>
             <ul
-              className="places__options places__options--custom places__options--opened"
+              className="places__options places__options--custom "
+              onClick={[Function]}
             >
               <li
-                className="places__option places__option--active"
+                className="places__option "
+                data-sort-type="popular"
                 tabIndex="0"
               >
                 Popular
               </li>
               <li
-                className="places__option"
+                className="places__option "
+                data-sort-type="priceLowToHigh"
                 tabIndex="0"
               >
                 Price: low to high
               </li>
               <li
-                className="places__option"
+                className="places__option "
+                data-sort-type="priceHigTohLow"
                 tabIndex="0"
               >
                 Price: high to low
               </li>
               <li
-                className="places__option"
+                className="places__option "
+                data-sort-type="topRatedFirst"
                 tabIndex="0"
               >
                 Top rated first
@@ -199,6 +205,7 @@ exports[`App component test 1`] = `
           >
             <article
               className="cities__place-card place-card"
+              onMouseHover={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -302,6 +309,7 @@ exports[`App component test 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              onMouseHover={[Function]}
             >
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
@@ -398,6 +406,7 @@ exports[`App component test 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              onMouseHover={[Function]}
             >
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
@@ -494,6 +503,7 @@ exports[`App component test 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              onMouseHover={[Function]}
             >
               <div
                 className="place-card__mark"
