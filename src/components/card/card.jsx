@@ -4,11 +4,11 @@ import {ActionCreator} from "../../reducer.js";
 import {connect} from "react-redux";
 
 const Card = (props) => {
-  const {offer, onChangeScreen, cardsClass, onCardMouseHover, onCardMouseLeave} = props;
+  const {offer, onChangeScreen, cardsClass, onCardMouseHover} = props;
   const {title, photo, price, type, rating, isPremium, isBookmark} = offer;
 
   return (
-    <article onMouseHover={() => onCardMouseHover(offer.id)} onMouseLeave={onCardMouseLeave} className={`${cardsClass === `near-places` ? `near-places__card` : `cities__place-card`} place-card`}>
+    <article onMouseHover={() => onCardMouseHover(offer.id)} className={`${cardsClass === `near-places` ? `near-places__card` : `cities__place-card`} place-card`}>
       {isPremium && <div className="place-card__mark">
         <span>Premium</span>
       </div>}
@@ -59,15 +59,11 @@ Card.propTypes = {
   onChangeScreen: PropTypes.func.isRequired,
   cardsClass: PropTypes.string.isRequired,
   onCardMouseHover: PropTypes.func.isRequired,
-  onCardMouseLeave: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onCardMouseHover(id) {
     dispatch(ActionCreator.activeOfferIdChange(id));
-  },
-  onCardMouseLeave() {
-    dispatch(ActionCreator.activeOfferIdChange(null));
   }
 });
 

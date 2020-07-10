@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Card from "./card.jsx";
+import {Card} from "./card.jsx";
 import offers from "../../data-test.js";
 
 it(`Test Card with first offer name`, () => {
@@ -9,6 +9,7 @@ it(`Test Card with first offer name`, () => {
         offer={offers[0]}
         onChangeScreen={() => {}}
         cardsClass={`cities`}
+        onCardMouseHover={() => {}}
       />).toJSON();
 
   expect(tree).toMatchSnapshot();
