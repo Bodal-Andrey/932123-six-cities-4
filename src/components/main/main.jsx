@@ -9,7 +9,7 @@ import SortingOptions from '../sorting-options/sorting-options.jsx';
 import {sortingOffers} from "../../utils.js";
 
 const Main = (props) => {
-  const {onChangeScreen, city, activeOffers} = props;
+  const {onChangeScreen, city, activeOffers, activeOfferId} = props;
 
   return (
     <React.Fragment>
@@ -53,7 +53,7 @@ const Main = (props) => {
                 <CardsList offers={activeOffers} onChangeScreen={onChangeScreen} cardsClass={CardsClass.CITIES} />
               </section>
               <div className="cities__right-section">
-                <Map offers={activeOffers} city={activeOffers[0].city.coordinates} activeOfferId={1} className={`cities__map map`} />
+                <Map offers={activeOffers} city={activeOffers[0].city.coordinates} activeOfferId={activeOfferId} className={`cities__map map`} />
               </div>
             </div>
           </div>
@@ -67,6 +67,7 @@ Main.propTypes = {
   onChangeScreen: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
   activeOffers: PropTypes.array.isRequired,
+  activeOfferId: PropTypes.any,
 };
 
 const mapStateToProps = (state) => {
@@ -75,6 +76,7 @@ const mapStateToProps = (state) => {
   return {
     activeOffers: sortingOffers(filteredOffers, state.sortType),
     city: state.city,
+    activeOfferId: state.activeOfferId,
   };
 };
 

@@ -42,6 +42,11 @@ class Map extends React.PureComponent {
     this._renderMarkers();
   }
 
+  componentWillUnmount() {
+    const currentMap = this._mapRef.current;
+    currentMap.remove();
+  }
+
   _renderMarkers() {
     const {activeOfferId, offers} = this.props;
 
@@ -77,7 +82,7 @@ class Map extends React.PureComponent {
 Map.propTypes = {
   offers: PropTypes.array.isRequired,
   city: PropTypes.array.isRequired,
-  activeOfferId: PropTypes.number.isRequired,
+  activeOfferId: PropTypes.any,
   className: PropTypes.string.isRequired,
 };
 

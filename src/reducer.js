@@ -9,11 +9,13 @@ const initialState = {
   offers,
   cities,
   sortType: SortingTypes.POPULAR,
+  activeOfferId: null,
 };
 
 const ActionType = {
   CITY_CHANGE: `CITY_CHANGE`,
   SORT_CHANGE: `SORT_CHANGE`,
+  ACTIVE_OFFER_ID_CHANGE: `ACTIVE_OFFER_ID_CHANGE`,
 };
 
 const ActionCreator = {
@@ -24,7 +26,11 @@ const ActionCreator = {
   sortChange: (sortType) => ({
     type: ActionType.SORT_CHANGE,
     payload: sortType,
-  })
+  }),
+  activeOfferIdChange: (id) => ({
+    type: ActionType.ACTIVE_OFFER_ID_CHANGE,
+    payload: id,
+  }),
 };
 
 const reducer = (state = initialState, action) => {
@@ -33,6 +39,8 @@ const reducer = (state = initialState, action) => {
       return extend(state, {city: action.payload});
     case ActionType.SORT_CHANGE:
       return extend(state, {sortType: action.payload});
+    case ActionType.ACTIVE_OFFER_ID_CHANGE:
+      return extend(state, {activeOfferId: action.payload});
   }
   return state;
 };
