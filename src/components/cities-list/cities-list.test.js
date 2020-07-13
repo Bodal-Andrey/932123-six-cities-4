@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import {CitiesList} from "./cities-list.jsx";
+import CitiesList from "./cities-list.jsx";
 import offers from "../../data-test.js";
 
 const mockStore = configureStore([]);
@@ -18,8 +18,9 @@ it(`Render CitiesList`, () => {
       <Provider store={store}>
         <CitiesList
           cities={[`Amsterdam`, `Paris`, `Brussels`, `Hamburg`]}
-          city={`Amsterdam`}
+          activeItemId={`Amsterdam`}
           onCityButtonClick={() => {}}
+          onActiveItemChange={() => {}}
         />
       </Provider>
   ).toJSON();
