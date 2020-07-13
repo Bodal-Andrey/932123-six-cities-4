@@ -21,6 +21,8 @@ it(`CardsList component test`, () => {
           offers={offers}
           onChangeScreen={() => {}}
           cardsClass={`cities`}
+          onCardMouseHover={() => {}}
+          onCardMouseOut={() => {}}
         />
       </Provider>
   ).toJSON();
