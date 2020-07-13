@@ -1,34 +1,55 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {Card} from "./card.jsx";
+import Card from "./card.jsx";
 import offers from "../../data-test.js";
 
 Enzyme.configure({
   adapter: new Adapter()
 });
 
-it(`Should link to city be pressed, mouse hover or mouse leave`, () => {
-  const onChangeScreen = jest.fn();
-  const onCardMouseHover = jest.fn();
+describe(`Mouse testing on the Card`, () => {
+  it(`Should link to city be pressed`, () => {
+    const onChangeScreen = jest.fn();
+    const onActiveItemChange = jest.fn();
 
-  const cardComponent = shallow(
-      <Card
-        offer={offers[0]}
-        onChangeScreen={onChangeScreen}
-        cardsClass={`cities`}
-        onCardMouseHover={onCardMouseHover}
-      />
-  );
+    const cardComponent = shallow(
+        <Card
+          offer={offers[0]}
+          onChangeScreen={onChangeScreen}
+          cardsClass={`cities`}
+          onActiveItemChange={onActiveItemChange}
+        />
+    );
 
-  cardComponent.props().onMouseHover();
+    cardComponent.props().onMouseHover();
 
-  expect(onCardMouseHover.mock.calls.length).toBe(1);
-  expect(onCardMouseHover.mock.calls[0][0]).toBe(offers[0].id);
+    expect(onActiveItemChange.mock.calls.length).toBe(1);
+    expect(onActiveItemChange.mock.calls[0][0]).toBe(offers[0].id);
 
-  const cardName = cardComponent.find(`.place-card__name a`);
+    const cardName = cardComponent.find(`.place-card__name a`);
 
-  cardName.simulate(`click`);
+    cardName.simulate(`click`);
 
-  expect(onChangeScreen).toHaveBeenCalledWith(offers[0]);
+    expect(onChangeScreen).toHaveBeenCalledWith(offers[0]);
+  });
+
+  it(`Should mouse out`, () => {
+    const onChangeScreen = jest.fn();
+    const onActiveItemChange = jest.fn();
+
+    const cardComponent = shallow(
+        <Card
+          offer={offers[0]}
+          onChangeScreen={onChangeScreen}
+          cardsClass={`cities`}
+          onActiveItemChange={onActiveItemChange}
+        />
+    );
+
+    cardComponent.props().onMouseOut();
+
+    expect(onActiveItemChange.mock.calls.length).toBe(1);
+    expect(onActiveItemChange.mock.calls[0][0]).toBe(-1);
+  });
 });
