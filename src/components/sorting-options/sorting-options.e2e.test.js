@@ -13,6 +13,9 @@ describe(`Test SortingOptions component`, () => {
         <SortingOptions
           onSortItemClick={onSortItemClick}
           sortType={`popular`}
+          onMenuClick={() => {}}
+          onMenuExit={() => {}}
+          isOpen={false}
         />
     );
 
@@ -30,6 +33,9 @@ describe(`Test SortingOptions component`, () => {
         <SortingOptions
           onSortItemClick={onSortItemClick}
           sortType={`popular`}
+          onMenuClick={() => {}}
+          onMenuExit={() => {}}
+          isOpen={false}
         />
     );
 

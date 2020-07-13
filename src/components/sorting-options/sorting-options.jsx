@@ -7,20 +7,14 @@ import {SortingTypes, SortingTypeNames} from "../../const.js";
 class SortingOptions extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {isOpen: false};
 
-    this._handleMenuClick = this._handleMenuClick.bind(this);
     this._handleOptionClick = this._handleOptionClick.bind(this);
   }
 
-  _handleMenuClick() {
-    this.setState((state) => ({isOpen: !state.isOpen}));
-  }
-
   _handleOptionClick(sortType) {
-    const {onSortItemClick} = this.props;
+    const {onSortItemClick, onMenuExit} = this.props;
 
-    this.setState({isOpen: false});
+    onMenuExit();
     onSortItemClick(sortType);
   }
 
@@ -30,13 +24,12 @@ class SortingOptions extends React.PureComponent {
   }
 
   render() {
-    const {sortType} = this.props;
-    const isOpen = this.state.isOpen;
+    const {sortType, onMenuClick, isOpen} = this.props;
 
     return (
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by</span>
-        <span onClick={this._handleMenuClick} className="places__sorting-type" tabIndex="0">{SortingTypeNames[sortType]}</span>
+        <span onClick={onMenuClick} className="places__sorting-type" tabIndex="0">{SortingTypeNames[sortType]}</span>
         <ul onClick={(evt) => this._handleOptionClick(evt)} className={`places__options places__options--custom ${isOpen ? `places__options--opened` : ``}`}>
           <li onClick={() => this._handleOptionClick(SortingTypes.POPULAR)} className={this._getMenuClass(SortingTypes.POPULAR)} tabIndex="0">Popular</li>
           <li onClick={() => this._handleOptionClick(SortingTypes.PRICE_LOW_TO_HIGH)} className={this._getMenuClass(SortingTypes.PRICE_LOW_TO_HIGH)} tabIndex="0">Price: low to high</li>
@@ -58,6 +51,9 @@ SortingOptions.propTypes = {
       ]
   ).isRequired,
   onSortItemClick: PropTypes.func.isRequired,
+  onMenuExit: PropTypes.func.isRequired,
+  onMenuClick: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
