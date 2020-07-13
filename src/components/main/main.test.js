@@ -22,6 +22,8 @@ it(`Main component test`, () => {
           city={`Brussels`}
           activeOffers={offers}
           onChangeScreen={() => {}}
+          activeItemId={-1}
+          onActiveItemChange={() => {}}
         />
       </Provider>,
       {

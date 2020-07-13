@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const withActiveItem = (Component) => {
   class WithActiveItem extends React.PureComponent {
     constructor(props) {
       super(props);
 
-      this.state({activeItemId: -1});
+      this.state({activeItemId: this.props.sourceActivItemId});
 
       this.onActiveItemChange = this.onActiveItemChange.bind(this);
     }
@@ -15,16 +16,20 @@ const withActiveItem = (Component) => {
     }
 
     render() {
+      const activeItemId = this.state.activeItemId;
       return (
         <Component
           {... this.props}
+          activeItemId={activeItemId}
           onActiveItemChange={this.onActiveItemChange}
         />
       );
     }
   }
 
-  WithActiveItem.propTypes = {};
+  WithActiveItem.propTypes = {
+    sourceActivItemId: PropTypes.any.isRequired,
+  };
 
   return WithActiveItem;
 };
