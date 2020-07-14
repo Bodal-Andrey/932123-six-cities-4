@@ -172,28 +172,28 @@ exports[`App component test 1`] = `
             >
               <li
                 className="places__option "
-                data-sort-type="popular"
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Popular
               </li>
               <li
                 className="places__option "
-                data-sort-type="priceLowToHigh"
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Price: low to high
               </li>
               <li
                 className="places__option "
-                data-sort-type="priceHigTohLow"
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Price: high to low
               </li>
               <li
                 className="places__option "
-                data-sort-type="topRatedFirst"
+                onClick={[Function]}
                 tabIndex="0"
               >
                 Top rated first
@@ -206,6 +206,7 @@ exports[`App component test 1`] = `
             <article
               className="cities__place-card place-card"
               onMouseHover={[Function]}
+              onMouseOut={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -310,6 +311,7 @@ exports[`App component test 1`] = `
             <article
               className="cities__place-card place-card"
               onMouseHover={[Function]}
+              onMouseOut={[Function]}
             >
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
@@ -407,6 +409,7 @@ exports[`App component test 1`] = `
             <article
               className="cities__place-card place-card"
               onMouseHover={[Function]}
+              onMouseOut={[Function]}
             >
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
@@ -504,6 +507,7 @@ exports[`App component test 1`] = `
             <article
               className="cities__place-card place-card"
               onMouseHover={[Function]}
+              onMouseOut={[Function]}
             >
               <div
                 className="place-card__mark"

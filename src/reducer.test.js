@@ -10,7 +10,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     offers,
     cities,
     sortType: SortingTypes.POPULAR,
-    activeOfferId: null,
+    activeOfferId: -1,
   });
 });
 
@@ -49,7 +49,7 @@ it(`Reducer should change active offer id`, () => {
     offers,
     cities,
     sortType: SortingTypes.POPULAR,
-    activeOfferId: null,
+    activeOfferId: -1,
   }, {
     type: ActionType.ACTIVE_OFFER_ID_CHANGE,
     payload: 1

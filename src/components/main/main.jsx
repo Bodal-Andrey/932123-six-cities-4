@@ -13,6 +13,7 @@ import {ActionCreator} from '../../reducer.js';
 
 const CitiesListWrapped = withActiveItem(CitiesList);
 const SortingOptionsWrapped = withSortingOptions(SortingOptions);
+const CardsListWrapped = withActiveItem(CardsList);
 
 const Main = (props) => {
   const {onChangeScreen, city, activeOffers, cities, onCityButtonClick, onActiveItemChange, activeItemId} = props;
@@ -56,7 +57,7 @@ const Main = (props) => {
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{activeOffers.length} places to stay in {city}</b>
                 <SortingOptionsWrapped />
-                <CardsList offers={activeOffers} onChangeScreen={onChangeScreen} cardsClass={CardsClass.CITIES} onActiveItemChange={onActiveItemChange} />
+                <CardsListWrapped offers={activeOffers} onChangeScreen={onChangeScreen} cardsClass={CardsClass.CITIES} onActiveItemChange={onActiveItemChange} />
               </section>
               <div className="cities__right-section">
                 <Map offers={activeOffers} city={activeOffers[0].city.coordinates} activeOfferId={activeItemId} className={`cities__map map`} />

@@ -6,7 +6,7 @@ const withActiveItem = (Component) => {
     constructor(props) {
       super(props);
 
-      this.state({activeItemId: this.props.sourceActivItemId});
+      this.state = {activeItemId: this.props.sourceActiveItemId};
 
       this.onActiveItemChange = this.onActiveItemChange.bind(this);
     }
@@ -16,11 +16,10 @@ const withActiveItem = (Component) => {
     }
 
     render() {
-      const activeItemId = this.state.activeItemId;
       return (
         <Component
-          {... this.props}
-          activeItemId={activeItemId}
+          {...this.props}
+          activeItemId={this.state.activeItemId}
           onActiveItemChange={this.onActiveItemChange}
         />
       );
@@ -28,7 +27,7 @@ const withActiveItem = (Component) => {
   }
 
   WithActiveItem.propTypes = {
-    sourceActivItemId: PropTypes.any.isRequired,
+    sourceActiveItemId: PropTypes.any.isRequired,
   };
 
   return WithActiveItem;

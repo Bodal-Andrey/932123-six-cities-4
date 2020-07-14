@@ -710,6 +710,7 @@ exports[`Render InfoAboutOffer 1`] = `
           <article
             className="near-places__card place-card"
             onMouseHover={[Function]}
+            onMouseOut={[Function]}
           >
             <div
               className="place-card__mark"
@@ -814,6 +815,7 @@ exports[`Render InfoAboutOffer 1`] = `
           <article
             className="near-places__card place-card"
             onMouseHover={[Function]}
+            onMouseOut={[Function]}
           >
             <div
               className="near-places__image-wrapper place-card__image-wrapper"
@@ -911,6 +913,7 @@ exports[`Render InfoAboutOffer 1`] = `
           <article
             className="near-places__card place-card"
             onMouseHover={[Function]}
+            onMouseOut={[Function]}
           >
             <div
               className="near-places__image-wrapper place-card__image-wrapper"
