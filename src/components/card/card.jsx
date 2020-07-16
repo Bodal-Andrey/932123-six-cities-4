@@ -6,7 +6,7 @@ const Card = (props) => {
   const {title, photo, price, type, rating, isPremium, isBookmark} = offer;
 
   return (
-    <article onMouseHover={() => onActiveItemChange(offer.id)} onMouseOut={() => onActiveItemChange(-1)} className={`${cardsClass === `near-places` ? `near-places__card` : `cities__place-card`} place-card`}>
+    <article onMouseEnter={() => onActiveItemChange(offer.id)} onMouseLeave={() => onActiveItemChange(-1)} className={`${cardsClass === `near-places` ? `near-places__card` : `cities__place-card`} place-card`}>
       {isPremium && <div className="place-card__mark">
         <span>Premium</span>
       </div>}

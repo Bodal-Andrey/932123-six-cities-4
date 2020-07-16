@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 
 class CitiesList extends React.PureComponent {
@@ -14,7 +15,7 @@ class CitiesList extends React.PureComponent {
             <li key={item} className="locations__item">
               <a onClick={(evt) => {
                 evt.preventDefault();
-                onCityButtonClick(evt, item);
+                onCityButtonClick(item);
                 onActiveItemChange(item);
               }}
               className={`locations__item-link tabs__item ${item === city ? `tabs__item--active` : ``}`} href="#">
@@ -35,4 +36,6 @@ CitiesList.propTypes = {
   onActiveItemChange: PropTypes.func.isRequired,
 };
 
-export default CitiesList;
+export {CitiesList};
+
+export default withActiveItem(CitiesList);

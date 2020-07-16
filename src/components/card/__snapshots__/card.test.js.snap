@@ -3,8 +3,8 @@
 exports[`Test Card with first offer name 1`] = `
 <article
   className="cities__place-card place-card"
-  onMouseHover={[Function]}
-  onMouseOut={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="place-card__mark"

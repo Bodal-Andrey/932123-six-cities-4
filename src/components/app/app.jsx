@@ -5,35 +5,20 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {ActionCreator} from "../../reducer.js";
 import Main from "../main/main.jsx";
 import InfoAboutOffer from "../info-about-offer/info-about-offer.jsx";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-
-const MainWrapped = withActiveItem(Main);
 
 class App extends PureComponent {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {activeOffer: -1};
-
-  //   this.onChangeScreen = this.onChangeScreen.bind(this);
-  // }
-
-  // onChangeScreen(offer) {
-  //   this.setState({activeOffer: offer});
-  // }
-
   _renderScreen() {
-    const {activeOffer, onChangeActiveOffer} = this.props;
+    const {offerId, onChangeActiveOffer} = this.props;
 
-    if (activeOffer) {
-      return (
-        <InfoAboutOffer offer={activeOffer} onChangeScreen={onChangeActiveOffer} />
-      );
-    } else {
-      return (<MainWrapped
+    if (offerId === -1) {
+      return (<Main
         sourceActiveItemId={-1}
         onChangeScreen={onChangeActiveOffer}
       />);
+    } else {
+      return (
+        <InfoAboutOffer offer={offerId} onChangeScreen={onChangeActiveOffer} />
+      );
     }
   }
 
@@ -60,7 +45,7 @@ class App extends PureComponent {
 
 App.propTypes = {
   offers: PropTypes.array.isRequired,
-  activeOffer: PropTypes.any.isRequired,
+  offerId: PropTypes.any.isRequired,
   onChangeActiveOffer: PropTypes.func.isRequired,
 };
 
@@ -73,7 +58,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => {
   return {
     offers: state.offers,
-    activeOffer: state.activeOffer,
+    offerId: state.activeOfferId,
   };
 };
 

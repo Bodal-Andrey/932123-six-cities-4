@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
 import {SortingTypes, SortingTypeNames} from "../../const.js";
+import withSortingOptions from "../../hocs/with-sorting-options/with-sorting-options.js";
 
 class SortingOptions extends React.PureComponent {
   constructor(props) {
@@ -70,4 +71,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {SortingOptions};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SortingOptions);
+export default connect(mapStateToProps, mapDispatchToProps)(withSortingOptions(SortingOptions));

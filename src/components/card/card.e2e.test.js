@@ -22,7 +22,7 @@ describe(`Mouse testing on the Card`, () => {
         />
     );
 
-    cardComponent.props().onMouseHover();
+    cardComponent.props().onMouseEnter();
 
     expect(onActiveItemChange.mock.calls.length).toBe(1);
     expect(onActiveItemChange.mock.calls[0][0]).toBe(offers[0].id);
@@ -47,7 +47,7 @@ describe(`Mouse testing on the Card`, () => {
         />
     );
 
-    cardComponent.props().onMouseOut();
+    cardComponent.props().onMouseLeave();
 
     expect(onActiveItemChange.mock.calls.length).toBe(1);
     expect(onActiveItemChange.mock.calls[0][0]).toBe(-1);

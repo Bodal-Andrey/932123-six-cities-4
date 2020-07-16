@@ -8,12 +8,7 @@ import CitiesList from "../cities-list/cities-list.jsx";
 import SortingOptions from '../sorting-options/sorting-options.jsx';
 import {sortingOffers} from "../../utils.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import withSortingOptions from "../../hocs/with-sorting-options/with-sorting-options.js";
 import {ActionCreator} from '../../reducer.js';
-
-const CitiesListWrapped = withActiveItem(CitiesList);
-const SortingOptionsWrapped = withSortingOptions(SortingOptions);
-const CardsListWrapped = withActiveItem(CardsList);
 
 const Main = (props) => {
   const {onChangeScreen, city, activeOffers, cities, onCityButtonClick, onActiveItemChange, activeItemId} = props;
@@ -48,7 +43,7 @@ const Main = (props) => {
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <CitiesListWrapped sourceActiveItemId={cities[0]} cities={cities} onCityButtonClick={onCityButtonClick} />
+              <CitiesList sourceActiveItemId={cities[0]} cities={cities} onCityButtonClick={onCityButtonClick} />
             </section>
           </div>
           <div className="cities">
@@ -56,8 +51,8 @@ const Main = (props) => {
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{activeOffers.length} places to stay in {city}</b>
-                <SortingOptionsWrapped />
-                <CardsListWrapped offers={activeOffers} onChangeScreen={onChangeScreen} cardsClass={CardsClass.CITIES} onActiveItemChange={onActiveItemChange} />
+                <SortingOptions />
+                <CardsList offers={activeOffers} onChangeScreen={onChangeScreen} cardsClass={CardsClass.CITIES} onActiveItemChange={onActiveItemChange} />
               </section>
               <div className="cities__right-section">
                 <Map offers={activeOffers} city={activeOffers[0].city.coordinates} activeOfferId={activeItemId} className={`cities__map map`} />
@@ -98,4 +93,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {Main};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(withActiveItem(Main));
