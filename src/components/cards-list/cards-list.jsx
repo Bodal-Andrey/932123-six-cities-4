@@ -2,24 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 
-class CardsList extends React.PureComponent {
-  render() {
-    const {offers, onChangeScreen, cardsClass, onActiveItemChange} = this.props;
-    return (
-      <div className={cardsClass === `cities` ? `cities__places-list places__list tabs__content` : `near-places__list places__list`}>
-        {offers.map((offer) =>
-          <Card
-            key={offer.id}
-            offer={offer}
-            onChangeScreen={onChangeScreen}
-            cardsClass={cardsClass}
-            onActiveItemChange={onActiveItemChange}
-          />
-        )}
-      </div>
-    );
-  }
-}
+const CardsList = (props) => {
+  const {offers, onChangeScreen, cardsClass, onActiveItemChange} = props;
+
+  return (
+    <div className={cardsClass === `cities` ? `cities__places-list places__list tabs__content` : `near-places__list places__list`}>
+      {offers.map((offer) =>
+        <Card
+          key={offer.id}
+          offer={offer}
+          onChangeScreen={onChangeScreen}
+          cardsClass={cardsClass}
+          onActiveItemChange={onActiveItemChange}
+        />
+      )}
+    </div>
+  );
+};
 
 CardsList.propTypes = {
   offers: PropTypes.arrayOf(
