@@ -26,8 +26,8 @@ it(`Should CitiesList item to be pressed`, () => {
   });
 
   expect(onCityButtonClick.mock.calls.length).toBe(1);
-  expect(onCityButtonClick.mock.calls[0][1]).toBe(`Brussels`);
+  expect(onCityButtonClick.mock.calls[0][0]).toBe(`Brussels`);
 
   expect(onActiveItemChange.mock.calls.length).toBe(1);
-  expect(onActiveItemChange.mock.calls[0][1]).toBe(`Brussels`);
+  expect(onActiveItemChange.mock.calls[0][0]).toBe(`Brussels`);
 });

@@ -168,7 +168,6 @@ exports[`App component test 1`] = `
             </span>
             <ul
               className="places__options places__options--custom "
-              onClick={[Function]}
             >
               <li
                 className="places__option "

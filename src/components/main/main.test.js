@@ -20,10 +20,12 @@ it(`Main component test`, () => {
       <Provider store={store}>
         <Main
           city={`Brussels`}
+          cities={[`Amsterdam`, `Paris`, `Brussels`, `Hamburg`]}
           activeOffers={offers}
           onChangeScreen={() => {}}
           activeItemId={-1}
           onActiveItemChange={() => {}}
+          onCityButtonClick={() => {}}
         />
       </Provider>,
       {

@@ -31,7 +31,7 @@ class SortingOptions extends React.PureComponent {
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by</span>
         <span onClick={onMenuClick} className="places__sorting-type" tabIndex="0">{SortingTypeNames[sortType]}</span>
-        <ul onClick={(evt) => this._handleOptionClick(evt)} className={`places__options places__options--custom ${isOpen ? `places__options--opened` : ``}`}>
+        <ul className={`places__options places__options--custom ${isOpen ? `places__options--opened` : ``}`}>
           <li onClick={() => this._handleOptionClick(SortingTypes.POPULAR)} className={this._getMenuClass(SortingTypes.POPULAR)} tabIndex="0">Popular</li>
           <li onClick={() => this._handleOptionClick(SortingTypes.PRICE_LOW_TO_HIGH)} className={this._getMenuClass(SortingTypes.PRICE_LOW_TO_HIGH)} tabIndex="0">Price: low to high</li>
           <li onClick={() => this._handleOptionClick(SortingTypes.PRICE_HIGH_TO_LOW)} className={this._getMenuClass(SortingTypes.PRICE_HIGH_TO_LOW)} tabIndex="0">Price: high to low</li>
