@@ -1,14 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {ActionCreator} from "../../reducer.js";
-import {connect} from "react-redux";
 
 const Card = (props) => {
-  const {offer, onChangeScreen, cardsClass, onCardMouseHover} = props;
+  const {offer, onChangeScreen, cardsClass, onActiveItemChange} = props;
   const {title, photo, price, type, rating, isPremium, isBookmark} = offer;
 
   return (
-    <article onMouseHover={() => onCardMouseHover(offer.id)} className={`${cardsClass === `near-places` ? `near-places__card` : `cities__place-card`} place-card`}>
+    <article onMouseEnter={() => onActiveItemChange(offer.id)} onMouseLeave={() => onActiveItemChange(-1)} className={`${cardsClass === `near-places` ? `near-places__card` : `cities__place-card`} place-card`}>
       {isPremium && <div className="place-card__mark">
         <span>Premium</span>
       </div>}
@@ -58,15 +56,7 @@ Card.propTypes = {
   }),
   onChangeScreen: PropTypes.func.isRequired,
   cardsClass: PropTypes.string.isRequired,
-  onCardMouseHover: PropTypes.func.isRequired,
+  onActiveItemChange: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onCardMouseHover(id) {
-    dispatch(ActionCreator.activeOfferIdChange(id));
-  }
-});
-
-export {Card};
-
-export default connect(null, mapDispatchToProps)(Card);
+export default Card;

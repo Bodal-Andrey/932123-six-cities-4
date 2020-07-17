@@ -18,8 +18,9 @@ it(`Render CitiesList`, () => {
       <Provider store={store}>
         <CitiesList
           cities={[`Amsterdam`, `Paris`, `Brussels`, `Hamburg`]}
-          city={`Amsterdam`}
+          activeItemId={`Amsterdam`}
           onCityButtonClick={() => {}}
+          onActiveItemChange={() => {}}
         />
       </Provider>
   ).toJSON();

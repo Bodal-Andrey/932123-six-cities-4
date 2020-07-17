@@ -13,7 +13,7 @@ it(`App component test`, () => {
     city: offers[0].city.name,
     cities: Array.from(new Set(offers.map((item) => item.city.name))),
     sortType: `popular`,
-    activeOfferId: null,
+    activeOfferId: -1,
   });
 
   const tree = renderer.create(

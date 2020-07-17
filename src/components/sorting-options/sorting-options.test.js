@@ -7,6 +7,9 @@ it(`Render SortingOptions`, () => {
       <SortingOptions
         sortType={`popular`}
         onSortItemClick={() => {}}
+        onMenuClick={() => {}}
+        onMenuExit={() => {}}
+        isOpen={false}
       />
   ).toJSON();
 

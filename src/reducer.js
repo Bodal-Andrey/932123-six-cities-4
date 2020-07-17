@@ -9,7 +9,7 @@ const initialState = {
   offers,
   cities,
   sortType: SortingTypes.POPULAR,
-  activeOfferId: null,
+  activeOfferId: -1,
 };
 
 const ActionType = {

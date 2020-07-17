@@ -21,6 +21,7 @@ it(`CardsList component test`, () => {
           offers={offers}
           onChangeScreen={() => {}}
           cardsClass={`cities`}
+          onActiveItemChange={() => {}}
         />
       </Provider>
   ).toJSON();

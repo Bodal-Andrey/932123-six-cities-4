@@ -166,7 +166,7 @@ const InfoAboutOffer = (props) => {
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <CardsList offers={nearby} onChangeScreen={onChangeScreen} cardsClass={CardsClass.NEAR_PLACES} />
+            <CardsList offers={nearby} onChangeScreen={onChangeScreen} onActiveItemChange={() => {}} cardsClass={CardsClass.NEAR_PLACES} />
           </section>
         </div>
       </main>

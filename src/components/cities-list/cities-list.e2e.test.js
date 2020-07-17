@@ -9,18 +9,25 @@ Enzyme.configure({
 
 it(`Should CitiesList item to be pressed`, () => {
   const onCityButtonClick = jest.fn();
+  const onActiveItemChange = jest.fn();
 
   const citiesList = shallow(
       <CitiesList
         cities={[`Amsterdam`, `Paris`, `Brussels`, `Hamburg`]}
-        city={`Paris`}
+        activeItemId={`Paris`}
         onCityButtonClick={onCityButtonClick}
+        onActiveItemChange={onActiveItemChange}
       />
   );
 
   const cityButton = citiesList.find(`a.locations__item-link`).at(2);
-  cityButton.props().onClick();
+  cityButton.simulate(`click`, {
+    preventDefault: () => {}
+  });
 
   expect(onCityButtonClick.mock.calls.length).toBe(1);
-  expect(onCityButtonClick.mock.calls[0][1]).toBe(`Brussels`);
+  expect(onCityButtonClick.mock.calls[0][0]).toBe(`Brussels`);
+
+  expect(onActiveItemChange.mock.calls.length).toBe(1);
+  expect(onActiveItemChange.mock.calls[0][0]).toBe(`Brussels`);
 });

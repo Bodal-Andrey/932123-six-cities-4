@@ -7,9 +7,11 @@ import {CardsClass} from "../../const.js";
 import CitiesList from "../cities-list/cities-list.jsx";
 import SortingOptions from '../sorting-options/sorting-options.jsx';
 import {sortingOffers} from "../../utils.js";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import {ActionCreator} from '../../reducer.js';
 
 const Main = (props) => {
-  const {onChangeScreen, city, activeOffers, activeOfferId} = props;
+  const {onChangeScreen, city, activeOffers, cities, onCityButtonClick, onActiveItemChange, activeItemId} = props;
 
   return (
     <React.Fragment>
@@ -41,7 +43,7 @@ const Main = (props) => {
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <CitiesList />
+              <CitiesList sourceActiveItemId={cities[0]} cities={cities} onCityButtonClick={onCityButtonClick} />
             </section>
           </div>
           <div className="cities">
@@ -50,10 +52,10 @@ const Main = (props) => {
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{activeOffers.length} places to stay in {city}</b>
                 <SortingOptions />
-                <CardsList offers={activeOffers} onChangeScreen={onChangeScreen} cardsClass={CardsClass.CITIES} />
+                <CardsList offers={activeOffers} onChangeScreen={onChangeScreen} cardsClass={CardsClass.CITIES} onActiveItemChange={onActiveItemChange} />
               </section>
               <div className="cities__right-section">
-                <Map offers={activeOffers} city={activeOffers[0].city.coordinates} activeOfferId={activeOfferId} className={`cities__map map`} />
+                <Map offers={activeOffers} city={activeOffers[0].city.coordinates} activeOfferId={activeItemId} className={`cities__map map`} />
               </div>
             </div>
           </div>
@@ -67,7 +69,10 @@ Main.propTypes = {
   onChangeScreen: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
   activeOffers: PropTypes.array.isRequired,
-  activeOfferId: PropTypes.any,
+  activeItemId: PropTypes.any.isRequired,
+  cities: PropTypes.array.isRequired,
+  onCityButtonClick: PropTypes.func.isRequired,
+  onActiveItemChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -76,10 +81,16 @@ const mapStateToProps = (state) => {
   return {
     activeOffers: sortingOffers(filteredOffers, state.sortType),
     city: state.city,
-    activeOfferId: state.activeOfferId,
+    cities: state.cities,
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  onCityButtonClick(city) {
+    dispatch(ActionCreator.cityChange(city));
+  }
+});
+
 export {Main};
 
-export default connect(mapStateToProps, null)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(withActiveItem(Main));
