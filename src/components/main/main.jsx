@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import CardsList from "../cards-list/cards-list.jsx";
-import Map from "../map/map.jsx";
-import {CardsClass} from "../../const.js";
 import CitiesList from "../cities-list/cities-list.jsx";
-import SortingOptions from '../sorting-options/sorting-options.jsx';
+import CitiesContainer from "../cities-container/cities-container.jsx";
+import MainEmpty from "../main-empty/main-empty.jsx";
 import {sortingOffers} from "../../utils.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {ActionCreator} from '../../reducer.js';
@@ -39,7 +37,7 @@ const Main = (props) => {
           </div>
         </header>
 
-        <main className="page__main page__main--index">
+        <main className={`page__main page__main--index ${activeOffers.length ? `` : `page__main--index-empty`}`}>
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
@@ -47,17 +45,11 @@ const Main = (props) => {
             </section>
           </div>
           <div className="cities">
-            <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{activeOffers.length} places to stay in {city}</b>
-                <SortingOptions />
-                <CardsList offers={activeOffers} onChangeScreen={onChangeScreen} cardsClass={CardsClass.CITIES} onActiveItemChange={onActiveItemChange} />
-              </section>
-              <div className="cities__right-section">
-                <Map offers={activeOffers} city={activeOffers[0].city.coordinates} activeOfferId={activeItemId} className={`cities__map map`} />
-              </div>
-            </div>
+            {activeOffers.length
+              ?
+              <CitiesContainer activeOffers={activeOffers} activeItemId={activeItemId} city={city} onChangeScreen={onChangeScreen} onActiveItemChange={onActiveItemChange} />
+              :
+              <MainEmpty />}
           </div>
         </main>
       </div>
@@ -79,7 +71,7 @@ const mapStateToProps = (state) => {
   const filteredOffers = state.offers.filter((item) => item.city.name === state.city);
 
   return {
-    activeOffers: sortingOffers(filteredOffers, state.sortType),
+    activeOffers: filteredOffers ? sortingOffers(filteredOffers, state.sortType) : [],
     city: state.city,
     cities: state.cities,
   };
