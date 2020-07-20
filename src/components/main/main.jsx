@@ -4,14 +4,13 @@ import {connect} from "react-redux";
 import CitiesList from "../cities-list/cities-list.jsx";
 import CitiesContainer from "../cities-container/cities-container.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
-import {sortingOffers} from "../../utils.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {ActionCreator} from '../../reducer/data/data.js';
 import {getSortType} from "../../reducer/app/selectors.js";
-import {getCity} from "../../reducer/data/selectors.js";
+import {getCity, getFilteredOffers, getCities} from "../../reducer/data/selectors.js";
 
 const Main = (props) => {
-  const {onChangeScreen, city, activeOffers, cities, onCityButtonClick, onActiveItemChange, activeItemId} = props;
+  const {onChangeScreen, city, activeOffers, cities, onCityButtonClick, onActiveItemChange, activeItemId, sortType} = props;
 
   return (
     <React.Fragment>
@@ -49,7 +48,7 @@ const Main = (props) => {
           <div className="cities">
             {activeOffers.length
               ?
-              <CitiesContainer activeOffers={activeOffers} activeItemId={activeItemId} city={city} onChangeScreen={onChangeScreen} onActiveItemChange={onActiveItemChange} />
+              <CitiesContainer activeOffers={activeOffers} activeItemId={activeItemId} city={city} onChangeScreen={onChangeScreen} onActiveItemChange={onActiveItemChange} sortType={sortType} />
               :
               <MainEmpty />}
           </div>
@@ -67,15 +66,15 @@ Main.propTypes = {
   cities: PropTypes.array.isRequired,
   onCityButtonClick: PropTypes.func.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
+  sortType: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
-  const filteredOffers = state.offers.filter((item) => item.city.name === state.city);
-
   return {
-    activeOffers: filteredOffers ? sortingOffers(filteredOffers, getSortType(state)) : [],
+    activeOffers: getFilteredOffers(state),
     city: getCity(state),
-    cities: Array.from(new Set(state.offers.map((item) => item.city.name))),
+    cities: getCities(state),
+    sortType: getSortType(state),
   };
 };
 
