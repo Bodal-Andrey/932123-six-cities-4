@@ -26,6 +26,7 @@ it(`Main component test`, () => {
           activeItemId={-1}
           onActiveItemChange={() => {}}
           onCityButtonClick={() => {}}
+          sortType={`popular`}
         />
       </Provider>,
       {

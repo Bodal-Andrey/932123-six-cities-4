@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {firstLetter} from "../../utils.js";
 
 const Card = (props) => {
   const {offer, onChangeScreen, cardsClass, onActiveItemChange} = props;
@@ -37,7 +38,7 @@ const Card = (props) => {
         <h2 className="place-card__name">
           <a onClick={() => onChangeScreen(offer)} href="#">{title}</a>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{firstLetter(type)}</p>
       </div>
     </article>
   );
