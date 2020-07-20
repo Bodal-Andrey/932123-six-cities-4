@@ -5,7 +5,6 @@ import offerAdapter from "./offer-adapter.js";
 const initialState = {
   city: ``,
   offers: [],
-  cities: [],
   sortType: SortingTypes.POPULAR,
   activeOfferId: -1,
 };
@@ -14,7 +13,6 @@ const ActionType = {
   CITY_CHANGE: `CITY_CHANGE`,
   SORT_CHANGE: `SORT_CHANGE`,
   ACTIVE_OFFER_ID_CHANGE: `ACTIVE_OFFER_ID_CHANGE`,
-  LOAD_CITIES: `LOAD_CITIES`,
   LOAD_OFFERS: `LOAD_OFFERS`,
 };
 
@@ -31,10 +29,6 @@ const ActionCreator = {
     type: ActionType.ACTIVE_OFFER_ID_CHANGE,
     payload: id,
   }),
-  loadCities: (loadedOffers) => ({
-    type: ActionType.LOAD_OFFERS,
-    payload: loadedOffers,
-  }),
   loadOffers: (loadedOffers) => ({
     type: ActionType.LOAD_OFFERS,
     payload: loadedOffers,
@@ -47,6 +41,7 @@ const Operation = {
     .then((response) => {
       const loadedOffers = response.data.map((offer) => offerAdapter(offer));
       dispatch(ActionCreator.loadOffers(loadedOffers));
+      dispatch(ActionCreator.cityChange(loadedOffers[0].city.name));
     });
   }
 };
@@ -59,8 +54,6 @@ const reducer = (state = initialState, action) => {
       return extend(state, {sortType: action.payload});
     case ActionType.ACTIVE_OFFER_ID_CHANGE:
       return extend(state, {activeOfferId: action.payload});
-    case ActionType.LOAD_CITIES:
-      return extend(state, {cities: action.payload});
     case ActionType.LOAD_OFFERS:
       return extend(state, {offers: action.payload});
   }

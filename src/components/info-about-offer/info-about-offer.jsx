@@ -7,8 +7,8 @@ import {CardsClass} from "../../const.js";
 
 const InfoAboutOffer = (props) => {
   const {offer, onChangeScreen} = props;
-  const {id, title, price, type, rating, isPremium, isFavorite, images, description, feature, guests, inside, owner, reviews, nearby} = offer;
-  const {avatar, name, isStar} = owner;
+  const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, reviews = [], nearby, host, location} = offer;
+  const {avatarUrl, name, isPro} = host;
 
   return (
     <div className="page">
@@ -38,9 +38,9 @@ const InfoAboutOffer = (props) => {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {images.map((image, i) => (
-                <div key={`${i}-${image}`} className="property__image-wrapper">
-                  <img className="property__image" src={image} alt="Photo studio" />
+              {pictures.slice(0, 6).map((picture, i) => (
+                <div key={`${i}-${picture}`} className="property__image-wrapper">
+                  <img className="property__image" src={picture} alt="Photo studio" />
                 </div>
               ))}
             </div>
@@ -75,10 +75,10 @@ const InfoAboutOffer = (props) => {
                   {type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {feature}
+                  {bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  {guests}
+                 Max {guests} adults
                 </li>
               </ul>
               <div className="property__price">
@@ -88,9 +88,9 @@ const InfoAboutOffer = (props) => {
               <div className="property__inside">
                 <h2 className="property__inside-title">What is inside</h2>
                 <ul className="property__inside-list">
-                  {inside.map((it, i) => (
-                    <li key={`${i}-${it}`} className="property__inside-item">
-                      {it}
+                  {features.map((item, i) => (
+                    <li key={`${i}-${item}`} className="property__inside-item">
+                      {item}
                     </li>
                   ))}
                 </ul>
@@ -98,19 +98,17 @@ const InfoAboutOffer = (props) => {
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className={`property__avatar-wrapper ${isStar ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
-                    <img className="property__avatar user__avatar" src={avatar} width={74} height={74} alt="Host avatar" />
+                  <div className={`property__avatar-wrapper ${isPro ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
+                    <img className="property__avatar user__avatar" src={avatarUrl} width={74} height={74} alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
                     {name}
                   </span>
                 </div>
                 <div className="property__description">
-                  {description.map((paragraph, i) => (
-                    <p key={i} className="property__text">
-                      {paragraph}
-                    </p>
-                  ))}
+                  <p className="property__text">
+                    {description}
+                  </p>
                 </div>
               </div>
               <section className="property__reviews reviews">
@@ -161,7 +159,7 @@ const InfoAboutOffer = (props) => {
               </section>
             </div>
           </div>
-          <Map offers={nearby} city={[52.38333, 4.9]} activeOfferId={id} className={`property__map map`} />
+          <Map offers={nearby} city={location.coordinates} activeOfferId={id} zoom={location.zoom} className={`property__map map`} />
         </section>
         <div className="container">
           <section className="near-places places">
@@ -184,18 +182,22 @@ InfoAboutOffer.propTypes = {
     rating: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
-    images: PropTypes.array.isRequired,
+    pictures: PropTypes.array.isRequired,
     description: PropTypes.array.isRequired,
-    feature: PropTypes.string.isRequired,
+    bedrooms: PropTypes.string.isRequired,
     guests: PropTypes.string.isRequired,
-    inside: PropTypes.array.isRequired,
-    owner: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
+    features: PropTypes.array.isRequired,
+    host: PropTypes.shape({
+      avatarUrl: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      isStar: PropTypes.bool.isRequired,
+      isPro: PropTypes.bool.isRequired,
     }).isRequired,
     reviews: PropTypes.array.isRequired,
     nearby: PropTypes.array.isRequired,
+    location: PropTypes.shape({
+      coordinates: PropTypes.array.isRequired,
+      zoom: PropTypes.zoom.isRequired,
+    }).isRequired,
   }).isRequired,
   onChangeScreen: PropTypes.func,
   offerId: PropTypes.number,

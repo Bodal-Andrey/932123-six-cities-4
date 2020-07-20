@@ -12,10 +12,8 @@ class Map extends React.PureComponent {
   }
 
   componentDidMount() {
-    const {city} = this.props;
+    const {city, zoom} = this.props;
     const currentMap = this._mapRef.current;
-
-    const zoom = 12;
 
     this._map = leaflet.map(currentMap, {
       center: city,
@@ -37,8 +35,9 @@ class Map extends React.PureComponent {
   }
 
   componentDidUpdate() {
+    const {city, zoom} = this.props;
     this._markersLayer.clearLayers();
-    this._map.setView(this.props.city);
+    this._map.setView(city, zoom);
     this._renderMarkers();
   }
 
@@ -63,11 +62,11 @@ class Map extends React.PureComponent {
     offers.forEach((item) => {
       if (item.id === activeOfferId) {
         leaflet
-        .marker(item.coordinates, {activeIcon})
+        .marker(item.location.coordinates, {activeIcon})
         .addTo(this._markersLayer);
       } else {
         leaflet
-        .marker(item.coordinates, {icon})
+        .marker(item.location.coordinates, {icon})
         .addTo(this._markersLayer);
       }
     });
@@ -84,6 +83,7 @@ Map.propTypes = {
   city: PropTypes.array.isRequired,
   activeOfferId: PropTypes.any,
   className: PropTypes.string.isRequired,
+  zoom: PropTypes.number.isRequired,
 };
 
 export default Map;

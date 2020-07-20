@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const Card = (props) => {
   const {offer, onChangeScreen, cardsClass, onActiveItemChange} = props;
-  const {title, photo, price, type, rating, isPremium, isFavorite} = offer;
+  const {title, previewImage, price, type, rating, isPremium, isFavorite} = offer;
 
   return (
     <article onMouseEnter={() => onActiveItemChange(offer.id)} onMouseLeave={() => onActiveItemChange(-1)} className={`${cardsClass === `near-places` ? `near-places__card` : `cities__place-card`} place-card`}>
@@ -12,7 +12,7 @@ const Card = (props) => {
       </div>}
       <div className={`${cardsClass === `near-places` ? `near-places__image-wrapper` : `cities__image-wrapper`} place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={photo} width={260} height={200} alt="Place image" />
+          <img className="place-card__image" src={previewImage} width={260} height={200} alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -47,7 +47,7 @@ Card.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,

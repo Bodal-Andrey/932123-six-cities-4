@@ -18,14 +18,12 @@ const offerAdapter = (data) => {
     description: data.description,
     guests: data.max_adults,
     features: data.goods,
-    hostId: 1,
     host: {
       avatarUrl: data.host.avatar_url,
       id: data.host.id,
       isPro: data.host.is_pro,
       name: data.host.name
     },
-    coordinates: [52.3909553943508, 4.85309666406198],
     location: {
       coordinates: [data.location.latitude, data.location.longitude],
       zoom: data.location.zoom,

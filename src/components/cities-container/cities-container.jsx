@@ -17,7 +17,7 @@ const CitiesContainer = (props) => {
         <CardsList offers={activeOffers} onChangeScreen={onChangeScreen} cardsClass={CardsClass.CITIES} onActiveItemChange={onActiveItemChange} />
       </section>
       <div className="cities__right-section">
-        <Map offers={activeOffers} city={activeOffers[0].city.coordinates} activeOfferId={activeItemId} className={`cities__map map`} />
+        <Map offers={activeOffers} city={activeOffers[0].city.coordinates} activeOfferId={activeItemId} zoom={activeOffers[0].city.zoom} className={`cities__map map`} />
       </div>
     </div>
   );

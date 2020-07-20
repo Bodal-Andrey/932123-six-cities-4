@@ -10,6 +10,7 @@ it(`Map component test`, () => {
         city={offers[1].coordinates}
         activeOfferId={offers[1].id}
         className={`cities__map map`}
+        zoom={12}
       />,
       {
         createNodeMock: () => {
