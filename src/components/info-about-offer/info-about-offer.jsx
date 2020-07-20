@@ -7,7 +7,7 @@ import {CardsClass} from "../../const.js";
 
 const InfoAboutOffer = (props) => {
   const {offer, onChangeScreen} = props;
-  const {id, title, price, type, rating, isPremium, isBookmark, images, description, feature, guests, inside, owner, reviews, nearby} = offer;
+  const {id, title, price, type, rating, isPremium, isFavorite, images, description, feature, guests, inside, owner, reviews, nearby} = offer;
   const {avatar, name, isStar} = owner;
 
   return (
@@ -56,11 +56,11 @@ const InfoAboutOffer = (props) => {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className= {`property__bookmark-button button ${isBookmark ? ` property__bookmark-button--active` : ``}`} type="button">
+                <button className= {`property__bookmark-button button ${isFavorite ? ` property__bookmark-button--active` : ``}`} type="button">
                   <svg className="property__bookmark-icon" width={31} height={33}>
                     <use xlinkHref="#icon-bookmark" />
                   </svg>
-                  <span className="visually-hidden">{isBookmark ? `In bookmarks` : `To bookmarks`}</span>
+                  <span className="visually-hidden">{isFavorite ? `In bookmarks` : `To bookmarks`}</span>
                 </button>
               </div>
               <div className="property__rating rating">
@@ -183,7 +183,7 @@ InfoAboutOffer.propTypes = {
     type: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
-    isBookmark: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
     images: PropTypes.array.isRequired,
     description: PropTypes.array.isRequired,
     feature: PropTypes.string.isRequired,

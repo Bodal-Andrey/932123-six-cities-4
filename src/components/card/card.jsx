@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const Card = (props) => {
   const {offer, onChangeScreen, cardsClass, onActiveItemChange} = props;
-  const {title, photo, price, type, rating, isPremium, isBookmark} = offer;
+  const {title, photo, price, type, rating, isPremium, isFavorite} = offer;
 
   return (
     <article onMouseEnter={() => onActiveItemChange(offer.id)} onMouseLeave={() => onActiveItemChange(-1)} className={`${cardsClass === `near-places` ? `near-places__card` : `cities__place-card`} place-card`}>
@@ -21,11 +21,11 @@ const Card = (props) => {
             <b className="place-card__price-value">€{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${isBookmark ? ` place-card__bookmark-button--active` : ``}`} type="button">
+          <button className={`place-card__bookmark-button button ${isFavorite ? ` place-card__bookmark-button--active` : ``}`} type="button">
             <svg className="place-card__bookmark-icon" width={18} height={19}>
               <use xlinkHref="#icon-bookmark" />
             </svg>
-            <span className="visually-hidden">{isBookmark ? `In bookmarks` : `To bookmarks`}</span>
+            <span className="visually-hidden">{isFavorite ? `In bookmarks` : `To bookmarks`}</span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -52,7 +52,7 @@ Card.propTypes = {
     type: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
-    isBookmark: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
   }),
   onChangeScreen: PropTypes.func.isRequired,
   cardsClass: PropTypes.string.isRequired,
