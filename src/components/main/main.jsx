@@ -6,7 +6,9 @@ import CitiesContainer from "../cities-container/cities-container.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
 import {sortingOffers} from "../../utils.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import {ActionCreator} from '../../reducer.js';
+import {ActionCreator} from '../../reducer/data/data.js';
+import {getSortType} from "../../reducer/app/selectors.js";
+import {getCity} from "../../reducer/data/selectors.js";
 
 const Main = (props) => {
   const {onChangeScreen, city, activeOffers, cities, onCityButtonClick, onActiveItemChange, activeItemId} = props;
@@ -71,8 +73,8 @@ const mapStateToProps = (state) => {
   const filteredOffers = state.offers.filter((item) => item.city.name === state.city);
 
   return {
-    activeOffers: filteredOffers ? sortingOffers(filteredOffers, state.sortType) : [],
-    city: state.city,
+    activeOffers: filteredOffers ? sortingOffers(filteredOffers, getSortType(state)) : [],
+    city: getCity(state),
     cities: Array.from(new Set(state.offers.map((item) => item.city.name))),
   };
 };
