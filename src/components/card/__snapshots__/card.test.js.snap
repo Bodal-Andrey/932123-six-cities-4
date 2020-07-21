@@ -78,7 +78,7 @@ exports[`Test Card with first offer name 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "100%",
             }
           }
         />

@@ -4,16 +4,20 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import InfoAboutOffer from "./info-about-offer.jsx";
 import offers from "../../data-test.js";
+import NameSpace from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
 
 it(`Render InfoAboutOffer`, () => {
   const store = mockStore({
-    offers,
-    city: offers[0].city.name,
-    cities: Array.from(new Set(offers.map((item) => item.city.name))),
-    sortType: `popular`,
-    aciveOfferId: null,
+    [NameSpace.DATA]: {
+      offers,
+      city: offers[0].city.name,
+    },
+    [NameSpace.APP]: {
+      sortType: `popular`,
+      activeOfferId: -1,
+    }
   });
   const tree = renderer.create(
       <Provider store={store}>

@@ -1,5 +1,5 @@
 import {extend} from "../../utils.js";
-import offerAdapter from "../../offer-adapter.js";
+import offerAdapter from "../adapter/offer-adapter.js";
 
 const initialState = {
   city: ``,
@@ -29,7 +29,6 @@ const Operation = {
           const loadedOffers = response.data.map((offer) => offerAdapter(offer));
           dispatch(ActionCreator.loadOffers(loadedOffers));
           dispatch(ActionCreator.cityChange(loadedOffers[0].city.name));
-          return loadedOffers;
         });
   }
 };

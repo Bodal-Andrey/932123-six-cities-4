@@ -176,16 +176,15 @@ InfoAboutOffer.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
     pictures: PropTypes.array.isRequired,
-    description: PropTypes.array.isRequired,
-    bedrooms: PropTypes.string.isRequired,
-    guests: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    bedrooms: PropTypes.number.isRequired,
+    guests: PropTypes.number.isRequired,
     features: PropTypes.array.isRequired,
     host: PropTypes.shape({
       avatarUrl: PropTypes.string.isRequired,
@@ -196,7 +195,7 @@ InfoAboutOffer.propTypes = {
     nearby: PropTypes.array.isRequired,
     location: PropTypes.shape({
       coordinates: PropTypes.array.isRequired,
-      zoom: PropTypes.zoom.isRequired,
+      zoom: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
   onChangeScreen: PropTypes.func,
