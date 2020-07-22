@@ -3,8 +3,8 @@ import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Main} from "./main.jsx";
-import offers from "../../data-test.js";
 import NameSpace from "../../reducer/name-space.js";
+import {offers} from "../../data-test.js";
 
 const mockStore = configureStore([]);
 
@@ -12,7 +12,7 @@ it(`Main component test`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
       offers,
-      city: offers[0].city.name,
+      city: offers[0].city,
     },
     [NameSpace.APP]: {
       sortType: `popular`,

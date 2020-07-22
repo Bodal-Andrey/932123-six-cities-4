@@ -31,7 +31,7 @@ class CitiesList extends React.PureComponent {
 
 CitiesList.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeItemId: PropTypes.any.isRequired,
+  activeItemId: PropTypes.any,
   onCityButtonClick: PropTypes.func.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
 };

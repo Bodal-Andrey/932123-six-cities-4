@@ -9,6 +9,22 @@ const getCity = (state) => {
   return state[NameSpace.DATA].city;
 };
 
+const getNearbyOffers = (state) => {
+  return state[NameSpace.DATA].nearbyOffers;
+};
+
+const getNearbyOffersStatus = (state) => {
+  return state[NameSpace.DATA].isNearbyOffersLoading;
+};
+
+const getReviews = (state) => {
+  return state[NameSpace.DATA].reviews;
+};
+
+const getReviewsStatus = (state) => {
+  return state[NameSpace.DATA].isReviewsLoading;
+};
+
 const getFilteredOffers = createSelector(
     getOffers,
     getCity,
@@ -24,4 +40,4 @@ const getCities = createSelector(
     }
 );
 
-export {getOffers, getCity, getFilteredOffers, getCities};
+export {getOffers, getCity, getFilteredOffers, getCities, getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus};

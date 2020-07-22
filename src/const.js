@@ -1,3 +1,5 @@
+const Months = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
+
 const CardsClass = {
   CITIES: `cities`,
   NEAR_PLACES: `near-places`
@@ -17,4 +19,4 @@ const SortingTypeNames = {
   [SortingTypes.TOP_RATED_FIRST]: `Top rated first`,
 };
 
-export {CardsClass, SortingTypes, SortingTypeNames};
+export {Months, CardsClass, SortingTypes, SortingTypeNames};

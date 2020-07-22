@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import offers from "../../data-test.js";
+import {offers} from "../../data-test.js";
 import CitiesContainer from "./cities-container.jsx";
 import NameSpace from "../../reducer/name-space.js";
 

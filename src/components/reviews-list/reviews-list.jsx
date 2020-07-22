@@ -7,8 +7,8 @@ const ReviewsList = (props) => {
 
   return (
     <ul className="reviews__list">
-      {reviews.map((it, i) => (
-        <ReviewsItem key={`${i}-${it}`} review={it} />
+      {reviews.map((review) => (
+        <ReviewsItem key={review.id} review={review} />
       ))}
     </ul>
   );

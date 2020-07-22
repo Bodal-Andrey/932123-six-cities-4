@@ -1,14 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
 import Map from "../map/map.jsx";
 import CardsList from "../cards-list/cards-list.jsx";
 import {CardsClass} from "../../const.js";
+import {getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus} from "../../reducer/data/selectors.js";
 
 const InfoAboutOffer = (props) => {
-  const {offer, onChangeScreen} = props;
-  const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, reviews = [], nearby, host, location} = offer;
+  const {offer, onChangeScreen, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading} = props;
+  const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host, location} = offer;
   const {avatarUrl, name, isPro} = host;
+
+  if (isReviewsLoading || isNearbyOffersLoading) {
+    return false;
+  }
 
   return (
     <div className="page">
@@ -159,18 +165,25 @@ const InfoAboutOffer = (props) => {
               </section>
             </div>
           </div>
-          <Map offers={nearby} city={location.coordinates} activeOfferId={id} zoom={location.zoom} className={`property__map map`} />
+          <Map offers={nearbyOffers} city={location.coordinates} activeOfferId={id} zoom={location.zoom} className={`property__map map`} />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <CardsList offers={nearby} onChangeScreen={onChangeScreen} onActiveItemChange={() => {}} cardsClass={CardsClass.NEAR_PLACES} />
+            <CardsList offers={nearbyOffers} onChangeScreen={onChangeScreen} onActiveItemChange={() => {}} cardsClass={CardsClass.NEAR_PLACES} />
           </section>
         </div>
       </main>
     </div>
   );
 };
+
+const mapStateToProps = (state) => ({
+  nearbyOffers: getNearbyOffers(state),
+  isNearbyOffersLoading: getNearbyOffersStatus(state),
+  reviews: getReviews(state),
+  isReviewsLoading: getReviewsStatus(state),
+});
 
 InfoAboutOffer.propTypes = {
   offer: PropTypes.shape({
@@ -191,8 +204,6 @@ InfoAboutOffer.propTypes = {
       name: PropTypes.string.isRequired,
       isPro: PropTypes.bool.isRequired,
     }).isRequired,
-    reviews: PropTypes.array.isRequired,
-    nearby: PropTypes.array.isRequired,
     location: PropTypes.shape({
       coordinates: PropTypes.array.isRequired,
       zoom: PropTypes.number.isRequired,
@@ -200,6 +211,10 @@ InfoAboutOffer.propTypes = {
   }).isRequired,
   onChangeScreen: PropTypes.func,
   offerId: PropTypes.number,
+  reviews: PropTypes.array.isRequired,
+  nearbyOffers: PropTypes.array.isRequired,
+  isNearbyOffersLoading: PropTypes.bool.isRequired,
+  isReviewsLoading: PropTypes.bool.isRequired,
 };
 
-export default InfoAboutOffer;
+export default connect(mapStateToProps)(InfoAboutOffer);
