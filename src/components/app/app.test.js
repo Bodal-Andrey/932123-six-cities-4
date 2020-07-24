@@ -12,7 +12,7 @@ it(`App component test`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
       offers,
-      city: offers[0].city,
+      city: offers[0].city.name,
     },
     [NameSpace.APP]: {
       sortType: `popular`,

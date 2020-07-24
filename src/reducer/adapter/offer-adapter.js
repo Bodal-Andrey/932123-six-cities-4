@@ -13,7 +13,7 @@ const offerAdapter = (data) => {
     type: data.type,
     rating: data.rating,
     isPremium: data.is_premium,
-    isBookmark: data.is_bookmark,
+    isFavorite: data.is_favorite,
     bedrooms: data.bedrooms,
     description: data.description,
     guests: data.max_adults,

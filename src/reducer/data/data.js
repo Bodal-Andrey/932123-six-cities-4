@@ -1,4 +1,5 @@
-import {extend, parseOffer, parseReview} from "../../utils.js";
+import {extend, parseReview} from "../../utils.js";
+import offerAdapter from "../adapter/offer-adapter.js";
 
 const initialState = {
   city: ``,
@@ -44,7 +45,7 @@ const Operation = {
     return api.get(`/hotels`)
         .then((response) => {
           dispatch(ActionCreator.loadOffers(response.data));
-          dispatch(ActionCreator.cityChange(response.data));
+          dispatch(ActionCreator.cityChange(response.data[0].city.name));
         });
   },
   loadNearbyOffers: (id) => (dispatch, getState, api) => {
@@ -64,15 +65,12 @@ const Operation = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CITY_CHANGE:
-      let parsedCityOffers = action.payload.map((offer) => parseOffer(offer));
-      return extend(state, {city: parsedCityOffers[0].city});
+      return extend(state, {city: action.payload});
     case ActionType.LOAD_OFFERS:
-      let parsedOffers = action.payload.map((offer) => parseOffer(offer));
-      return extend(state, {offers: parsedOffers});
+      return extend(state, {offers: action.payload.map(offerAdapter)});
     case ActionType.LOAD_NEARBY_OFFERS:
-      let parsedNearbyOffers = action.payload.map((offer) => parseOffer(offer));
       return extend(state, {
-        nearbyOffers: parsedNearbyOffers,
+        nearbyOffers: action.payload.map(offerAdapter),
         isNearbyOffersLoading: false
       });
     case ActionType.LOAD_REVIEWS:

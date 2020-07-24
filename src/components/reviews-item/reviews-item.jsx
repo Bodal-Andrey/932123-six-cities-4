@@ -36,8 +36,10 @@ ReviewsItem.propTypes = {
   review: PropTypes.shape({
     description: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    user: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+      avatar: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 

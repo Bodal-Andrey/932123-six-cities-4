@@ -10,7 +10,7 @@ const mockStore = configureStore([]);
 it(`Render CitiesList`, () => {
   const store = mockStore({
     offers,
-    city: offers[0].city,
+    city: offers[0].city.name,
     cities: Array.from(new Set(offers.map((item) => item.city.name)))
   });
 
