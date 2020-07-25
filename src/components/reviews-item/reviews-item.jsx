@@ -13,7 +13,7 @@ const ReviewsItem = (props) => {
           <img className="reviews__avatar user__avatar" src={user.avatar} width={54} height={54} alt="Reviews avatar" />
         </div>
         <span className="reviews__user-name">
-          {user}
+          {user.name}
         </span>
       </div>
       <div className="reviews__info">
@@ -39,6 +39,7 @@ ReviewsItem.propTypes = {
     date: PropTypes.string.isRequired,
     user: PropTypes.shape({
       avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };

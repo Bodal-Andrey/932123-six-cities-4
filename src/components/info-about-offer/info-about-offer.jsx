@@ -6,20 +6,27 @@ import Map from "../map/map.jsx";
 import CardsList from "../cards-list/cards-list.jsx";
 import {CardsClass} from "../../const.js";
 import {getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus} from "../../reducer/data/selectors.js";
+import {Operation} from '../../reducer/data/data.js';
 
 class InfoAboutOffer extends React.PureComponent {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount() {
+    const {loadNearbyOffers, loadReviews, offer} = this.props;
+    loadNearbyOffers(offer.id);
+    loadReviews(offer.id);
+  }
+
   render() {
     const {offer, onChangeScreen, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading} = this.props;
-    const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host, location} = offer;
+    const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host} = offer;
     const {avatarUrl, name, isPro} = host;
 
-    // if (isReviewsLoading || isNearbyOffersLoading) {
-    //   return false;
-    // }
+    if (isReviewsLoading || isNearbyOffersLoading) {
+      return false;
+    }
 
     return (
       <div className="page">
@@ -170,7 +177,7 @@ class InfoAboutOffer extends React.PureComponent {
                 </section>
               </div>
             </div>
-            <Map offers={nearbyOffers} city={location.coordinates} activeOfferId={id} zoom={location.zoom} className={`property__map map`} />
+            <Map offers={nearbyOffers} city={offer.city.coordinates} activeOfferId={id} zoom={offer.city.zoom} className={`property__map map`} />
           </section>
           <div className="container">
             <section className="near-places places">
@@ -189,6 +196,11 @@ const mapStateToProps = (state) => ({
   isNearbyOffersLoading: getNearbyOffersStatus(state),
   reviews: getReviews(state),
   isReviewsLoading: getReviewsStatus(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadNearbyOffers: (id) => dispatch(Operation.loadNearbyOffers(id)),
+  loadReviews: (id) => dispatch(Operation.loadReviews(id)),
 });
 
 InfoAboutOffer.propTypes = {
@@ -210,7 +222,7 @@ InfoAboutOffer.propTypes = {
       name: PropTypes.string.isRequired,
       isPro: PropTypes.bool.isRequired,
     }).isRequired,
-    location: PropTypes.shape({
+    city: PropTypes.shape({
       coordinates: PropTypes.array.isRequired,
       zoom: PropTypes.number.isRequired,
     }).isRequired,
@@ -221,6 +233,8 @@ InfoAboutOffer.propTypes = {
   nearbyOffers: PropTypes.array.isRequired,
   isNearbyOffersLoading: PropTypes.bool.isRequired,
   isReviewsLoading: PropTypes.bool.isRequired,
+  loadNearbyOffers: PropTypes.func.isRequired,
+  loadReviews: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(InfoAboutOffer);
+export default connect(mapStateToProps, mapDispatchToProps)(InfoAboutOffer);
