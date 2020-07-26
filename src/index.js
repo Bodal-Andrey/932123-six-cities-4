@@ -7,7 +7,8 @@ import App from "./components/app/app.jsx";
 import {createApi} from "./api.js";
 import reducer from "./reducer/reducer.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
-import {AuthorizationStatus, ActionCreator as UserActionCreator, Operation as UserOperation} from "./reducer/user/user.js";
+import {ActionCreator as UserActionCreator, Operation as UserOperation} from "./reducer/user/user.js";
+import {AuthorizationStatus} from "./const.js";
 
 const onUnauthorized = (() => {
   store.dispatch(UserActionCreator.authStatusChange(AuthorizationStatus.NO_AUTH));

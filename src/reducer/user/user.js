@@ -1,10 +1,6 @@
 import createAuth from "../adapter/auth-adapter.js";
 import {extend} from "../../utils.js";
-
-const AuthorizationStatus = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`,
-};
+import {AuthorizationStatus} from "../../const.js";
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -61,4 +57,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {AuthorizationStatus, ActionType, ActionCreator, Operation, reducer};
+export {ActionType, ActionCreator, Operation, reducer};

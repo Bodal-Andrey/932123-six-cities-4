@@ -19,4 +19,9 @@ const SortingTypeNames = {
   [SortingTypes.TOP_RATED_FIRST]: `Top rated first`,
 };
 
-export {Months, CardsClass, SortingTypes, SortingTypeNames};
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
+export {Months, CardsClass, SortingTypes, SortingTypeNames, AuthorizationStatus};
