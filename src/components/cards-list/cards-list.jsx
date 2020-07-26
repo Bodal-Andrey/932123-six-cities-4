@@ -25,12 +25,10 @@ CardsList.propTypes = {
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        photo: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
         type: PropTypes.string.isRequired,
         rating: PropTypes.number.isRequired,
         isPremium: PropTypes.bool.isRequired,
-        isBookmark: PropTypes.bool.isRequired,
       })
   ),
   onChangeScreen: PropTypes.func.isRequired,

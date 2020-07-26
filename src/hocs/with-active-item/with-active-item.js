@@ -27,7 +27,7 @@ const withActiveItem = (Component) => {
   }
 
   WithActiveItem.propTypes = {
-    sourceActiveItemId: PropTypes.any.isRequired,
+    sourceActiveItemId: PropTypes.any,
   };
 
   return WithActiveItem;

@@ -3,17 +3,20 @@ import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Main} from "./main.jsx";
-import offers from "../../data-test.js";
+import NameSpace from "../../reducer/name-space.js";
+import {offers} from "../../data-test.js";
 
 const mockStore = configureStore([]);
 
 it(`Main component test`, () => {
   const store = mockStore({
-    offers,
-    city: offers[0].city.name,
-    cities: Array.from(new Set(offers.map((item) => item.city.name))),
-    sortType: `popular`,
-    aciveOfferId: null,
+    [NameSpace.DATA]: {
+      offers,
+      city: offers[0].city.name,
+    },
+    [NameSpace.APP]: {
+      sortType: `popular`,
+    }
   });
 
   const tree = renderer.create(
@@ -26,6 +29,7 @@ it(`Main component test`, () => {
           activeItemId={-1}
           onActiveItemChange={() => {}}
           onCityButtonClick={() => {}}
+          sortType={`popular`}
         />
       </Provider>,
       {

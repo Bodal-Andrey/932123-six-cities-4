@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/app/app.js";
 import {SortingTypes, SortingTypeNames} from "../../const.js";
 import withSortingOptions from "../../hocs/with-sorting-options/with-sorting-options.js";
+import {getSortType} from "../../reducer/app/selectors.js";
 
 class SortingOptions extends React.PureComponent {
   constructor(props) {
@@ -59,7 +60,7 @@ SortingOptions.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    sortType: state.sortType,
+    sortType: getSortType(state),
   };
 };
 

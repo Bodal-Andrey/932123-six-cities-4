@@ -1,8 +1,8 @@
 const TYPES = {
-  apartment: `Apartment`,
-  hotel: `Hotel`,
-  house: `House`,
-  privateRoom: `Private room`,
+  apartment: `apartment`,
+  hotel: `hotel`,
+  house: `house`,
+  room: `room`,
 };
 
 export default [
@@ -18,7 +18,7 @@ export default [
     type: TYPES.apartment,
     rating: 4,
     isPremium: true,
-    isBookmark: false,
+    isFavorite: false,
     images: [
       `img/room.jpg`,
       `img/apartment-01.jpg`,
@@ -81,7 +81,7 @@ export default [
         type: TYPES.apartment,
         rating: 4,
         isPremium: true,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -141,10 +141,10 @@ export default [
         title: `Wood and stone place`,
         photo: `img/room.jpg`,
         price: 80,
-        type: TYPES.privateRoom,
+        type: TYPES.room,
         rating: 4,
         isPremium: false,
-        isBookmark: true,
+        isFavorite: true,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -207,7 +207,7 @@ export default [
         type: TYPES.apartment,
         rating: 3,
         isPremium: false,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -272,10 +272,10 @@ export default [
     title: `Wood and stone place`,
     photo: `img/room.jpg`,
     price: 80,
-    type: TYPES.privateRoom,
+    type: TYPES.room,
     rating: 4,
     isPremium: false,
-    isBookmark: true,
+    isFavorite: true,
     images: [
       `img/room.jpg`,
       `img/apartment-01.jpg`,
@@ -338,7 +338,7 @@ export default [
         type: TYPES.apartment,
         rating: 4,
         isPremium: true,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -398,10 +398,10 @@ export default [
         title: `Wood and stone place`,
         photo: `img/room.jpg`,
         price: 80,
-        type: TYPES.privateRoom,
+        type: TYPES.room,
         rating: 4,
         isPremium: false,
-        isBookmark: true,
+        isFavorite: true,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -464,7 +464,7 @@ export default [
         type: TYPES.apartment,
         rating: 3,
         isPremium: false,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -532,7 +532,7 @@ export default [
     type: TYPES.apartment,
     rating: 3,
     isPremium: false,
-    isBookmark: false,
+    isFavorite: false,
     images: [
       `img/room.jpg`,
       `img/apartment-01.jpg`,
@@ -595,7 +595,7 @@ export default [
         type: TYPES.apartment,
         rating: 4,
         isPremium: true,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -655,10 +655,10 @@ export default [
         title: `Wood and stone place`,
         photo: `img/room.jpg`,
         price: 80,
-        type: TYPES.privateRoom,
+        type: TYPES.room,
         rating: 4,
         isPremium: false,
-        isBookmark: true,
+        isFavorite: true,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -721,7 +721,7 @@ export default [
         type: TYPES.apartment,
         rating: 3,
         isPremium: false,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -789,7 +789,7 @@ export default [
     type: TYPES.apartment,
     rating: 5,
     isPremium: true,
-    isBookmark: false,
+    isFavorite: false,
     images: [
       `img/room.jpg`,
       `img/apartment-01.jpg`,
@@ -852,7 +852,7 @@ export default [
         type: TYPES.apartment,
         rating: 4,
         isPremium: true,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -912,10 +912,10 @@ export default [
         title: `Wood and stone place`,
         photo: `img/room.jpg`,
         price: 80,
-        type: TYPES.privateRoom,
+        type: TYPES.room,
         rating: 4,
         isPremium: false,
-        isBookmark: true,
+        isFavorite: true,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -978,7 +978,7 @@ export default [
         type: TYPES.apartment,
         rating: 3,
         isPremium: false,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -1046,7 +1046,7 @@ export default [
     type: TYPES.apartment,
     rating: 5,
     isPremium: true,
-    isBookmark: false,
+    isFavorite: false,
     images: [
       `img/room.jpg`,
       `img/apartment-01.jpg`,
@@ -1112,7 +1112,7 @@ export default [
         type: TYPES.apartment,
         rating: 4,
         isPremium: true,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -1175,10 +1175,10 @@ export default [
         title: `Wood and stone place`,
         photo: `img/room.jpg`,
         price: 80,
-        type: TYPES.privateRoom,
+        type: TYPES.room,
         rating: 4,
         isPremium: false,
-        isBookmark: true,
+        isFavorite: true,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -1244,7 +1244,7 @@ export default [
         type: TYPES.apartment,
         rating: 3,
         isPremium: false,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -1312,7 +1312,7 @@ export default [
     type: TYPES.apartment,
     rating: 4,
     isPremium: true,
-    isBookmark: false,
+    isFavorite: false,
     images: [
       `img/room.jpg`,
       `img/apartment-01.jpg`,
@@ -1378,7 +1378,7 @@ export default [
         type: TYPES.apartment,
         rating: 4,
         isPremium: true,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -1441,10 +1441,10 @@ export default [
         title: `Wood and stone place`,
         photo: `img/room.jpg`,
         price: 80,
-        type: TYPES.privateRoom,
+        type: TYPES.room,
         rating: 4,
         isPremium: false,
-        isBookmark: true,
+        isFavorite: true,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -1510,7 +1510,7 @@ export default [
         type: TYPES.apartment,
         rating: 3,
         isPremium: false,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -1578,7 +1578,7 @@ export default [
     type: TYPES.apartment,
     rating: 3,
     isPremium: false,
-    isBookmark: false,
+    isFavorite: false,
     images: [
       `img/room.jpg`,
       `img/apartment-01.jpg`,
@@ -1644,7 +1644,7 @@ export default [
         type: TYPES.apartment,
         rating: 4,
         isPremium: true,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -1707,10 +1707,10 @@ export default [
         title: `Wood and stone place`,
         photo: `img/room.jpg`,
         price: 80,
-        type: TYPES.privateRoom,
+        type: TYPES.room,
         rating: 4,
         isPremium: false,
-        isBookmark: true,
+        isFavorite: true,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,
@@ -1776,7 +1776,7 @@ export default [
         type: TYPES.apartment,
         rating: 3,
         isPremium: false,
-        isBookmark: false,
+        isFavorite: false,
         images: [
           `img/room.jpg`,
           `img/apartment-01.jpg`,

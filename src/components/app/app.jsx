@@ -2,9 +2,11 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/app/app.js";
 import Main from "../main/main.jsx";
 import InfoAboutOffer from "../info-about-offer/info-about-offer.jsx";
+import {getActiveOfferId} from "../../reducer/app/selectors.js";
+import {getOffers} from "../../reducer/data/selectors.js";
 
 class App extends PureComponent {
   _renderScreen() {
@@ -57,8 +59,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => {
   return {
-    offers: state.offers,
-    offerId: state.activeOfferId,
+    offers: getOffers(state),
+    offerId: getActiveOfferId(state),
   };
 };
 
