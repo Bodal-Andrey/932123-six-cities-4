@@ -1,6 +1,7 @@
 import React, {createRef} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {Operation} from "../../reducer/user/user.js";
 
 class SignIn extends React.PureComponent {
   constructor(props) {
@@ -82,8 +83,8 @@ SignIn.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onUserAuthorization() {
-    dispatch();
+  onUserAuthorization(userData) {
+    dispatch(Operation.userLogin(userData));
   }
 });
 
