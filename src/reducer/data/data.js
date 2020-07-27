@@ -4,6 +4,7 @@ import offerAdapter from "../adapter/offer-adapter.js";
 const initialState = {
   city: ``,
   offers: [],
+  activeOfferId: -1,
   nearbyOffers: [],
   isNearbyOffersLoading: true,
   reviews: [],
@@ -15,6 +16,7 @@ const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_NEARBY_OFFERS: `LOAD_NEARBY_OFFERS`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
+  ACTIVE_OFFER_ID_CHANGE: `ACTIVE_OFFER_ID_CHANGE`,
 };
 
 const ActionCreator = {
@@ -38,6 +40,10 @@ const ActionCreator = {
       payload: reviews
     };
   },
+  activeOfferIdChange: (id) => ({
+    type: ActionType.ACTIVE_OFFER_ID_CHANGE,
+    payload: id,
+  }),
 };
 
 const Operation = {
@@ -79,6 +85,8 @@ const reducer = (state = initialState, action) => {
         reviews: parsedReviews,
         isReviewsLoading: false
       });
+    case ActionType.ACTIVE_OFFER_ID_CHANGE:
+      return extend(state, {activeOfferId: action.payload});
   }
   return state;
 };
