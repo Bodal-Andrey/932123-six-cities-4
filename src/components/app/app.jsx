@@ -6,12 +6,18 @@ import {ActionCreator} from "../../reducer/app/app.js";
 import Main from "../main/main.jsx";
 import InfoAboutOffer from "../info-about-offer/info-about-offer.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
-import {getActiveOfferId} from "../../reducer/app/selectors.js";
+import {getActiveOfferId, getShowAuthPage} from "../../reducer/app/selectors.js";
 import {getOffers} from "../../reducer/data/selectors.js";
 
 class App extends PureComponent {
   _renderScreen() {
-    const {offerId, onChangeActiveOffer} = this.props;
+    const {offerId, onChangeActiveOffer, showAuth} = this.props;
+
+    if (showAuth) {
+      return (
+        <SignIn />
+      );
+    }
 
     if (offerId === -1) {
       return (<Main
@@ -53,6 +59,7 @@ App.propTypes = {
   offers: PropTypes.array.isRequired,
   offerId: PropTypes.any.isRequired,
   onChangeActiveOffer: PropTypes.func.isRequired,
+  showAuth: PropTypes.bool.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -65,6 +72,7 @@ const mapStateToProps = (state) => {
   return {
     offers: getOffers(state),
     offerId: getActiveOfferId(state),
+    showAuth: getShowAuthPage(state),
   };
 };
 

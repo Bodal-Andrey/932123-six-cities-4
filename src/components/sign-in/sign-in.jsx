@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Operation} from "../../reducer/user/user.js";
 import Header from "../header/header.jsx";
+import {ActionCreator} from "../../reducer/app/app.js";
 
 class SignIn extends React.PureComponent {
   constructor(props) {
@@ -10,18 +11,29 @@ class SignIn extends React.PureComponent {
 
     this.email = createRef();
     this.password = createRef();
+    this.textError = ``;
+    this.state = {error: false};
 
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 
   _handleSubmit(evt) {
-    const {onUserAuthorization} = this.props;
+    const {onUserAuthorization, onChangeActiveOfferId, onChangeAuthState} = this.props;
     evt.preventDefault();
 
     onUserAuthorization({
       email: this.email.current.value,
       password: this.password.current.value,
-    });
+    })
+    .then(() => {
+      this.setState({error: false});
+      onChangeActiveOfferId(-1);
+      onChangeAuthState(false);
+    })
+    .catch((err) => {
+      this.textError = err.response.data.error;
+      this.setState({error: true});
+    })
   }
 
   render() {
@@ -42,6 +54,9 @@ class SignIn extends React.PureComponent {
                   <input className="login__input form__input" type="password" name="password" placeholder="Password" required ref={this.password} />
                 </div>
                 <button className="login__submit form__submit button" type="submit">Sign in</button>
+                {this.state.error &&
+                  <div style={{marginTop: `15px`, fontSize: `15px`, color: `#ff0000`}}>{this.textError}</div>
+                }
               </form>
             </section>
             <section className="locations locations--login locations--current">
@@ -60,11 +75,19 @@ class SignIn extends React.PureComponent {
 
 SignIn.propTypes = {
   onUserAuthorization: PropTypes.func.isRequired,
+  onChangeActiveOfferId: PropTypes.func.isRequired,
+  onChangeAuthState: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onUserAuthorization(authInfo) {
-    dispatch(Operation.userLogin(authInfo));
+    return dispatch(Operation.userLogin(authInfo));
+  },
+  onChangeActiveOfferId(id) {
+    dispatch(ActionCreator.activeOfferIdChange(id));
+  },
+  onChangeAuthState(state) {
+    dispatch(ActionCreator.authStateChange(state));
   }
 });
 

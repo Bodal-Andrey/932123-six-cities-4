@@ -17,6 +17,17 @@ it(`App component test`, () => {
     [NameSpace.APP]: {
       sortType: `popular`,
       activeOfferId: -1,
+      showAuthPage: false,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: `NO_AUTH`,
+      authInfo: {
+        avatarUrl: ``,
+        name: ``,
+        id: null,
+        isPro: null,
+        email: ``,
+      }
     }
   });
 

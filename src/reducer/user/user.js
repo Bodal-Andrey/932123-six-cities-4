@@ -32,7 +32,8 @@ const ActionCreator = {
 const Operation = {
   authCheck: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-    .then(() => {
+    .then((response) => {
+      dispatch(ActionCreator.authInfoChange(createAuth(response.data)));
       dispatch(ActionCreator.authStatusChange(AuthorizationStatus.AUTH));
     }).catch((err) => {
       throw err;
