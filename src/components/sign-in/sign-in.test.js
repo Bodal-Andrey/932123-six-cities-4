@@ -1,18 +1,17 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import App from "./app.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import {offers} from "../../data-test.js";
+import renderer from "react-test-renderer";
+import {SignIn} from "./sign-in.jsx";
 import NameSpace from "../../reducer/name-space.js";
+import {offers} from "../../data-test.js";
 
 const mockStore = configureStore([]);
 
-it(`App component test`, () => {
+it(`Test component SignIn`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
       offers,
-      city: offers[0].city.name,
     },
     [NameSpace.APP]: {
       sortType: `popular`,
@@ -33,13 +32,12 @@ it(`App component test`, () => {
 
   const tree = renderer.create(
       <Provider store={store}>
-        <App />
-      </Provider>,
-      {
-        createNodeMock: () => {
-          return document.createElement(`div`);
-        }
-      }
+        <SignIn
+          onUzerAuthorization={() => {}}
+          onChangeActiveOfferId={() => {}}
+          onChangeAuthState={() => {}}
+        />
+      </Provider>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -8,4 +8,8 @@ const getActiveOfferId = (state) => {
   return state[NameSpace.APP].activeOfferId;
 };
 
-export {getSortType, getActiveOfferId};
+const getShowAuthPage = (state) => {
+  return state[NameSpace.APP].showAuthPage;
+};
+
+export {getSortType, getActiveOfferId, getShowAuthPage};
