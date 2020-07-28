@@ -70,7 +70,7 @@ const offers = [
 
 const reviews = [
   {
-    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+    comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
     date: `2018-05-10`,
     id: 1,
     rating: 3,

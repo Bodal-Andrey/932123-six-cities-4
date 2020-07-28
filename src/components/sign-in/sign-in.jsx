@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Operation} from "../../reducer/user/user.js";
 import Header from "../header/header.jsx";
-import {ActionCreator} from "../../reducer/app/app.js";
+import {ActionCreator as AppActionCreator} from "../../reducer/app/app.js";
+import {ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
 
 class SignIn extends React.PureComponent {
   constructor(props) {
@@ -33,7 +34,7 @@ class SignIn extends React.PureComponent {
     .catch((err) => {
       this.textError = err.response.data.error;
       this.setState({error: true});
-    })
+    });
   }
 
   render() {
@@ -84,10 +85,10 @@ const mapDispatchToProps = (dispatch) => ({
     return dispatch(Operation.userLogin(authInfo));
   },
   onChangeActiveOfferId(id) {
-    dispatch(ActionCreator.activeOfferIdChange(id));
+    dispatch(DataActionCreator.activeOfferIdChange(id));
   },
   onChangeAuthState(state) {
-    dispatch(ActionCreator.authStateChange(state));
+    dispatch(AppActionCreator.authStateChange(state));
   }
 });
 

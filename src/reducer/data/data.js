@@ -1,5 +1,6 @@
-import {extend, parseReview} from "../../utils.js";
+import {extend} from "../../utils.js";
 import offerAdapter from "../adapter/offer-adapter.js";
+import reviewAdapter from "../adapter/review-adapter.js";
 
 const initialState = {
   city: ``,
@@ -60,10 +61,11 @@ const Operation = {
         dispatch(ActionCreator.loadNearbyOffers(response.data));
       });
   },
-  loadReviews: (id) => (dispatch, getState, api) => {
-    return api.get(`/comments/${id}`)
+  loadReviews: (id, commentData) => (dispatch, getState, api) => {
+    return api.get(`/comments/${id}`, commentData)
       .then((response) => {
-        dispatch(ActionCreator.loadReviews(response.data));
+        const loadedReviews = response.data.map((review) => reviewAdapter(review));
+        dispatch(ActionCreator.loadReviews(loadedReviews));
       });
   },
 };
@@ -80,9 +82,8 @@ const reducer = (state = initialState, action) => {
         isNearbyOffersLoading: false
       });
     case ActionType.LOAD_REVIEWS:
-      let parsedReviews = action.payload.map((review) => parseReview(review));
       return extend(state, {
-        reviews: parsedReviews,
+        reviews: action.payload,
         isReviewsLoading: false
       });
     case ActionType.ACTIVE_OFFER_ID_CHANGE:

@@ -4,7 +4,7 @@ import {Months} from "../../const.js";
 
 const ReviewsItem = (props) => {
   const {review} = props;
-  const {description, rating, user, date} = review;
+  const {comment, rating, user, date} = review;
 
   return (
     <li className="reviews__item">
@@ -24,7 +24,7 @@ const ReviewsItem = (props) => {
           </div>
         </div>
         <p className="reviews__text">
-          {description}
+          {comment}
         </p>
         <time className="reviews__time" dateTime={date}>{Months[new Date(date).getMonth()]} {new Date(date).getFullYear()}</time>
       </div>
@@ -34,7 +34,7 @@ const ReviewsItem = (props) => {
 
 ReviewsItem.propTypes = {
   review: PropTypes.shape({
-    description: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     date: PropTypes.string.isRequired,
     user: PropTypes.shape({
