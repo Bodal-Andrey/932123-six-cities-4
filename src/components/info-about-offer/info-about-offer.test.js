@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import InfoAboutOffer from "./info-about-offer.jsx";
+import {InfoAboutOffer} from "./info-about-offer.jsx";
 import NameSpace from "../../reducer/name-space.js";
 import {offers, reviews} from "../../data-test.js";
 
@@ -13,11 +13,22 @@ it(`Render InfoAboutOffer`, () => {
     [NameSpace.DATA]: {
       offers,
       city: offers[0].city.name,
+      activeOfferId: -1,
+      reviews: [],
     },
     [NameSpace.APP]: {
       sortType: `popular`,
-      activeOfferId: -1,
-    }
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: `NO_AUTH`,
+      authInfo: {
+        avatarUrl: ``,
+        email: ``,
+        id: null,
+        isPro: null,
+        name: ``,
+      }
+    },
   });
   const tree = renderer.create(
       <Provider store={store}>
@@ -28,6 +39,8 @@ it(`Render InfoAboutOffer`, () => {
           reviews={reviews}
           isNearbyOffersLoading={false}
           isReviewsLoading={false}
+          isAuthorizedUser={true}
+          onPostReview={() => {}}
         />
       </Provider>,
       {

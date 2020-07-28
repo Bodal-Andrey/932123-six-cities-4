@@ -13,9 +13,12 @@ it(`Main component test`, () => {
     [NameSpace.DATA]: {
       offers,
       city: offers[0].city.name,
+      activeItemId: -1,
+      reviews: [],
     },
     [NameSpace.APP]: {
       sortType: `popular`,
+      showAuthPage: false,
     }
   });
 

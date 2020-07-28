@@ -17,6 +17,7 @@ const AuthInfo = {
   isPro: false,
   name: `Oliver.conner`
 };
+
 const api = createAPI(() => {});
 
 it(`Reducer without additional parameters should return initial state`, () => {

@@ -9,6 +9,8 @@ import Header from "../header/header.jsx";
 import {CardsClass} from "../../const.js";
 import {getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus} from "../../reducer/data/selectors.js";
 import {Operation} from '../../reducer/data/data.js';
+import {AuthorizationStatus} from "../../const.js";
+import {getAuthStatus} from "../../reducer/user/selectors.js";
 
 class InfoAboutOffer extends React.PureComponent {
   constructor(props) {
@@ -22,9 +24,10 @@ class InfoAboutOffer extends React.PureComponent {
   }
 
   render() {
-    const {offer, onChangeScreen, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser} = this.props;
+    const {offer, onChangeScreen, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, authStatus, loadReviews} = this.props;
     const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host} = offer;
     const {avatarUrl, name, isPro} = host;
+    const isAuthorizedUser = authStatus === AuthorizationStatus.AUTH;
 
     if (isReviewsLoading || isNearbyOffersLoading) {
       return false;
@@ -103,6 +106,9 @@ class InfoAboutOffer extends React.PureComponent {
                     <span className="property__user-name">
                       {name}
                     </span>
+                    {isAuthorizedUser && <span className="property__user-status">
+                    Pro
+                    </span>}
                   </div>
                   <div className="property__description">
                     <p className="property__text">
@@ -113,7 +119,7 @@ class InfoAboutOffer extends React.PureComponent {
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviews.length}</span></h2>
                   <ReviewsList reviews={reviews} />
-                  {isAuthorizedUser && <ReviewsForm />}
+                  {isAuthorizedUser && <ReviewsForm offerId={id} onPostReview={loadReviews} />}
                 </section>
               </div>
             </div>
@@ -136,11 +142,12 @@ const mapStateToProps = (state) => ({
   isNearbyOffersLoading: getNearbyOffersStatus(state),
   reviews: getReviews(state),
   isReviewsLoading: getReviewsStatus(state),
+  authStatus: getAuthStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   loadNearbyOffers: (id) => dispatch(Operation.loadNearbyOffers(id)),
-  loadReviews: (id) => dispatch(Operation.loadReviews(id)),
+  loadReviews: (id, commentData) => dispatch(Operation.loadReviews(id, commentData))
 });
 
 InfoAboutOffer.propTypes = {
@@ -175,7 +182,10 @@ InfoAboutOffer.propTypes = {
   isReviewsLoading: PropTypes.bool.isRequired,
   loadNearbyOffers: PropTypes.func.isRequired,
   loadReviews: PropTypes.func.isRequired,
-  isAuthorizedUser: PropTypes.bool.isRequired,
+  authStatus: PropTypes.oneOf([AuthorizationStatus.AUTH, AuthorizationStatus.NO_AUTH]).isRequired,
+  onPostReview: PropTypes.func.isRequired,
 };
+
+export {InfoAboutOffer};
 
 export default connect(mapStateToProps, mapDispatchToProps)(InfoAboutOffer);

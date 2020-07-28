@@ -12,10 +12,12 @@ it(`Test component SignIn`, () => {
   const store = mockStore({
     [NameSpace.DATA]: {
       offers,
+      city: offers[0].city.name,
+      activeOfferId: -1,
+      reviews: [],
     },
     [NameSpace.APP]: {
       sortType: `popular`,
-      activeOfferId: -1,
       showAuthPage: false,
     },
     [NameSpace.USER]: {

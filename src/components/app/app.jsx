@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {ActionCreator} from "../../reducer/app/app.js";
+import {ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
 import Main from "../main/main.jsx";
 import InfoAboutOffer from "../info-about-offer/info-about-offer.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
@@ -64,7 +64,7 @@ App.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeActiveOffer(id) {
-    dispatch(ActionCreator.activeOfferIdChange(id));
+    dispatch(DataActionCreator.activeOfferIdChange(id));
   }
 });
 

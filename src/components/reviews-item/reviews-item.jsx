@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Months} from "../../const.js";
+import {getReviewDate} from "../../utils.js";
 
 const ReviewsItem = (props) => {
   const {review} = props;
@@ -26,7 +26,7 @@ const ReviewsItem = (props) => {
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime={date}>{Months[new Date(date).getMonth()]} {new Date(date).getFullYear()}</time>
+        <time className="reviews__time" dateTime={date}>{getReviewDate(date)}</time>
       </div>
     </li>
   );
