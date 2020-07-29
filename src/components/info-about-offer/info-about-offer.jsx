@@ -188,9 +188,8 @@ InfoAboutOffer.propTypes = {
   isReviewsLoading: PropTypes.bool.isRequired,
   loadNearbyOffers: PropTypes.func.isRequired,
   loadReviews: PropTypes.func.isRequired,
-  onPostReview: PropTypes.func.isRequired,
   loadOfferData: PropTypes.func,
-  isAuthorizedUser: PropTypes.bool,
+  isAuthorizedUser: PropTypes.string,
   offerId: PropTypes.string,
 };
 

@@ -6,7 +6,7 @@ const getOffers = (state) => {
 };
 
 const getActiveOfferId = (state) => {
-  return state[NameSpace.APP].activeOfferId;
+  return state[NameSpace.DATA].activeOfferId;
 };
 
 

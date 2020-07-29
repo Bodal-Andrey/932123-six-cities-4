@@ -40,7 +40,6 @@ it(`Render InfoAboutOffer`, () => {
           isNearbyOffersLoading={false}
           isReviewsLoading={false}
           isAuthorizedUser={true}
-          onPostReview={() => {}}
         />
       </Provider>,
       {
