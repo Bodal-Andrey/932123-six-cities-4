@@ -140,7 +140,7 @@ const reducer = (state = initialState, action) => {
       const reloadedOffers = state.offers.slice();
       const index = reloadedOffers.findIndex((el) => el.id === parsedOffer.id);
       reloadedOffers.splice(index, 1, parsedOffer);
-      const reloadFavoriteOffers = reloadedOffers.filter((offer) => offer.bookmark === true);
+      const reloadFavoriteOffers = reloadedOffers.filter((offer) => offer.isFavorite === true);
       return extend(state, {
         offers: reloadedOffers,
         favoriteOffers: reloadFavoriteOffers
