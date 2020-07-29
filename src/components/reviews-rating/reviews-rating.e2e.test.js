@@ -6,20 +6,25 @@ import ReviewsRating from "./reviews-rating.jsx";
 Enzyme.configure({adapter: new Adapter()});
 
 it(`Should ReviewsRating item can  be pressed`, () => {
-  const onRatingChange = jest.fn().mockImplementation();
+  const onChange = jest.fn().mockImplementation();
 
   const reviewsRating = shallow(
       <ReviewsRating
-        isFormDisabled={false}
-        onRatingChange={() => {}}
+        onChange={() => {}}
         rating={`5`}
       />
   );
 
   const ratingInput = reviewsRating.find(`.form__rating-input`).at(0);
 
-  ratingInput.simulate(`change`);
+  const event = {
+    target: {
+      value: `This is just for test`
+    }
+  };
 
-  expect(onRatingChange).toHaveBeenCalledTimes(1);
-  expect(ratingInput.prop(`checked`)).toEqual(true);
+  ratingInput.simulate(`change`, event);
+
+  expect(onChange).toHaveBeenCalledTimes(1);
+  expect(onChange).toHaveBeenCalledWith({target: {value: `This is just for test`}}, `This is just for test`);
 });

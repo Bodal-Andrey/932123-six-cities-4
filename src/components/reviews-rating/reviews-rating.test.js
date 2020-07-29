@@ -6,8 +6,7 @@ it(`Render ReviewsRating`, () => {
   const tree = renderer
     .create(
         <ReviewsRating
-          isFormDisabled={false}
-          onRatingChange={() => {}}
+          onChange={() => {}}
           rating={`5`}
         />
     )

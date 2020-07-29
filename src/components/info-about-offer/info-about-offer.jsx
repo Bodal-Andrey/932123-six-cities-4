@@ -8,8 +8,7 @@ import CardsList from "../cards-list/cards-list.jsx";
 import Header from "../header/header.jsx";
 import {CardsClass} from "../../const.js";
 import {getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus} from "../../reducer/data/selectors.js";
-import {Operation} from '../../reducer/data/data.js';
-import {AuthorizationStatus} from "../../const.js";
+import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 
 class InfoAboutOffer extends React.PureComponent {
@@ -18,16 +17,21 @@ class InfoAboutOffer extends React.PureComponent {
   }
 
   componentDidMount() {
-    const {loadNearbyOffers, loadReviews, offer} = this.props;
-    loadNearbyOffers(offer.id);
-    loadReviews(offer.id);
+    const {offerId, loadOfferData} = this.props;
+    loadOfferData(offerId);
+  }
+
+  componentDidUpdate(prevProps) {
+    const {offerId, loadOfferData} = this.props;
+    if (this.props.offerId !== prevProps.offerId) {
+      loadOfferData(offerId);
+    }
   }
 
   render() {
-    const {offer, onChangeScreen, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, authStatus, loadReviews} = this.props;
+    const {offer, offerId, onChangeScreen, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser} = this.props;
     const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host} = offer;
     const {avatarUrl, name, isPro} = host;
-    const isAuthorizedUser = authStatus === AuthorizationStatus.AUTH;
 
     if (isReviewsLoading || isNearbyOffersLoading) {
       return false;
@@ -119,7 +123,7 @@ class InfoAboutOffer extends React.PureComponent {
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviews.length}</span></h2>
                   <ReviewsList reviews={reviews} />
-                  {isAuthorizedUser && <ReviewsForm offerId={id} onPostReview={loadReviews} />}
+                  {isAuthorizedUser && <ReviewsForm offerId={offerId} />}
                 </section>
               </div>
             </div>
@@ -142,12 +146,14 @@ const mapStateToProps = (state) => ({
   isNearbyOffersLoading: getNearbyOffersStatus(state),
   reviews: getReviews(state),
   isReviewsLoading: getReviewsStatus(state),
-  authStatus: getAuthStatus(state),
+  isAuthorizedUser: getAuthStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadNearbyOffers: (id) => dispatch(Operation.loadNearbyOffers(id)),
-  loadReviews: (id, commentData) => dispatch(Operation.loadReviews(id, commentData))
+  loadOfferData(id) {
+    dispatch(DataOperation.loadNearbyOffers(id));
+    dispatch(DataOperation.loadReviews(id));
+  }
 });
 
 InfoAboutOffer.propTypes = {
@@ -182,8 +188,9 @@ InfoAboutOffer.propTypes = {
   isReviewsLoading: PropTypes.bool.isRequired,
   loadNearbyOffers: PropTypes.func.isRequired,
   loadReviews: PropTypes.func.isRequired,
-  authStatus: PropTypes.oneOf([AuthorizationStatus.AUTH, AuthorizationStatus.NO_AUTH]).isRequired,
   onPostReview: PropTypes.func.isRequired,
+  loadOfferData: PropTypes.func,
+  isAuthorizedUser: PropTypes.bool,
 };
 
 export {InfoAboutOffer};

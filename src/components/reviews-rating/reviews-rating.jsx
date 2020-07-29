@@ -5,7 +5,7 @@ import {ratingTitle} from "../../const.js";
 const RATING_STARS = [5, 4, 3, 2, 1];
 
 const ReviewsRating = (props) => {
-  const {isFormDisabled, onRatingChange, rating} = props;
+  const {onChange, rating} = props;
 
   return (
     <div className="reviews__rating-form form__rating">
@@ -13,7 +13,7 @@ const ReviewsRating = (props) => {
         const id = item === 1 ? `${item}-star` : `${item}-stars`;
         return (
           <React.Fragment key={item}>
-            <input onChange={onRatingChange} disabled={isFormDisabled} className="form__rating-input visually-hidden" name="rating" value={item} id={id} type="radio" checked={rating === String(item)} />
+            <input onChange={onChange} className="form__rating-input visually-hidden" name="rating" value={item} id={id} type="radio" checked={rating === String(item)} />
             <label htmlFor={id} className="reviews__rating-label form__rating-label" title={ratingTitle[item]}>
               <svg className="form__star-image" width={37} height={33}>
                 <use xlinkHref="#icon-star" />
@@ -27,8 +27,7 @@ const ReviewsRating = (props) => {
 };
 
 ReviewsRating.propTypes = {
-  isFormDisabled: PropTypes.bool.isRequired,
-  onRatingChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   rating: PropTypes.string.isRequired,
 };
 

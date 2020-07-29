@@ -19,10 +19,8 @@ exports[`Render ReviewsForm 1`] = `
     <input
       checked={false}
       className="form__rating-input visually-hidden"
-      disabled={false}
       id="5-stars"
       name="rating"
-      onChange={[Function]}
       type="radio"
       value={5}
     />
@@ -44,10 +42,8 @@ exports[`Render ReviewsForm 1`] = `
     <input
       checked={false}
       className="form__rating-input visually-hidden"
-      disabled={false}
       id="4-stars"
       name="rating"
-      onChange={[Function]}
       type="radio"
       value={4}
     />
@@ -69,10 +65,8 @@ exports[`Render ReviewsForm 1`] = `
     <input
       checked={false}
       className="form__rating-input visually-hidden"
-      disabled={false}
       id="3-stars"
       name="rating"
-      onChange={[Function]}
       type="radio"
       value={3}
     />
@@ -94,10 +88,8 @@ exports[`Render ReviewsForm 1`] = `
     <input
       checked={false}
       className="form__rating-input visually-hidden"
-      disabled={false}
       id="2-stars"
       name="rating"
-      onChange={[Function]}
       type="radio"
       value={2}
     />
@@ -119,10 +111,8 @@ exports[`Render ReviewsForm 1`] = `
     <input
       checked={false}
       className="form__rating-input visually-hidden"
-      disabled={false}
       id="1-star"
       name="rating"
-      onChange={[Function]}
       type="radio"
       value={1}
     />
@@ -144,13 +134,13 @@ exports[`Render ReviewsForm 1`] = `
   </div>
   <textarea
     className="reviews__textarea form__textarea"
-    defaultValue=""
-    disabled={false}
     id="review"
+    maxLength="300"
+    minLength="50"
     name="review"
     onChange={[Function]}
     placeholder="Tell how was your stay, what you like and what can be improved"
-    value=""
+    required={true}
   />
   <div
     className="reviews__button-wrapper"
@@ -180,6 +170,5 @@ exports[`Render ReviewsForm 1`] = `
       Submit
     </button>
   </div>
-  
 </form>
 `;

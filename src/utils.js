@@ -33,4 +33,32 @@ const getReviewDate = (date) => {
   return `${Months[new Date(date).getMonth()]} ${new Date(date).getFullYear()}`;
 };
 
-export {extend, sortingOffers, firstLetter, getReviewDate};
+const parseOffer = (data) => {
+  return {
+    id: data[`id`],
+    city: data[`city`][`name`],
+    title: data[`title`],
+    coords: [data[`location`][`latitude`], data[`location`][`longitude`]],
+    zoom: data[`location`][`zoom`],
+    description: data[`description`],
+    price: data[`price`],
+    rating: data[`rating`],
+    type: data[`type`],
+    previewImage: data[`preview_image`],
+    isPremium: data[`is_premium`],
+    isFavorite: data[`is_favorite`],
+    bedrooms: data[`bedrooms`],
+    guests: data[`max_adults`],
+    features: data[`goods`],
+    pictures: data[`images`],
+    host: {
+      avatarUrl: data[`host`][`avatar_url`],
+      isPro: data[`host`][`is_pro`],
+      name: data[`host`][`name`],
+      id: data[`host`][`id`]
+    },
+    location: data[`location`]
+  };
+};
+
+export {extend, sortingOffers, firstLetter, getReviewDate, parseOffer};
