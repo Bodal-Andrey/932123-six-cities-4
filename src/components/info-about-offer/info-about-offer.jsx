@@ -17,19 +17,19 @@ class InfoAboutOffer extends React.PureComponent {
   }
 
   componentDidMount() {
-    const {offer, loadOfferData} = this.props;
-    loadOfferData(offer.id);
+    const {offerId, loadOfferData} = this.props;
+    loadOfferData(offerId);
   }
 
   componentDidUpdate(prevProps) {
-    const {offer, loadOfferData} = this.props;
-    if (this.props.offer.id !== prevProps.offer.id) {
-      loadOfferData(offer.id);
+    const {offerId, loadOfferData} = this.props;
+    if (this.props.offerId !== prevProps.offerId) {
+      loadOfferData(offerId);
     }
   }
 
   render() {
-    const {offer, onChangeScreen, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser} = this.props;
+    const {offer, offerId, onChangeScreen, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser} = this.props;
     const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host} = offer;
     const {avatarUrl, name, isPro} = host;
 
@@ -123,7 +123,7 @@ class InfoAboutOffer extends React.PureComponent {
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviews.length}</span></h2>
                   <ReviewsList reviews={reviews} />
-                  {isAuthorizedUser && <ReviewsForm offerId={id} />}
+                  {isAuthorizedUser && <ReviewsForm offerId={offerId} />}
                 </section>
               </div>
             </div>
@@ -190,6 +190,7 @@ InfoAboutOffer.propTypes = {
   onPostReview: PropTypes.func.isRequired,
   loadOfferData: PropTypes.func,
   isAuthorizedUser: PropTypes.bool,
+  offerId: PropTypes.string,
 };
 
 export {InfoAboutOffer};
