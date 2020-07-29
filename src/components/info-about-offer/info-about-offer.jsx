@@ -7,7 +7,7 @@ import Map from "../map/map.jsx";
 import CardsList from "../cards-list/cards-list.jsx";
 import Header from "../header/header.jsx";
 import {CardsClass} from "../../const.js";
-import {getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus} from "../../reducer/data/selectors.js";
+import {getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus, getCurrentOffer} from "../../reducer/data/selectors.js";
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {getAuthStatus} from "../../reducer/user/selectors.js";
 
@@ -141,7 +141,8 @@ class InfoAboutOffer extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, {offerId}) => ({
+  offer: getCurrentOffer(offerId)(state),
   nearbyOffers: getNearbyOffers(state),
   isNearbyOffersLoading: getNearbyOffersStatus(state),
   reviews: getReviews(state),
