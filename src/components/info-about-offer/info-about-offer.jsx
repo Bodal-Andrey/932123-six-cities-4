@@ -189,7 +189,7 @@ InfoAboutOffer.propTypes = {
   loadNearbyOffers: PropTypes.func.isRequired,
   loadReviews: PropTypes.func.isRequired,
   loadOfferData: PropTypes.func,
-  isAuthorizedUser: PropTypes.string,
+  isAuthorizedUser: PropTypes.bool,
   offerId: PropTypes.string,
 };
 

@@ -10,7 +10,7 @@ const ReviewsItem = (props) => {
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={user.avatar} width={54} height={54} alt="Reviews avatar" />
+          <img className="reviews__avatar user__avatar" src={user.avatarUrl} width={54} height={54} alt="Reviews avatar" />
         </div>
         <span className="reviews__user-name">
           {user.name}
@@ -38,7 +38,7 @@ ReviewsItem.propTypes = {
     rating: PropTypes.number.isRequired,
     date: PropTypes.string.isRequired,
     user: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
+      avatarUrl: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,

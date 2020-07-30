@@ -75,7 +75,7 @@ class SignIn extends React.PureComponent {
 }
 
 SignIn.propTypes = {
-  onUserAuthorization: PropTypes.func.isRequired,
+  onUserAuthorization: PropTypes.func,
   onChangeActiveOfferId: PropTypes.func.isRequired,
   onChangeAuthState: PropTypes.func.isRequired,
 };

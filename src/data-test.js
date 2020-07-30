@@ -77,7 +77,7 @@ const reviews = [
     user: {
       id: 1,
       name: `Max`,
-      avatar: `img/avatar-max.jpg`,
+      avatarUrl: `img/avatar-max.jpg`,
       isPro: false
     }
   },
