@@ -26,7 +26,7 @@ class App extends PureComponent {
       />);
     } else {
       return (
-        <InfoAboutOffer offer={offerId} onChangeScreen={onChangeActiveOffer} />
+        <InfoAboutOffer offerId={offerId.id} onChangeScreen={onChangeActiveOffer} />
       );
     }
   }
