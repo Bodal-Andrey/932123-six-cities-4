@@ -1,6 +1,7 @@
 import MockAdapter from "axios-mock-adapter";
-import {createAPI} from "../../api.js";
-import {AuthorizationStatus, ActionType, Operation, reducer} from "./user.js";
+import createAPI from "../../api.js";
+import {ActionType, Operation, reducer} from "./user.js";
+import {AuthorizationStatus} from "../../const.js";
 
 const AuthInfoInitial = {
   [`avatar_url`]: `img/1.png`,
@@ -95,7 +96,7 @@ describe(`Operation work correctly`, () => {
 
     return authChecker(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.AUTH_STATUS_CHANGE,
           payload: AuthorizationStatus.AUTH,

@@ -82,7 +82,7 @@ SignIn.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onUserAuthorization(authInfo) {
-    return dispatch(Operation.userLogin(authInfo));
+    dispatch(Operation.userLogin(authInfo));
   },
   onChangeActiveOfferId(id) {
     dispatch(DataActionCreator.activeOfferIdChange(id));

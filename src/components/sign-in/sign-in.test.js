@@ -39,7 +39,12 @@ it(`Test component SignIn`, () => {
           onChangeActiveOfferId={() => {}}
           onChangeAuthState={() => {}}
         />
-      </Provider>
+      </Provider>,
+      {
+        createNodeMock: () => {
+          return document.createElement(`div`);
+        }
+      }
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
