@@ -26,14 +26,16 @@ const withAddReviews = (Component) => {
       this.clearState();
     }
 
-    onChange(evt, value) {
+    onChange(evt) {
       const target = evt.target.name;
-      this.setState({[target]: value});
-      this.activeForm();
+      const value = evt.target.value;
+      this.setState({[target]: value}, () => {
+        this.activeForm();
+      });
     }
 
     activeForm() {
-      if (this.state.review && this.state.rating) {
+      if (this.state.review.length >= 50 && this.state.rating) {
         this.setState({isActiveSubmit: true});
       } else {
         this.setState({isActiveSubmit: false});

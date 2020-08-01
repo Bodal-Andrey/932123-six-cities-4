@@ -6,7 +6,7 @@ import ReviewsForm from "../reviews-form/reviews-form.jsx";
 import Map from "../map/map.jsx";
 import CardsList from "../cards-list/cards-list.jsx";
 import Header from "../header/header.jsx";
-import {CardsClass} from "../../const.js";
+import {CardsClass, AuthorizationStatus} from "../../const.js";
 import {getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus, getCurrentOffer} from "../../reducer/data/selectors.js";
 import {Operation as DataOperation} from '../../reducer/data/data.js';
 import {getAuthStatus} from "../../reducer/user/selectors.js";
@@ -123,7 +123,7 @@ class InfoAboutOffer extends React.PureComponent {
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviews.length}</span></h2>
                   <ReviewsList reviews={reviews} />
-                  {isAuthorizedUser && <ReviewsForm offerId={offerId} />}
+                  {isAuthorizedUser === AuthorizationStatus.AUTH && <ReviewsForm offerId={offerId} />}
                 </section>
               </div>
             </div>
@@ -187,8 +187,8 @@ InfoAboutOffer.propTypes = {
   isNearbyOffersLoading: PropTypes.bool.isRequired,
   isReviewsLoading: PropTypes.bool.isRequired,
   loadOfferData: PropTypes.func,
-  isAuthorizedUser: PropTypes.bool,
-  offerId: PropTypes.string,
+  isAuthorizedUser: PropTypes.string.isRequired,
+  offerId: PropTypes.number.isRequired,
 };
 
 export {InfoAboutOffer};

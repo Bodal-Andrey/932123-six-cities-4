@@ -138,7 +138,6 @@ exports[`Render ReviewsForm 1`] = `
     maxLength="300"
     minLength="50"
     name="review"
-    onChange={[Function]}
     placeholder="Tell how was your stay, what you like and what can be improved"
     required={true}
   />
