@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Operation} from "../../reducer/user/user.js";
 import Header from "../header/header.jsx";
-import {ActionCreator} from "../../reducer/app/app.js";
+import {ActionCreator as AppActionCreator} from "../../reducer/app/app.js";
+import {ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
 
 class SignIn extends React.PureComponent {
   constructor(props) {
@@ -33,7 +34,7 @@ class SignIn extends React.PureComponent {
     .catch((err) => {
       this.textError = err.response.data.error;
       this.setState({error: true});
-    })
+    });
   }
 
   render() {
@@ -43,8 +44,8 @@ class SignIn extends React.PureComponent {
         <main className="page__main page__main--login">
           <div className="page__login-container container">
             <section className="login">
-              <h1 onSubmit={this._handleSubmit} className="login__title">Sign in</h1>
-              <form className="login__form form" action="#" method="post">
+              <h1 className="login__title">Sign in</h1>
+              <form onSubmit={this._handleSubmit} className="login__form form" action="#" method="post">
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">E-mail</label>
                   <input className="login__input form__input" type="email" name="email" placeholder="Email" required ref={this.email} />
@@ -74,20 +75,20 @@ class SignIn extends React.PureComponent {
 }
 
 SignIn.propTypes = {
-  onUserAuthorization: PropTypes.func.isRequired,
+  onUserAuthorization: PropTypes.func,
   onChangeActiveOfferId: PropTypes.func.isRequired,
   onChangeAuthState: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onUserAuthorization(authInfo) {
-    return dispatch(Operation.userLogin(authInfo));
+    dispatch(Operation.userLogin(authInfo));
   },
   onChangeActiveOfferId(id) {
-    dispatch(ActionCreator.activeOfferIdChange(id));
+    dispatch(DataActionCreator.activeOfferIdChange(id));
   },
   onChangeAuthState(state) {
-    dispatch(ActionCreator.authStateChange(state));
+    dispatch(AppActionCreator.authStateChange(state));
   }
 });
 

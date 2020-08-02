@@ -69,7 +69,6 @@ exports[`Test component SignIn 1`] = `
       >
         <h1
           className="login__title"
-          onSubmit={[Function]}
         >
           Sign in
         </h1>
@@ -77,6 +76,7 @@ exports[`Test component SignIn 1`] = `
           action="#"
           className="login__form form"
           method="post"
+          onSubmit={[Function]}
         >
           <div
             className="login__input-wrapper form__input-wrapper"

@@ -24,4 +24,12 @@ const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
-export {Months, CardsClass, SortingTypes, SortingTypeNames, AuthorizationStatus};
+const ratingTitle = {
+  5: `perfect`,
+  4: `good`,
+  3: `not bad`,
+  2: `badly`,
+  1: `terribly`,
+};
+
+export {Months, CardsClass, SortingTypes, SortingTypeNames, AuthorizationStatus, ratingTitle};

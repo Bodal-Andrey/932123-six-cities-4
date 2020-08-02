@@ -2,12 +2,12 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {ActionCreator} from "../../reducer/app/app.js";
+import {ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
 import Main from "../main/main.jsx";
 import InfoAboutOffer from "../info-about-offer/info-about-offer.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
-import {getActiveOfferId, getShowAuthPage} from "../../reducer/app/selectors.js";
-import {getOffers} from "../../reducer/data/selectors.js";
+import {getShowAuthPage} from "../../reducer/app/selectors.js";
+import {getOffers, getActiveOfferId} from "../../reducer/data/selectors.js";
 
 class App extends PureComponent {
   _renderScreen() {
@@ -26,7 +26,7 @@ class App extends PureComponent {
       />);
     } else {
       return (
-        <InfoAboutOffer offer={offerId} onChangeScreen={onChangeActiveOffer} />
+        <InfoAboutOffer offerId={offerId.id} onChangeScreen={onChangeActiveOffer} />
       );
     }
   }
@@ -64,7 +64,7 @@ App.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeActiveOffer(id) {
-    dispatch(ActionCreator.activeOfferIdChange(id));
+    dispatch(DataActionCreator.activeOfferIdChange(id));
   }
 });
 

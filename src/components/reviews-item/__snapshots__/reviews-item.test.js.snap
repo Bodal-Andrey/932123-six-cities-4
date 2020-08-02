@@ -56,9 +56,7 @@ exports[`Test ReviewsItem with first offer 1`] = `
       className="reviews__time"
       dateTime="2018-05-10"
     >
-      May
-       
-      2018
+      May 2018
     </time>
   </div>
 </li>

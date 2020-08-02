@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import {Main} from "./main.jsx";
 import NameSpace from "../../reducer/name-space.js";
 import {offers} from "../../data-test.js";
+import {AuthorizationStatus} from "../../const.js";
 
 const mockStore = configureStore([]);
 
@@ -13,9 +14,22 @@ it(`Main component test`, () => {
     [NameSpace.DATA]: {
       offers,
       city: offers[0].city.name,
+      activeItemId: -1,
+      reviews: [],
     },
     [NameSpace.APP]: {
       sortType: `popular`,
+      showAuthPage: false,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      authInfo: {
+        avatarUrl: ``,
+        name: ``,
+        id: null,
+        isPro: null,
+        email: ``,
+      },
     }
   });
 

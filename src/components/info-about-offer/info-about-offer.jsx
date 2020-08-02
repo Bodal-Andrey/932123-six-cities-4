@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import ReviewsList from "../reviews-list/reviews-list.jsx";
+import ReviewsForm from "../reviews-form/reviews-form.jsx";
 import Map from "../map/map.jsx";
 import CardsList from "../cards-list/cards-list.jsx";
 import Header from "../header/header.jsx";
-import {CardsClass} from "../../const.js";
-import {getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus} from "../../reducer/data/selectors.js";
-import {Operation} from '../../reducer/data/data.js';
+import {CardsClass, AuthorizationStatus} from "../../const.js";
+import {getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus, getCurrentOffer} from "../../reducer/data/selectors.js";
+import {Operation as DataOperation} from '../../reducer/data/data.js';
+import {getAuthStatus} from "../../reducer/user/selectors.js";
 
 class InfoAboutOffer extends React.PureComponent {
   constructor(props) {
@@ -15,13 +17,19 @@ class InfoAboutOffer extends React.PureComponent {
   }
 
   componentDidMount() {
-    const {loadNearbyOffers, loadReviews, offer} = this.props;
-    loadNearbyOffers(offer.id);
-    loadReviews(offer.id);
+    const {offerId, loadOfferData} = this.props;
+    loadOfferData(offerId);
+  }
+
+  componentDidUpdate(prevProps) {
+    const {offerId, loadOfferData} = this.props;
+    if (this.props.offerId !== prevProps.offerId) {
+      loadOfferData(offerId);
+    }
   }
 
   render() {
-    const {offer, onChangeScreen, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading} = this.props;
+    const {offer, offerId, onChangeScreen, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser} = this.props;
     const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host} = offer;
     const {avatarUrl, name, isPro} = host;
 
@@ -102,6 +110,9 @@ class InfoAboutOffer extends React.PureComponent {
                     <span className="property__user-name">
                       {name}
                     </span>
+                    {isAuthorizedUser && <span className="property__user-status">
+                    Pro
+                    </span>}
                   </div>
                   <div className="property__description">
                     <p className="property__text">
@@ -112,48 +123,7 @@ class InfoAboutOffer extends React.PureComponent {
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviews.length}</span></h2>
                   <ReviewsList reviews={reviews} />
-                  <form className="reviews__form form" action="#" method="post">
-                    <label className="reviews__label form__label" htmlFor="review">Your review</label>
-                    <div className="reviews__rating-form form__rating">
-                      <input className="form__rating-input visually-hidden" name="rating" defaultValue={5} id="5-stars" type="radio" />
-                      <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-                        <svg className="form__star-image" width={37} height={33}>
-                          <use xlinkHref="#icon-star" />
-                        </svg>
-                      </label>
-                      <input className="form__rating-input visually-hidden" name="rating" defaultValue={4} id="4-stars" type="radio" />
-                      <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-                        <svg className="form__star-image" width={37} height={33}>
-                          <use xlinkHref="#icon-star" />
-                        </svg>
-                      </label>
-                      <input className="form__rating-input visually-hidden" name="rating" defaultValue={3} id="3-stars" type="radio" />
-                      <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-                        <svg className="form__star-image" width={37} height={33}>
-                          <use xlinkHref="#icon-star" />
-                        </svg>
-                      </label>
-                      <input className="form__rating-input visually-hidden" name="rating" defaultValue={2} id="2-stars" type="radio" />
-                      <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-                        <svg className="form__star-image" width={37} height={33}>
-                          <use xlinkHref="#icon-star" />
-                        </svg>
-                      </label>
-                      <input className="form__rating-input visually-hidden" name="rating" defaultValue={1} id="1-star" type="radio" />
-                      <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-                        <svg className="form__star-image" width={37} height={33}>
-                          <use xlinkHref="#icon-star" />
-                        </svg>
-                      </label>
-                    </div>
-                    <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" defaultValue={``} />
-                    <div className="reviews__button-wrapper">
-                      <p className="reviews__help">
-                        To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
-                      </p>
-                      <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
-                    </div>
-                  </form>
+                  {isAuthorizedUser === AuthorizationStatus.AUTH && <ReviewsForm offerId={offerId} />}
                 </section>
               </div>
             </div>
@@ -171,16 +141,20 @@ class InfoAboutOffer extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, {offerId}) => ({
+  offer: getCurrentOffer(offerId)(state),
   nearbyOffers: getNearbyOffers(state),
   isNearbyOffersLoading: getNearbyOffersStatus(state),
   reviews: getReviews(state),
   isReviewsLoading: getReviewsStatus(state),
+  isAuthorizedUser: getAuthStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadNearbyOffers: (id) => dispatch(Operation.loadNearbyOffers(id)),
-  loadReviews: (id) => dispatch(Operation.loadReviews(id)),
+  loadOfferData(id) {
+    dispatch(DataOperation.loadNearbyOffers(id));
+    dispatch(DataOperation.loadReviews(id));
+  }
 });
 
 InfoAboutOffer.propTypes = {
@@ -208,13 +182,15 @@ InfoAboutOffer.propTypes = {
     }).isRequired,
   }).isRequired,
   onChangeScreen: PropTypes.func,
-  offerId: PropTypes.number,
   reviews: PropTypes.array.isRequired,
   nearbyOffers: PropTypes.array.isRequired,
   isNearbyOffersLoading: PropTypes.bool.isRequired,
   isReviewsLoading: PropTypes.bool.isRequired,
-  loadNearbyOffers: PropTypes.func.isRequired,
-  loadReviews: PropTypes.func.isRequired,
+  loadOfferData: PropTypes.func,
+  isAuthorizedUser: PropTypes.string.isRequired,
+  offerId: PropTypes.number.isRequired,
 };
+
+export {InfoAboutOffer};
 
 export default connect(mapStateToProps, mapDispatchToProps)(InfoAboutOffer);

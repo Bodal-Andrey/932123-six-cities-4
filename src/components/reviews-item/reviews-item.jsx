@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Months} from "../../const.js";
+import {getReviewDate} from "../../utils.js";
 
 const ReviewsItem = (props) => {
   const {review} = props;
-  const {description, rating, user, date} = review;
+  const {comment, rating, user, date} = review;
 
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={user.avatar} width={54} height={54} alt="Reviews avatar" />
+          <img className="reviews__avatar user__avatar" src={user.avatarUrl} width={54} height={54} alt="Reviews avatar" />
         </div>
         <span className="reviews__user-name">
           {user.name}
@@ -24,9 +24,9 @@ const ReviewsItem = (props) => {
           </div>
         </div>
         <p className="reviews__text">
-          {description}
+          {comment}
         </p>
-        <time className="reviews__time" dateTime={date}>{Months[new Date(date).getMonth()]} {new Date(date).getFullYear()}</time>
+        <time className="reviews__time" dateTime={date}>{getReviewDate(date)}</time>
       </div>
     </li>
   );
@@ -34,11 +34,11 @@ const ReviewsItem = (props) => {
 
 ReviewsItem.propTypes = {
   review: PropTypes.shape({
-    description: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     date: PropTypes.string.isRequired,
     user: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
+      avatarUrl: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,

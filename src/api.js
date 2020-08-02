@@ -2,7 +2,7 @@ import axios from "axios";
 
 const Error = {UNAUTHORIZED: 401};
 
-export const createApi = (onUnauthorized) => {
+const createApi = (onUnauthorized) => {
   const api = axios.create({
     baseURL: `https://4.react.pages.academy/six-cities`,
     timeout: 5000,
@@ -27,3 +27,5 @@ export const createApi = (onUnauthorized) => {
 
   return api;
 };
+
+export default createApi;
