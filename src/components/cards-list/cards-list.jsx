@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 
 const CardsList = (props) => {
-  const {offers, onChangeScreen, cardsClass, onActiveItemChange} = props;
+  const {offers, cardsClass, onActiveItemChange} = props;
 
   return (
     <div className={cardsClass === `cities` ? `cities__places-list places__list tabs__content` : `near-places__list places__list`}>
@@ -11,7 +11,6 @@ const CardsList = (props) => {
         <Card
           key={offer.id}
           offer={offer}
-          onChangeScreen={onChangeScreen}
           cardsClass={cardsClass}
           onActiveItemChange={onActiveItemChange}
         />
@@ -31,7 +30,6 @@ CardsList.propTypes = {
         isPremium: PropTypes.bool.isRequired,
       })
   ),
-  onChangeScreen: PropTypes.func.isRequired,
   cardsClass: PropTypes.string.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
 };

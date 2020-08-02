@@ -1,3 +1,5 @@
+import NameSpace from "./reducer/name-space.js";
+
 const TYPES = {
   apartment: `apartment`,
   room: `room`,
@@ -95,4 +97,26 @@ const reviews = [
   }
 ];
 
-export {offers, reviews};
+const testStore = {
+  [NameSpace.DATA]: {
+    offers,
+    city: offers[0].city.name,
+    reviews: [],
+  },
+  [NameSpace.APP]: {
+    sortType: `popular`,
+  },
+  [NameSpace.USER]: {
+    authorizationStatus: `NO_AUTH`,
+    authInfo: {
+      avatarUrl: ``,
+      name: ``,
+      id: null,
+      isPro: null,
+      email: ``,
+    }
+  }
+};
+
+
+export {offers, reviews, testStore};

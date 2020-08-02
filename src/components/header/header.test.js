@@ -1,31 +1,24 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import {Router} from "react-router-dom";
 import Header from "./header.jsx";
-import NameSpace from "../../reducer/name-space.js";
-import {AuthorizationStatus} from "../../const.js";
-import {Provider} from 'react-redux';
+import {testStore} from "../../data-test.js";
+import history from "../../history.js";
+
 
 const mockStore = configureStore([]);
 
 it(`Render Header`, () => {
-  const store = mockStore({
-    [NameSpace.USER]: {
-      authorizationStatus: AuthorizationStatus.NO_AUTH,
-      authInfo: {
-        avatarUrl: ``,
-        name: ``,
-        id: null,
-        isPro: null,
-        email: ``,
-      }
-    }
-  });
+  const store = mockStore(testStore);
 
   const tree = renderer
   .create(
       <Provider store={store}>
-        <Header isLogoActive={false} />
+        <Router history={history}>
+          <Header isLogoActive={false} />
+        </Router>
       </Provider>
   ).toJSON();
   expect(tree).toMatchSnapshot();

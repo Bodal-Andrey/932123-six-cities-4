@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Main component test 1`] = `
+exports[`MainPage component test 1`] = `
 <div
   className="page page--gray page--main"
 >
@@ -40,12 +40,9 @@ exports[`Main component test 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
                 onClick={[Function]}
               >
-                <div
-                  className="header__avatar-wrapper user__avatar-wrapper"
-                />
                 <span
                   className="header__login"
                 >
@@ -79,7 +76,7 @@ exports[`Main component test 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item tabs__item--active"
+              className="locations__item-link tabs__item "
               href="#"
               onClick={[Function]}
             >
@@ -105,7 +102,7 @@ exports[`Main component test 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item "
+              className="locations__item-link tabs__item tabs__item--active"
               href="#"
               onClick={[Function]}
             >
@@ -254,6 +251,7 @@ exports[`Main component test 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button button "
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -297,7 +295,6 @@ exports[`Main component test 1`] = `
                 >
                   <a
                     href="#"
-                    onClick={[Function]}
                   >
                     Beautiful & luxurious apartment at great location
                   </a>
@@ -352,6 +349,7 @@ exports[`Main component test 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button button "
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -395,7 +393,6 @@ exports[`Main component test 1`] = `
                 >
                   <a
                     href="#"
-                    onClick={[Function]}
                   >
                     Not bad!
                   </a>

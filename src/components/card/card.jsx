@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {Operation} from "../../reducer/data/data.js";
 import {firstLetter} from "../../utils.js";
 
 const Card = (props) => {
-  const {offer, onChangeScreen, cardsClass, onActiveItemChange} = props;
-  const {title, previewImage, price, type, rating, isPremium, isFavorite} = offer;
+  const {offer, cardsClass, onActiveItemChange, onFavotiteToggle} = props;
+  const {id, title, previewImage, price, type, rating, isPremium, isFavorite} = offer;
 
   return (
     <article onMouseEnter={() => onActiveItemChange(offer.id)} onMouseLeave={() => onActiveItemChange(-1)} className={`${cardsClass === `near-places` ? `near-places__card` : `cities__place-card`} place-card`}>
@@ -22,7 +24,7 @@ const Card = (props) => {
             <b className="place-card__price-value">€{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${isFavorite ? ` place-card__bookmark-button--active` : ``}`} type="button">
+          <button onClick={() => onFavotiteToggle(id, isFavorite)} className={`place-card__bookmark-button button ${isFavorite ? ` place-card__bookmark-button--active` : ``}`} type="button">
             <svg className="place-card__bookmark-icon" width={18} height={19}>
               <use xlinkHref="#icon-bookmark" />
             </svg>
@@ -36,7 +38,7 @@ const Card = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a onClick={() => onChangeScreen(offer)} href="#">{title}</a>
+          <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{firstLetter(type)}</p>
       </div>
@@ -55,9 +57,17 @@ Card.propTypes = {
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
   }),
-  onChangeScreen: PropTypes.func.isRequired,
   cardsClass: PropTypes.string.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
+  onFavotiteToggle: PropTypes.func,
 };
 
-export default Card;
+const mapDispatchToProps = (dispatch) => ({
+  onFavoriteToggle(offerId, favoriteStatus) {
+    dispatch(Operation.addToFavorite(offerId, favoriteStatus));
+  },
+});
+
+export {Card};
+
+export default connect(null, mapDispatchToProps)(Card);

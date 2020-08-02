@@ -38,4 +38,15 @@ const AppRoute = {
   FAVORITES: `/favorites`,
 };
 
-export {Months, CardsClass, SortingTypes, SortingTypeNames, AuthorizationStatus, ratingTitle, AppRoute};
+const Error = {UNAUTHORIZED: 401};
+
+export {
+  Months,
+  CardsClass,
+  SortingTypes,
+  SortingTypeNames,
+  AuthorizationStatus,
+  ratingTitle,
+  AppRoute,
+  Error,
+};

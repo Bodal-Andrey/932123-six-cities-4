@@ -5,11 +5,6 @@ const getOffers = (state) => {
   return state[NameSpace.DATA].offers;
 };
 
-const getActiveOfferId = (state) => {
-  return state[NameSpace.DATA].activeOfferId;
-};
-
-
 const getCity = (state) => {
   return state[NameSpace.DATA].city;
 };
@@ -55,4 +50,4 @@ const getCurrentOffer = (id) => createSelector(
     }
 );
 
-export {getOffers, getActiveOfferId, getCity, getFilteredOffers, getCities, getCurrentOffer, getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus};
+export {getOffers, getCity, getFilteredOffers, getCities, getCurrentOffer, getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus};

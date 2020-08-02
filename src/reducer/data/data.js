@@ -1,11 +1,17 @@
 import {extend, parseOffer} from "../../utils.js";
-import offerAdapter from "../adapter/offer-adapter.js";
-import reviewAdapter from "../adapter/review-adapter.js";
+import offerAdapter from "../adapter/offer-adapter/offer-adapter.js";
+import reviewAdapter from "../adapter/review-adapter/review-adapter.js";
+import {AppRoute} from "../../const.js";
+import history from "../../history.js";
+
+const FavoriteStatus = {
+  IN_FAVORITES: `1`,
+  OUT_OF_FAVORITES: `0`,
+};
 
 const initialState = {
   city: ``,
   offers: [],
-  activeOfferId: -1,
   nearbyOffers: [],
   isNearbyOffersLoading: true,
   reviews: [],
@@ -18,10 +24,10 @@ const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_NEARBY_OFFERS: `LOAD_NEARBY_OFFERS`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
-  ACTIVE_OFFER_ID_CHANGE: `ACTIVE_OFFER_ID_CHANGE`,
   LOAD_FAVORITE_OFFERS: `LOAD_FAVORITE_OFFERS`,
   ADD_TO_FAVORITE: `ADD_TO_FAVORITE`,
-  REVIEW_CHANGE: `REVIEW_CHANGE`
+  REVIEW_CHANGE: `REVIEW_CHANGE`,
+  UPDATE_FAVORITE: `UPDATE_FAVORITE`,
 };
 
 const ActionCreator = {
@@ -45,10 +51,6 @@ const ActionCreator = {
       payload: reviews
     };
   },
-  activeOfferIdChange: (id) => ({
-    type: ActionType.ACTIVE_OFFER_ID_CHANGE,
-    payload: id,
-  }),
   addToFavorite: (offer) => {
     return {
       type: ActionType.ADD_TO_FAVORITE,
@@ -65,6 +67,10 @@ const ActionCreator = {
     type: ActionType.REVIEW_CHANGE,
     payload: review
   }),
+  updateFavorite: (offer) => ({
+    type: ActionType.UPDATE_FAVORITE,
+    payload: offer
+  })
 };
 
 const Operation = {
@@ -93,11 +99,16 @@ const Operation = {
         dispatch(ActionCreator.loadFavoriteOffers(response.data));
       });
   },
-  addToFavorite: (offer) => (dispatch, getState, api) => {
-    return api.post(`/favorite/${offer.id}/${+!offer.isFavorite}`, {})
+  addToFavorite: (offerId, isFavorite) => (dispatch, getState, api) => {
+    const favoriteStatus = isFavorite ? FavoriteStatus.IN_FAVORITES : FavoriteStatus.OUT_OF_FAVORITES;
+    return api.post(`/favorite/${offerId}/${favoriteStatus}`, {})
       .then((response) => {
-        dispatch(Operation.loadFavoriteOffers());
-        dispatch(ActionCreator.addToFavorite(response.data));
+        dispatch(Operation.updateFavorite(offerAdapter(response.data)));
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          history.push(AppRoute.LOGIN);
+        }
       });
   },
   uploadReviews: (rating, review, offerId) => (dispatch, getState, api) => {
@@ -131,8 +142,6 @@ const reducer = (state = initialState, action) => {
         reviews: action.payload.map(reviewAdapter),
         isReviewsLoading: false
       });
-    case ActionType.ACTIVE_OFFER_ID_CHANGE:
-      return extend(state, {activeOfferId: action.payload});
     case ActionType.LOAD_FAVORITE_OFFERS:
       return extend(state, {favoriteOffers: action.payload.map(offerAdapter)});
     case ActionType.ADD_TO_FAVORITE:
@@ -145,8 +154,11 @@ const reducer = (state = initialState, action) => {
         offers: reloadedOffers,
         favoriteOffers: reloadFavoriteOffers
       });
+    case ActionType.UPDATE_FAVORITE:
+      const indexFavorite = state.offers.findIndex((item) => item.id === action.payload.id);
+      return extend(state, {offers: [].concat(...state.offers.slice(0, indexFavorite), action.payload, ...state.offers.slice(indexFavorite + 1, state.offers.length))});
   }
   return state;
 };
 
-export {ActionType, ActionCreator, Operation, reducer};
+export {ActionType, ActionCreator, Operation, FavoriteStatus, reducer};

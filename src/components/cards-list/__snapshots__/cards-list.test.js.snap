@@ -54,6 +54,7 @@ exports[`CardsList component test 1`] = `
         </div>
         <button
           className="place-card__bookmark-button button "
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -97,7 +98,6 @@ exports[`CardsList component test 1`] = `
       >
         <a
           href="#"
-          onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
         </a>
@@ -152,6 +152,7 @@ exports[`CardsList component test 1`] = `
         </div>
         <button
           className="place-card__bookmark-button button "
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -195,7 +196,6 @@ exports[`CardsList component test 1`] = `
       >
         <a
           href="#"
-          onClick={[Function]}
         >
           Not bad!
         </a>
