@@ -1,13 +1,14 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {Router, Route, Switch} from "react-router-dom";
 import {ActionCreator as DataActionCreator} from "../../reducer/data/data.js";
 import Main from "../main/main.jsx";
 import InfoAboutOffer from "../info-about-offer/info-about-offer.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import {getShowAuthPage} from "../../reducer/app/selectors.js";
 import {getOffers, getActiveOfferId} from "../../reducer/data/selectors.js";
+import history from "../../history.js";
 
 class App extends PureComponent {
   _renderScreen() {
@@ -35,10 +36,13 @@ class App extends PureComponent {
     const {offers, onChangeActiveOffer} = this.props;
 
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
           <Route exact path="/">
-            {this._renderScreen()}
+            <Main
+              sourceActiveItemId={-1}
+              onChangeScreen={onChangeActiveOffer}
+            />
           </Route>
           <Route exact path="/dev-offer">
             <InfoAboutOffer
@@ -46,11 +50,11 @@ class App extends PureComponent {
               onChangeScreen={onChangeActiveOffer}
             />
           </Route>
-          <Route exact path="/signin">
+          <Route exact path="/login">
             <SignIn />
           </Route>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
