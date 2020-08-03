@@ -5,8 +5,11 @@ import Header from "../../header/header.jsx";
 import FavoritesEmpty from "../../favorites-empty/favorites-empty.jsx";
 import Favorites from "../../favorites/favorites.jsx";
 import {getFavoritesOffers, getFavoritesCities} from "../../../reducer/data/selectors.js";
+import {Operation} from "../../../reducer/data/data.js";
 
-const FavoritesPage = (favoritesOffers, favoritesCities) => {
+const FavoritesPage = (favoritesOffers, favoritesCities, loadFavoriteOffers) => {
+  loadFavoriteOffers();
+
   return (
     <div className={`page ${favoritesOffers.length ? `` : `page--favorites-empty`}`}>
       <Header isLogoActive={false} />
@@ -30,6 +33,7 @@ const FavoritesPage = (favoritesOffers, favoritesCities) => {
 FavoritesPage.propTypes = {
   favoritesOffers: PropTypes.array.isRequired,
   favoritesCities: PropTypes.array.isRequired,
+  loadFavoriteOffers: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -39,6 +43,12 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  loadFavoriteOffers() {
+    dispatch(Operation.loadFavoriteOffers());
+  }
+});
+
 export {FavoritesPage};
 
-export default connect(mapStateToProps, null)(FavoritesPage);
+export default connect(mapStateToProps, mapDispatchToProps)(FavoritesPage);

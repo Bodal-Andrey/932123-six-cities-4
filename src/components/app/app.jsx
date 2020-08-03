@@ -6,6 +6,7 @@ import SignInPage from "../pages/sign-in-page/sign-in-page.jsx";
 import FavoritesPage from "../pages/favorites-page/favorites-page.jsx";
 import history from "../../history.js";
 import {AppRoute} from "../../const.js";
+import PrivateRoute from "../private-route/private-route.jsx";
 
 class App extends React.PureComponent {
   render() {
@@ -18,9 +19,11 @@ class App extends React.PureComponent {
           <Route exact path={AppRoute.LOGIN}>
             <SignInPage />
           </Route>
-          <Route exact path={AppRoute.FAVORITES}>
-            <FavoritesPage />
-          </Route>
+          <PrivateRoute exact path={AppRoute.FAVORITES}
+            render={() => {
+              return <FavoritesPage />;
+            }}
+          />
         </Switch>
       </Router>
     );

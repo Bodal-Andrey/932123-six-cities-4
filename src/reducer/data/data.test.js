@@ -298,4 +298,23 @@ describe(`Operation work correctly`, () => {
         });
       });
   });
+
+  it(`Should make a correct API call to /favorite`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const favoriteLoader = Operation.loadFavoriteOffers();
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(200, [...offersInitial]);
+
+    return favoriteLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_FAVORITE_OFFERS,
+          payload: [...offersResult],
+        });
+      });
+  });
 });

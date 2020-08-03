@@ -96,7 +96,8 @@ const Operation = {
   loadFavoriteOffers: () => (dispatch, getState, api) => {
     return api.get(`/favorite`)
       .then((response) => {
-        dispatch(ActionCreator.loadFavoriteOffers(response.data));
+        const loadedFavorites = response.data.map((offer) => offerAdapter(offer));
+        dispatch(ActionCreator.loadFavoriteOffers(loadedFavorites));
       });
   },
   addToFavorite: (offerId, isFavorite) => (dispatch, getState, api) => {
