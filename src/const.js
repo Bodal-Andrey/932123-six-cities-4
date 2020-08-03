@@ -32,4 +32,21 @@ const ratingTitle = {
   1: `terribly`,
 };
 
-export {Months, CardsClass, SortingTypes, SortingTypeNames, AuthorizationStatus, ratingTitle};
+const AppRoute = {
+  ROOT: `/`,
+  LOGIN: `/login`,
+  FAVORITES: `/favorites`,
+};
+
+const Error = {UNAUTHORIZED: 401};
+
+export {
+  Months,
+  CardsClass,
+  SortingTypes,
+  SortingTypeNames,
+  AuthorizationStatus,
+  ratingTitle,
+  AppRoute,
+  Error,
+};

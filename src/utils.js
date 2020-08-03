@@ -61,4 +61,10 @@ const parseOffer = (data) => {
   };
 };
 
-export {extend, sortingOffers, firstLetter, getReviewDate, parseOffer};
+export {
+  extend,
+  sortingOffers,
+  firstLetter,
+  getReviewDate,
+  parseOffer,
+};

@@ -81,7 +81,6 @@ describe(`Reducer work correctly`, () => {
     expect(reducer(void 0, {})).toEqual({
       city: ``,
       offers: [],
-      activeOfferId: -1,
       nearbyOffers: [],
       isNearbyOffersLoading: true,
       reviews: [],
@@ -93,7 +92,6 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       city: ``,
       offers: [],
-      activeOfferId: -1,
       nearbyOffers: offers,
       isNearbyOffersLoading: true,
       reviews: [],
@@ -104,7 +102,6 @@ describe(`Reducer work correctly`, () => {
     })).toEqual({
       city: `Dusseldorf`,
       offers: [],
-      activeOfferId: -1,
       nearbyOffers: offers,
       isNearbyOffersLoading: true,
       reviews: [],
@@ -116,7 +113,6 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       city: ``,
       offers: [],
-      activeOfferId: -1,
       nearbyOffers: offers,
       isNearbyOffersLoading: true,
       reviews: [],
@@ -127,30 +123,6 @@ describe(`Reducer work correctly`, () => {
     })).toEqual({
       city: ``,
       offers: offersInitial,
-      activeOfferId: -1,
-      nearbyOffers: offers,
-      isNearbyOffersLoading: true,
-      reviews: [],
-      isReviewsLoading: true,
-    });
-  });
-
-  it(`Reducer change active offer id`, () => {
-    expect(reducer({
-      city: ``,
-      offers: [],
-      activeOfferId: -1,
-      nearbyOffers: offers,
-      isNearbyOffersLoading: true,
-      reviews: [],
-      isReviewsLoading: true,
-    }, {
-      type: ActionType.ACTIVE_OFFER_ID_CHANGE,
-      payload: 2,
-    })).toEqual({
-      city: ``,
-      offers: [],
-      activeOfferId: 2,
       nearbyOffers: offers,
       isNearbyOffersLoading: true,
       reviews: [],
@@ -162,7 +134,6 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       city: ``,
       offers: [],
-      activeOfferId: -1,
       nearbyOffers: offers,
       isNearbyOffersLoading: true,
       reviews: [],
@@ -173,7 +144,27 @@ describe(`Reducer work correctly`, () => {
     })).toEqual({
       city: ``,
       offers: [],
-      activeOfferId: -1,
+      nearbyOffers: offers,
+      isNearbyOffersLoading: true,
+      reviews: [],
+      isReviewsLoading: reviewsInitial,
+    });
+  });
+
+  it(`Reducer should update favorites`, () => {
+    expect(reducer({
+      city: ``,
+      offers: offersResult,
+      nearbyOffers: offers,
+      isNearbyOffersLoading: true,
+      reviews: [],
+      isReviewsLoading: true,
+    }, {
+      type: ActionType.UPDATE_FAVORITE,
+      payload: offersResult[0],
+    })).toEqual({
+      city: ``,
+      offers: offersResult,
       nearbyOffers: offers,
       isNearbyOffersLoading: true,
       reviews: [],
@@ -197,17 +188,17 @@ describe(`Operation work correctly`, () => {
     });
   });
 
-  it(`Action creator for changing offer id returns correct action`, () => {
-    expect(ActionCreator.activeOfferIdChange(2)).toEqual({
-      type: ActionType.ACTIVE_OFFER_ID_CHANGE,
-      payload: 2,
-    });
-  });
-
   it(`Action creator for loading reviews returns correct action`, () => {
     expect(ActionCreator.loadReviews(reviewsResult)).toEqual({
       type: ActionType.LOAD_REVIEWS,
       payload: reviewsResult,
+    });
+  });
+
+  it(`Action creator for changing favorites returns correct action`, () => {
+    expect(ActionCreator.updateFavorite(offersResult[0])).toEqual({
+      type: ActionType.UPDATE_FAVORITE,
+      payload: offersResult[0],
     });
   });
 });
@@ -251,6 +242,25 @@ describe(`Operation work correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_REVIEWS,
           payload: [...reviewsResult],
+        });
+      });
+  });
+
+  it(`Should make a update favorites`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const addToFavorite = Operation.addToFavorite(1, false);
+
+    apiMock
+      .onPost(`/favorite/1/0`)
+      .reply(200, offersInitial[0]);
+
+    return addToFavorite(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.UPDATE_FAVORITE,
+          payload: offersResult[0],
         });
       });
   });

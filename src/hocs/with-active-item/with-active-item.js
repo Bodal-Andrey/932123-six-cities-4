@@ -1,12 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const withActiveItem = (Component) => {
   class WithActiveItem extends React.PureComponent {
     constructor(props) {
       super(props);
 
-      this.state = {activeItemId: this.props.sourceActiveItemId};
+      this.state = {activeItemId: -1};
 
       this.onActiveItemChange = this.onActiveItemChange.bind(this);
     }
@@ -25,10 +24,6 @@ const withActiveItem = (Component) => {
       );
     }
   }
-
-  WithActiveItem.propTypes = {
-    sourceActiveItemId: PropTypes.any,
-  };
 
   return WithActiveItem;
 };

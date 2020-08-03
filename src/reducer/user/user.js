@@ -1,4 +1,4 @@
-import createAuth from "../adapter/auth-adapter.js";
+import createAuth from "../adapter/auth-adapter/auth-adapter.js";
 import {extend} from "../../utils.js";
 import {AuthorizationStatus} from "../../const.js";
 

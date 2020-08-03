@@ -5,9 +5,10 @@ import CardsList from "../cards-list/cards-list.jsx";
 import Map from "../map/map.jsx";
 import {CardsClass, SortingTypes} from "../../const.js";
 import {sortingOffers} from "../../utils.js";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 const CitiesContainer = (props) => {
-  const {activeOffers, activeItemId, city, onChangeScreen, onActiveItemChange, sortType} = props;
+  const {activeOffers, activeItemId, city, onActiveItemChange, sortType} = props;
   const sortedOffers = sortingOffers(activeOffers, sortType);
 
   return (
@@ -16,10 +17,20 @@ const CitiesContainer = (props) => {
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{activeOffers.length} places to stay in {city}</b>
         <SortingOptions />
-        <CardsList offers={sortedOffers} onChangeScreen={onChangeScreen} cardsClass={CardsClass.CITIES} onActiveItemChange={onActiveItemChange} />
+        <CardsList
+          offers={sortedOffers}
+          cardsClass={CardsClass.CITIES}
+          onActiveItemChange={onActiveItemChange}
+        />
       </section>
       <div className="cities__right-section">
-        <Map offers={activeOffers} city={activeOffers[0].city.coordinates} activeOfferId={activeItemId} zoom={activeOffers[0].city.zoom} className={`cities__map map`} />
+        <Map
+          offers={activeOffers}
+          city={activeOffers[0].city.coordinates}
+          activeOfferId={activeItemId}
+          zoom={activeOffers[0].city.zoom}
+          className={`cities__map map`}
+        />
       </div>
     </div>
   );
@@ -29,7 +40,6 @@ CitiesContainer.propTypes = {
   activeOffers: PropTypes.array.isRequired,
   activeItemId: PropTypes.any.isRequired,
   city: PropTypes.string.isRequired,
-  onChangeScreen: PropTypes.func.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
   sortType: PropTypes.oneOf([
     SortingTypes.POPULAR,
@@ -38,4 +48,6 @@ CitiesContainer.propTypes = {
     SortingTypes.TOP_RATED_FIRST]).isRequired,
 };
 
-export default CitiesContainer;
+export {CitiesContainer};
+
+export default withActiveItem(CitiesContainer);
