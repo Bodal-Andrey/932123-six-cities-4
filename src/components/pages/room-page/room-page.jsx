@@ -6,11 +6,10 @@ import ReviewsForm from "../../reviews-form/reviews-form.jsx";
 import Map from "../../map/map.jsx";
 import CardsList from "../../cards-list/cards-list.jsx";
 import Header from "../../header/header.jsx";
-import {CardsClass, AuthorizationStatus, AppRoute} from "../../../const.js";
+import {CardsClass, AuthorizationStatus, CardType} from "../../../const.js";
 import {getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus, getCurrentOffer} from "../../../reducer/data/selectors.js";
 import {Operation as DataOperation} from '../../../reducer/data/data.js';
 import {getAuthStatus} from "../../../reducer/user/selectors.js";
-import history from "../../../history.js";
 
 class RoomPage extends React.PureComponent {
   constructor(props) {
@@ -30,7 +29,7 @@ class RoomPage extends React.PureComponent {
   }
 
   render() {
-    const {offer, offerId, onChangeScreen, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser, onFavoriteToggle} = this.props;
+    const {offer, offerId, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser} = this.props;
     const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host} = offer;
     const {avatarUrl, name, isPro} = host;
 
@@ -141,10 +140,9 @@ class RoomPage extends React.PureComponent {
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <CardsList
                 offers={nearbyOffers}
-                onChangeScreen={onChangeScreen}
                 onActiveItemChange={() => {}}
                 cardsClass={CardsClass.NEAR_PLACES}
-                onFavoriteToggle={onFavoriteToggle}
+                cardType={CardType.PROPERTY}
               />
             </section>
           </div>
@@ -168,17 +166,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(DataOperation.loadNearbyOffers(id));
     dispatch(DataOperation.loadReviews(id));
   },
-  onFavoriteToggle(offerId, favoriteStatus) {
-    dispatch(DataOperation.addToFavorite(offerId, favoriteStatus))
-    .catch((error) => {
-      if (error.response.status === 401) {
-        history.push(AppRoute.LOGIN);
-      }
-    });
-  },
 });
 
-InfoAboutOfferPage.propTypes = {
+RoomPage.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -202,7 +192,6 @@ InfoAboutOfferPage.propTypes = {
       zoom: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
-  onChangeScreen: PropTypes.func,
   reviews: PropTypes.array.isRequired,
   nearbyOffers: PropTypes.array.isRequired,
   isNearbyOffersLoading: PropTypes.bool.isRequired,
@@ -210,7 +199,6 @@ InfoAboutOfferPage.propTypes = {
   loadOfferData: PropTypes.func,
   isAuthorizedUser: PropTypes.string.isRequired,
   offerId: PropTypes.number.isRequired,
-  onFavoriteToggle: PropTypes.func.isRequired,
 };
 
 export {RoomPage};

@@ -4,6 +4,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import CardsList from "./cards-list.jsx";
 import {offers, testStore} from "../../data-test.js";
+import {CardType} from "../../const.js";
 
 const mockStore = configureStore([]);
 
@@ -16,6 +17,7 @@ it(`CardsList component test`, () => {
           offers={offers}
           cardsClass={`cities`}
           onActiveItemChange={() => {}}
+          cardType={CardType.MAIN}
         />
       </Provider>
   ).toJSON();

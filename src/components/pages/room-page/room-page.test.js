@@ -17,7 +17,6 @@ it(`Render RoomPage`, () => {
         <Router history={history}>
           <RoomPage
             offer={offers[0]}
-            onChangeScreen = {() => {}}
             nearbyOffers={offers}
             reviews={reviews}
             isNearbyOffersLoading={false}

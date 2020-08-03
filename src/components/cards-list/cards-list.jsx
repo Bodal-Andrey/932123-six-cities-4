@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 
 const CardsList = (props) => {
-  const {offers, cardsClass, onActiveItemChange} = props;
+  const {offers, cardsClass, onActiveItemChange, cardType} = props;
 
   return (
     <div className={cardsClass === `cities` ? `cities__places-list places__list tabs__content` : `near-places__list places__list`}>
@@ -13,6 +13,7 @@ const CardsList = (props) => {
           offer={offer}
           cardsClass={cardsClass}
           onActiveItemChange={onActiveItemChange}
+          cardType={cardType}
         />
       )}
     </div>
@@ -32,6 +33,7 @@ CardsList.propTypes = {
   ),
   cardsClass: PropTypes.string.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
+  cardType: PropTypes.string.isRequired,
 };
 
 export default CardsList;

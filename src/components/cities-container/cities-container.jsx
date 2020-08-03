@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import SortingOptions from "../sorting-options/sorting-options.jsx";
 import CardsList from "../cards-list/cards-list.jsx";
 import Map from "../map/map.jsx";
-import {CardsClass, SortingTypes} from "../../const.js";
+import {CardsClass, SortingTypes, CardType} from "../../const.js";
 import {sortingOffers} from "../../utils.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
@@ -21,6 +21,7 @@ const CitiesContainer = (props) => {
           offers={sortedOffers}
           cardsClass={CardsClass.CITIES}
           onActiveItemChange={onActiveItemChange}
+          cardType={CardType.MAIN}
         />
       </section>
       <div className="cities__right-section">
