@@ -3,6 +3,7 @@ import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {Card} from "./card.jsx";
 import {offers} from "../../data-test.js";
+import {CardType} from "../../const.js";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -18,6 +19,7 @@ describe(`Mouse testing on the Card`, () => {
         cardsClass={`cities`}
         onActiveItemChange={onActiveItemChange}
         onFavotiteToggle={onFavoriteToggle}
+        cardType={CardType.MAIN}
       />
   );
 

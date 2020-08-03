@@ -41,6 +41,12 @@ const AppRoute = {
 
 const Error = {UNAUTHORIZED: 401};
 
+const CardType = {
+  MAIN: `MAIN`,
+  PROPERTY: `PROPERTY`,
+  FAVORITES: `FAVORITES`,
+};
+
 export {
   Months,
   CardsClass,
@@ -50,4 +56,5 @@ export {
   ratingTitle,
   AppRoute,
   Error,
+  CardType,
 };
