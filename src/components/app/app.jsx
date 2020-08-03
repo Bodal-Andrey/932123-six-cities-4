@@ -1,7 +1,7 @@
 import React from "react";
 import {Router, Route, Switch} from "react-router-dom";
 import MainPage from "../pages/main-page/main-page.jsx";
-// import InfoAboutOfferPage from "../pages/info-about-offer-page/info-about-offer-page.jsx";
+// import RoomPage from "../pages/room-page/room-page.jsx";
 import SignInPage from "../pages/sign-in-page/sign-in-page.jsx";
 import history from "../../history.js";
 import {AppRoute} from "../../const.js";

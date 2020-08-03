@@ -12,7 +12,7 @@ import {Operation as DataOperation} from '../../../reducer/data/data.js';
 import {getAuthStatus} from "../../../reducer/user/selectors.js";
 import history from "../../../history.js";
 
-class InfoAboutOfferPage extends React.PureComponent {
+class RoomPage extends React.PureComponent {
   constructor(props) {
     super(props);
   }
@@ -213,6 +213,6 @@ InfoAboutOfferPage.propTypes = {
   onFavoriteToggle: PropTypes.func.isRequired,
 };
 
-export {InfoAboutOfferPage};
+export {RoomPage};
 
-export default connect(mapStateToProps, mapDispatchToProps)(InfoAboutOfferPage);
+export default connect(mapStateToProps, mapDispatchToProps)(RoomPage);
