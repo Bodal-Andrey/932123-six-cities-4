@@ -5,20 +5,32 @@ import {Operation} from "../../reducer/data/data.js";
 import {firstLetter} from "../../utils.js";
 import {CardType} from "../../const.js";
 
+const typeToArticleClass = {
+  [CardType.MAIN]: `cities__place-card`,
+  [CardType.PROPERTY]: `near-places__card`,
+  [CardType.FAVORITES]: `favorites__card`,
+};
+
+const typeToWrapperClass = {
+  [CardType.MAIN]: `cities__image-wrapper`,
+  [CardType.PROPERTY]: `near-places__image-wrapper`,
+  [CardType.FAVORITES]: `favorites__image-wrapper`,
+};
+
 const Card = (props) => {
-  const {offer, cardsClass, onActiveItemChange, onFavotiteToggle, cardType} = props;
+  const {offer, onActiveItemChange, onFavotiteToggle, cardType} = props;
   const {id, title, previewImage, price, type, rating, isPremium, isFavorite} = offer;
 
   return (
     <article
       onMouseEnter={() => onActiveItemChange(offer.id)}
       onMouseLeave={() => onActiveItemChange(-1)}
-      className={`${cardsClass === `near-places` ? `near-places__card` : `cities__place-card`} place-card`}
+      className={`${typeToArticleClass[cardType]} place-card`}
     >
       {isPremium && <div className="place-card__mark">
         <span>Premium</span>
       </div>}
-      <div className={`${cardsClass === `near-places` ? `near-places__image-wrapper` : `cities__image-wrapper`} place-card__image-wrapper`}>
+      <div className={`${typeToWrapperClass[cardType]} place-card__image-wrapper`}>
         <a href="#">
           <img
             className="place-card__image"
@@ -68,7 +80,6 @@ Card.propTypes = {
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
   }),
-  cardsClass: PropTypes.string.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
   onFavotiteToggle: PropTypes.func,
   cardType: PropTypes.oneOf([CardType.MAIN, CardType.PROPERTY, CardType.FAVORITES]).isRequired,

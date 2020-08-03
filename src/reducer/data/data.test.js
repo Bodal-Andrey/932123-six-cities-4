@@ -85,6 +85,7 @@ describe(`Reducer work correctly`, () => {
       isNearbyOffersLoading: true,
       reviews: [],
       isReviewsLoading: true,
+      favoriteOffers: [],
     });
   });
 
@@ -96,6 +97,8 @@ describe(`Reducer work correctly`, () => {
       isNearbyOffersLoading: true,
       reviews: [],
       isReviewsLoading: true,
+      favoriteOffers: [],
+
     }, {
       type: ActionType.CITY_CHANGE,
       payload: `Dusseldorf`,
@@ -106,6 +109,7 @@ describe(`Reducer work correctly`, () => {
       isNearbyOffersLoading: true,
       reviews: [],
       isReviewsLoading: true,
+      favoriteOffers: [],
     });
   });
 
@@ -117,6 +121,7 @@ describe(`Reducer work correctly`, () => {
       isNearbyOffersLoading: true,
       reviews: [],
       isReviewsLoading: true,
+      favoriteOffers: [],
     }, {
       type: ActionType.LOAD_OFFERS,
       payload: offersInitial,
@@ -127,6 +132,7 @@ describe(`Reducer work correctly`, () => {
       isNearbyOffersLoading: true,
       reviews: [],
       isReviewsLoading: true,
+      favoriteOffers: [],
     });
   });
 
@@ -138,6 +144,7 @@ describe(`Reducer work correctly`, () => {
       isNearbyOffersLoading: true,
       reviews: [],
       isReviewsLoading: true,
+      favoriteOffers: [],
     }, {
       type: ActionType.LOAD_REVIEWS,
       payload: reviewsInitial,
@@ -148,6 +155,7 @@ describe(`Reducer work correctly`, () => {
       isNearbyOffersLoading: true,
       reviews: [],
       isReviewsLoading: reviewsInitial,
+      favoriteOffers: [],
     });
   });
 
@@ -159,6 +167,7 @@ describe(`Reducer work correctly`, () => {
       isNearbyOffersLoading: true,
       reviews: [],
       isReviewsLoading: true,
+      favoriteOffers: [],
     }, {
       type: ActionType.UPDATE_FAVORITE,
       payload: offersResult[0],
@@ -169,6 +178,24 @@ describe(`Reducer work correctly`, () => {
       isNearbyOffersLoading: true,
       reviews: [],
       isReviewsLoading: reviewsInitial,
+      favoriteOffers: [],
+    });
+  });
+
+  it(`Reducer should change favorite offers`, () => {
+    expect(reducer({
+      city: ``,
+      offers: [],
+      comments: [],
+      favorites: [],
+    }, {
+      type: ActionType.LOAD_FAVORITES,
+      payload: offersResult,
+    })).toEqual({
+      city: ``,
+      offers: [],
+      comments: [],
+      favorites: offersResult,
     });
   });
 });
@@ -199,6 +226,13 @@ describe(`Operation work correctly`, () => {
     expect(ActionCreator.updateFavorite(offersResult[0])).toEqual({
       type: ActionType.UPDATE_FAVORITE,
       payload: offersResult[0],
+    });
+  });
+
+  it(`Action creator for load favorite offers returns correct action`, () => {
+    expect(ActionCreator.loadFavoriteOffers(offersResult)).toEqual({
+      type: ActionType.LOAD_FAVORITE_OFFERS,
+      payload: offersResult,
     });
   });
 });

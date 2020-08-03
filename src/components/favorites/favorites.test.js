@@ -1,22 +1,20 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import CardsList from "./cards-list.jsx";
+import configureStore from "redux-mock-store";
+import Favorites from "./favorites.jsx";
 import {offers, testStore} from "../../data-test.js";
-import {CardType} from "../../const.js";
 
 const mockStore = configureStore([]);
 
-it(`CardsList component test`, () => {
+it(`Render Favorites`, () => {
   const store = mockStore(testStore);
 
   const tree = renderer.create(
       <Provider store={store}>
-        <CardsList
+        <Favorites
           offers={offers}
-          onActiveItemChange={() => {}}
-          cardType={CardType.MAIN}
+          cities={[offers[0].city.name, offers[1].city.name]}
         />
       </Provider>
   ).toJSON();

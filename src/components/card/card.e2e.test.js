@@ -16,7 +16,6 @@ describe(`Mouse testing on the Card`, () => {
   const cardComponent = shallow(
       <Card
         offer={offers[0]}
-        cardsClass={`cities`}
         onActiveItemChange={onActiveItemChange}
         onFavotiteToggle={onFavoriteToggle}
         cardType={CardType.MAIN}

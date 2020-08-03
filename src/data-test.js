@@ -102,6 +102,7 @@ const testStore = {
     offers,
     city: offers[0].city.name,
     reviews: [],
+    favoriteOffers: [],
   },
   [NameSpace.APP]: {
     sortType: `popular`,

@@ -8,7 +8,6 @@ it(`Test Card with first offer name`, () => {
   const tree = renderer.create(
       <Card
         offer={offers[0]}
-        cardsClass={`cities`}
         onActiveItemChange={() => {}}
         onFavotiteToggle= {() => {}}
         cardType={CardType.MAIN}

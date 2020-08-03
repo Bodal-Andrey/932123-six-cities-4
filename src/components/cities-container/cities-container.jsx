@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import SortingOptions from "../sorting-options/sorting-options.jsx";
 import CardsList from "../cards-list/cards-list.jsx";
 import Map from "../map/map.jsx";
-import {CardsClass, SortingTypes, CardType} from "../../const.js";
+import {SortingTypes, CardType} from "../../const.js";
 import {sortingOffers} from "../../utils.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
@@ -17,12 +17,13 @@ const CitiesContainer = (props) => {
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{activeOffers.length} places to stay in {city}</b>
         <SortingOptions />
-        <CardsList
-          offers={sortedOffers}
-          cardsClass={CardsClass.CITIES}
-          onActiveItemChange={onActiveItemChange}
-          cardType={CardType.MAIN}
-        />
+        <div className="cities__places-list places__list tabs__content">
+          <CardsList
+            offers={sortedOffers}
+            onActiveItemChange={onActiveItemChange}
+            cardType={CardType.MAIN}
+          />
+        </div>
       </section>
       <div className="cities__right-section">
         <Map

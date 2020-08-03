@@ -1,10 +1,5 @@
 const Months = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
 
-const CardsClass = {
-  CITIES: `cities`,
-  NEAR_PLACES: `near-places`
-};
-
 const SortingTypes = {
   POPULAR: `popular`,
   PRICE_LOW_TO_HIGH: `priceLowToHigh`,
@@ -49,7 +44,6 @@ const CardType = {
 
 export {
   Months,
-  CardsClass,
   SortingTypes,
   SortingTypeNames,
   AuthorizationStatus,

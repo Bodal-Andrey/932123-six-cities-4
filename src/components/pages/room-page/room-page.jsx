@@ -6,7 +6,7 @@ import ReviewsForm from "../../reviews-form/reviews-form.jsx";
 import Map from "../../map/map.jsx";
 import CardsList from "../../cards-list/cards-list.jsx";
 import Header from "../../header/header.jsx";
-import {CardsClass, AuthorizationStatus, CardType} from "../../../const.js";
+import {AuthorizationStatus, CardType} from "../../../const.js";
 import {getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus, getCurrentOffer} from "../../../reducer/data/selectors.js";
 import {Operation as DataOperation} from '../../../reducer/data/data.js';
 import {getAuthStatus} from "../../../reducer/user/selectors.js";
@@ -138,12 +138,13 @@ class RoomPage extends React.PureComponent {
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <CardsList
-                offers={nearbyOffers}
-                onActiveItemChange={() => {}}
-                cardsClass={CardsClass.NEAR_PLACES}
-                cardType={CardType.PROPERTY}
-              />
+              <div className="near-places__list places__list">
+                <CardsList
+                  offers={nearbyOffers}
+                  onActiveItemChange={() => {}}
+                  cardType={CardType.PROPERTY}
+                />
+              </div>
             </section>
           </div>
         </main>

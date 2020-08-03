@@ -25,6 +25,10 @@ const getReviewsStatus = (state) => {
   return state[NameSpace.DATA].isReviewsLoading;
 };
 
+const getFavoritesOffers = (state) => {
+  return state[NameSpace.DATA].favoriteOffers;
+};
+
 const getFilteredOffers = createSelector(
     getOffers,
     getCity,
@@ -50,4 +54,23 @@ const getCurrentOffer = (id) => createSelector(
     }
 );
 
-export {getOffers, getCity, getFilteredOffers, getCities, getCurrentOffer, getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus};
+const getFavoritesCities = createSelector(
+    getFavoritesOffers,
+    (result) => {
+      return Array.from(new Set(result.map((item) => item.city.name)));
+    }
+);
+
+export {
+  getOffers,
+  getCity,
+  getCurrentOffer,
+  getNearbyOffers,
+  getNearbyOffersStatus,
+  getReviews,
+  getReviewsStatus,
+  getFavoritesOffers,
+  getFilteredOffers,
+  getCities,
+  getFavoritesCities,
+};
