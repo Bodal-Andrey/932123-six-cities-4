@@ -17,7 +17,9 @@ it(`Test component SignInPage`, () => {
         <Router history={history}>
           <SignInPage
             onUzerAuthorization={() => {}}
-            onChangeAuthState={() => {}}
+            loadFavoriteOffers={() => {}}
+            onActiveItemChange={() => {}}
+            activeItemId={`Error`}
           />
         </Router>
       </Provider>,

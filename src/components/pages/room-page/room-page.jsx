@@ -14,22 +14,29 @@ import {getAuthStatus} from "../../../reducer/user/selectors.js";
 class RoomPage extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    this.offerId = parseInt(this.props.match.params.id, 10);
+    this.prevOfferId = this.offerId;
   }
 
   componentDidMount() {
-    const {offerId, loadOfferData} = this.props;
-    loadOfferData(offerId);
+    const {loadOfferData} = this.props;
+    loadOfferData(this.offerId);
   }
 
-  componentDidUpdate(prevProps) {
-    const {offerId, loadOfferData} = this.props;
-    if (this.props.offerId !== prevProps.offerId) {
-      loadOfferData(offerId);
+  componentDidUpdate() {
+    const {loadOfferData} = this.props;
+    this.offerId = parseInt(this.props.match.params.id, 10);
+
+    if (this.offerId !== this.prevOfferId.offerId) {
+      loadOfferData(this.offerId);
+      this.prevOfferId = this.offerId;
     }
   }
 
   render() {
-    const {offer, offerId, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser} = this.props;
+    const offerId = this.offerId;
+    const {offer, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser, onFavoritesToggle} = this.props;
     const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host} = offer;
     const {avatarUrl, name, isPro} = host;
 
@@ -62,7 +69,7 @@ class RoomPage extends React.PureComponent {
                   <h1 className="property__name">
                     {title}
                   </h1>
-                  <button className= {`property__bookmark-button button ${isFavorite ? ` property__bookmark-button--active` : ``}`} type="button">
+                  <button onClick={() => onFavoritesToggle(offerId, !isFavorite)} className= {`property__bookmark-button button ${isFavorite ? ` property__bookmark-button--active` : ``}`} type="button">
                     <svg className="property__bookmark-icon" width={31} height={33}>
                       <use xlinkHref="#icon-bookmark" />
                     </svg>
@@ -153,22 +160,6 @@ class RoomPage extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state, {offerId}) => ({
-  offer: getCurrentOffer(offerId)(state),
-  nearbyOffers: getNearbyOffers(state),
-  isNearbyOffersLoading: getNearbyOffersStatus(state),
-  reviews: getReviews(state),
-  isReviewsLoading: getReviewsStatus(state),
-  isAuthorizedUser: getAuthStatus(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  loadOfferData(id) {
-    dispatch(DataOperation.loadNearbyOffers(id));
-    dispatch(DataOperation.loadReviews(id));
-  },
-});
-
 RoomPage.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -199,8 +190,32 @@ RoomPage.propTypes = {
   isReviewsLoading: PropTypes.bool.isRequired,
   loadOfferData: PropTypes.func,
   isAuthorizedUser: PropTypes.string.isRequired,
-  offerId: PropTypes.number.isRequired,
+  onFavoritesToggle: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
+
+const mapStateToProps = (state, {offerId}) => ({
+  offer: getCurrentOffer(offerId)(state),
+  nearbyOffers: getNearbyOffers(state),
+  isNearbyOffersLoading: getNearbyOffersStatus(state),
+  reviews: getReviews(state),
+  isReviewsLoading: getReviewsStatus(state),
+  isAuthorizedUser: getAuthStatus(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadOfferData(id) {
+    dispatch(DataOperation.loadNearbyOffers(id));
+    dispatch(DataOperation.loadReviews(id));
+  },
+  onFavoritesToggle(offerId, favoriteStatus) {
+    dispatch(DataOperation.addToFavorite(offerId, favoriteStatus));
+  },
+});
 
 export {RoomPage};
 

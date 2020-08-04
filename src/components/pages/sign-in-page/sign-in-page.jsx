@@ -1,9 +1,12 @@
 import React, {createRef} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Operation} from "../../../reducer/user/user.js";
-import {ActionCreator as AppActionCreator} from "../../../reducer/app/app.js";
+import {Operation as UserOperation} from "../../../reducer/user/user.js";
+import {Operation as DataOperation} from "../../../reducer/data/data.js";
 import Header from "../../header/header.jsx";
+import {AppRoute} from "../../../const.js";
+import history from "../../../history.js";
+import withActiveItem from "../../../hocs/with-active-item/with-active-item.js";
 
 class SignInPage extends React.PureComponent {
   constructor(props) {
@@ -11,14 +14,12 @@ class SignInPage extends React.PureComponent {
 
     this.email = createRef();
     this.password = createRef();
-    this.textError = ``;
-    this.state = {error: false};
 
-    this._handleSubmit = this._handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  _handleSubmit(evt) {
-    const {onUserAuthorization, onChangeAuthState} = this.props;
+  handleSubmit(evt) {
+    const {onUserAuthorization, loadFavoriteOffers, onActiveItemChange} = this.props;
     evt.preventDefault();
 
     onUserAuthorization({
@@ -26,12 +27,12 @@ class SignInPage extends React.PureComponent {
       password: this.password.current.value,
     })
     .then(() => {
-      this.setState({error: false});
-      onChangeAuthState(false);
+      onActiveItemChange(``);
+      loadFavoriteOffers();
+      history.push(AppRoute.ROOT);
     })
     .catch((err) => {
-      this.textError = err.response.data.error;
-      this.setState({error: true});
+      onActiveItemChange(err.response.data.error);
     });
   }
 
@@ -43,7 +44,7 @@ class SignInPage extends React.PureComponent {
           <div className="page__login-container container">
             <section className="login">
               <h1 className="login__title">Sign in</h1>
-              <form onSubmit={this._handleSubmit} className="login__form form" action="#" method="post">
+              <form onSubmit={this.handleSubmit} className="login__form form" action="#" method="post">
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">E-mail</label>
                   <input className="login__input form__input" type="email" name="email" placeholder="Email" required ref={this.email} />
@@ -53,9 +54,6 @@ class SignInPage extends React.PureComponent {
                   <input className="login__input form__input" type="password" name="password" placeholder="Password" required ref={this.password} />
                 </div>
                 <button className="login__submit form__submit button" type="submit">Sign in</button>
-                {this.state.error &&
-                  <div style={{marginTop: `15px`, fontSize: `15px`, color: `#ff0000`}}>{this.textError}</div>
-                }
               </form>
             </section>
             <section className="locations locations--login locations--current">
@@ -74,18 +72,20 @@ class SignInPage extends React.PureComponent {
 
 SignInPage.propTypes = {
   onUserAuthorization: PropTypes.func,
-  onChangeAuthState: PropTypes.func.isRequired,
+  loadFavoriteOffers: PropTypes.func.isRequired,
+  onActiveItemChange: PropTypes.func.isRequired,
+  activeItemId: PropTypes.any.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onUserAuthorization(authInfo) {
-    dispatch(Operation.userLogin(authInfo));
+    dispatch(UserOperation.userLogin(authInfo));
   },
-  onChangeAuthState(state) {
-    dispatch(AppActionCreator.authStateChange(state));
+  loadFavoriteOffers() {
+    dispatch(DataOperation.loadFavoriteOffers());
   }
 });
 
 export {SignInPage};
 
-export default connect(null, mapDispatchToProps)(SignInPage);
+export default connect(null, mapDispatchToProps)(withActiveItem(SignInPage));

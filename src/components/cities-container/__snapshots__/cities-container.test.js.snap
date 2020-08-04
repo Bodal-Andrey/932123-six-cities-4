@@ -93,9 +93,9 @@ exports[`CitiesContainer test 1`] = `
             <img
               alt="Place image"
               className="place-card__image"
-              height={200}
+              height="200"
               src="img/apartment-01.jpg"
-              width={260}
+              width="260"
             />
           </a>
         </div>
@@ -165,7 +165,8 @@ exports[`CitiesContainer test 1`] = `
             className="place-card__name"
           >
             <a
-              href="#"
+              href="/offer/:id"
+              onClick={[Function]}
             >
               Beautiful & luxurious apartment at great location
             </a>
@@ -191,9 +192,9 @@ exports[`CitiesContainer test 1`] = `
             <img
               alt="Place image"
               className="place-card__image"
-              height={200}
+              height="200"
               src="img/apartment-03.jpg"
-              width={260}
+              width="260"
             />
           </a>
         </div>
@@ -219,7 +220,7 @@ exports[`CitiesContainer test 1`] = `
               </span>
             </div>
             <button
-              className="place-card__bookmark-button button "
+              className="place-card__bookmark-button button  place-card__bookmark-button--active"
               onClick={[Function]}
               type="button"
             >
@@ -235,7 +236,7 @@ exports[`CitiesContainer test 1`] = `
               <span
                 className="visually-hidden"
               >
-                To bookmarks
+                In bookmarks
               </span>
             </button>
           </div>
@@ -263,7 +264,8 @@ exports[`CitiesContainer test 1`] = `
             className="place-card__name"
           >
             <a
-              href="#"
+              href="/offer/:id"
+              onClick={[Function]}
             >
               Not bad!
             </a>

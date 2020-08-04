@@ -15,7 +15,7 @@ const FavoritesCities = (offers, city) => {
       </div>
       <div className="favorites__places">
         <CardsList
-          offers={offers.filter((item) => item.city.name === city)}
+          offers={offers}
           onActiveItemChange={() => {}}
           cardType={CardType.FAVORITES}
         />

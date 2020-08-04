@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Operation} from "../../reducer/data/data.js";
 import {firstLetter} from "../../utils.js";
-import {CardType} from "../../const.js";
+import {CardType, AppRoute} from "../../const.js";
+import {Link} from 'react-router-dom';
 
 const typeToArticleClass = {
   [CardType.MAIN]: `cities__place-card`,
@@ -61,7 +62,7 @@ const Card = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={AppRoute.ROOM}>{title}</Link>
         </h2>
         <p className="place-card__type">{firstLetter(type)}</p>
       </div>

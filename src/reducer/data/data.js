@@ -1,7 +1,7 @@
 import {extend, parseOffer} from "../../utils.js";
 import offerAdapter from "../adapter/offer-adapter/offer-adapter.js";
 import reviewAdapter from "../adapter/review-adapter/review-adapter.js";
-import {AppRoute} from "../../const.js";
+import {AppRoute, SortingTypes} from "../../const.js";
 import history from "../../history.js";
 
 const FavoriteStatus = {
@@ -16,7 +16,7 @@ const initialState = {
   isNearbyOffersLoading: true,
   reviews: [],
   isReviewsLoading: true,
-  favoriteOffers: [],
+  sortType: SortingTypes.POPULAR,
 };
 
 const ActionType = {
@@ -28,6 +28,7 @@ const ActionType = {
   ADD_TO_FAVORITE: `ADD_TO_FAVORITE`,
   REVIEW_CHANGE: `REVIEW_CHANGE`,
   UPDATE_FAVORITE: `UPDATE_FAVORITE`,
+  SORT_CHANGE: `SORT_CHANGE`,
 };
 
 const ActionCreator = {
@@ -70,7 +71,11 @@ const ActionCreator = {
   updateFavorite: (offer) => ({
     type: ActionType.UPDATE_FAVORITE,
     payload: offer
-  })
+  }),
+  sortChange: (sortType) => ({
+    type: ActionType.SORT_CHANGE,
+    payload: sortType,
+  }),
 };
 
 const Operation = {
@@ -90,7 +95,8 @@ const Operation = {
   loadReviews: (id) => (dispatch, getState, api) => {
     return api.get(`/comments/${id}`)
       .then((response) => {
-        dispatch(ActionCreator.loadReviews(response.data));
+        const loadedReviews = response.data.map((review) => reviewAdapter(review));
+        dispatch(ActionCreator.loadReviews(loadedReviews));
       });
   },
   loadFavoriteOffers: () => (dispatch, getState, api) => {
@@ -143,8 +149,8 @@ const reducer = (state = initialState, action) => {
         reviews: action.payload.map(reviewAdapter),
         isReviewsLoading: false
       });
-    case ActionType.LOAD_FAVORITE_OFFERS:
-      return extend(state, {favoriteOffers: action.payload.map(offerAdapter)});
+    case ActionType.SORT_CHANGE:
+      return extend(state, {sortType: action.payload});
     case ActionType.ADD_TO_FAVORITE:
       let parsedOffer = parseOffer(action.payload);
       const reloadedOffers = state.offers.slice();
@@ -158,6 +164,12 @@ const reducer = (state = initialState, action) => {
     case ActionType.UPDATE_FAVORITE:
       const indexFavorite = state.offers.findIndex((item) => item.id === action.payload.id);
       return extend(state, {offers: [].concat(...state.offers.slice(0, indexFavorite), action.payload, ...state.offers.slice(indexFavorite + 1, state.offers.length))});
+    case ActionType.LOAD_FAVORITE_OFFERS:
+      const newOffers = state.offers.map((offer) => {
+        const offerIndex = action.payload.findIndex((it) => it.id === offer.id);
+        return offerIndex !== -1 ? action.payload[offerIndex] : offer;
+      });
+      return extend(state, {offers: newOffers});
   }
   return state;
 };

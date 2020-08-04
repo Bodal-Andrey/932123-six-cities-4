@@ -1,5 +1,6 @@
 import {createSelector} from "reselect";
 import NameSpace from "../name-space.js";
+import {sortingOffers} from "../../utils.js";
 
 const getOffers = (state) => {
   return state[NameSpace.DATA].offers;
@@ -25,8 +26,8 @@ const getReviewsStatus = (state) => {
   return state[NameSpace.DATA].isReviewsLoading;
 };
 
-const getFavoritesOffers = (state) => {
-  return state[NameSpace.DATA].favoriteOffers;
+const getSortType = (state) => {
+  return state[NameSpace.DATA].sortType;
 };
 
 const getFilteredOffers = createSelector(
@@ -54,12 +55,26 @@ const getCurrentOffer = (id) => createSelector(
     }
 );
 
+const getFavoritesOffers = createSelector(
+    getOffers,
+    (result) => {
+      return result.filter((item) => item.isFavorite);
+    }
+);
+
 const getFavoritesCities = createSelector(
     getFavoritesOffers,
     (result) => {
       return Array.from(new Set(result.map((item) => item.city.name)));
     }
 );
+
+const getSortedFilteredOffers = createSelector(
+    getFilteredOffers,
+    getSortType,
+    (offers, sortType) => sortingOffers(offers, sortType)
+);
+
 
 export {
   getOffers,
@@ -69,8 +84,10 @@ export {
   getNearbyOffersStatus,
   getReviews,
   getReviewsStatus,
+  getSortType,
   getFavoritesOffers,
   getFilteredOffers,
   getCities,
   getFavoritesCities,
+  getSortedFilteredOffers,
 };

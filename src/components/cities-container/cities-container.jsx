@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import SortingOptions from "../sorting-options/sorting-options.jsx";
 import CardsList from "../cards-list/cards-list.jsx";
 import Map from "../map/map.jsx";
-import {SortingTypes, CardType} from "../../const.js";
-import {sortingOffers} from "../../utils.js";
+import {CardType} from "../../const.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import {getFilteredOffers, getCity, getSortedFilteredOffers} from "../../reducer/data/selectors.js";
 
 const CitiesContainer = (props) => {
-  const {activeOffers, activeItemId, city, onActiveItemChange, sortType} = props;
-  const sortedOffers = sortingOffers(activeOffers, sortType);
+  const {activeOffers, activeItemId, city, onActiveItemChange, sortedActiveOffers} = props;
 
   return (
     <div className="cities__places-container container">
@@ -19,7 +19,7 @@ const CitiesContainer = (props) => {
         <SortingOptions />
         <div className="cities__places-list places__list tabs__content">
           <CardsList
-            offers={sortedOffers}
+            offers={sortedActiveOffers}
             onActiveItemChange={onActiveItemChange}
             cardType={CardType.MAIN}
           />
@@ -43,13 +43,17 @@ CitiesContainer.propTypes = {
   activeItemId: PropTypes.any.isRequired,
   city: PropTypes.string.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
-  sortType: PropTypes.oneOf([
-    SortingTypes.POPULAR,
-    SortingTypes.PRICE_LOW_TO_HIGH,
-    SortingTypes.PRICE_HIGH_TO_LOW,
-    SortingTypes.TOP_RATED_FIRST]).isRequired,
+  sortedActiveOffers: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    city: getCity(state),
+    activeOffers: getFilteredOffers(state),
+    sortedActiveOffers: getSortedFilteredOffers(state),
+  };
 };
 
 export {CitiesContainer};
 
-export default withActiveItem(CitiesContainer);
+export default connect(mapStateToProps, null)(withActiveItem(CitiesContainer));

@@ -4,7 +4,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 import {RoomPage} from "./room-page.jsx";
-import {offers, reviews, testStore} from "../../../data-test.js";
+import {offers, testStore} from "../../../data-test.js";
 import history from "../../../history.js";
 
 const mockStore = configureStore([]);
@@ -16,12 +16,14 @@ it(`Render RoomPage`, () => {
       <Provider store={store}>
         <Router history={history}>
           <RoomPage
+            match={{params: {id: `1`}}}
             offer={offers[0]}
+            reviews={[]}
             nearbyOffers={offers}
-            reviews={reviews}
-            isNearbyOffersLoading={false}
-            isReviewsLoading={false}
-            isAuthorizedUser={true}
+            isAuthorizedUser={`AUTH`}
+            loadReviews={() => {}}
+            loadNearbyOffers={() => {}}
+            onFavoritesToggle={() => {}}
           />
         </Router>
       </Provider>,

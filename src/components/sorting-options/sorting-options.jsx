@@ -1,19 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/app/app.js";
+import {ActionCreator} from "../../reducer/data/data.js";
 import {SortingTypes, SortingTypeNames} from "../../const.js";
 import withSortingOptions from "../../hocs/with-sorting-options/with-sorting-options.js";
-import {getSortType} from "../../reducer/app/selectors.js";
+import {getSortType} from "../../reducer/data/selectors.js";
 
 class SortingOptions extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this._handleOptionClick = this._handleOptionClick.bind(this);
+    this.handleOptionClick = this.handleOptionClick.bind(this);
   }
 
-  _handleOptionClick(sortType) {
+  handleOptionClick(sortType) {
     const {onSortItemClick, onMenuExit} = this.props;
 
     onMenuExit();
@@ -33,10 +33,10 @@ class SortingOptions extends React.PureComponent {
         <span className="places__sorting-caption">Sort by</span>
         <span onClick={onMenuClick} className="places__sorting-type" tabIndex="0">{SortingTypeNames[sortType]}</span>
         <ul className={`places__options places__options--custom ${isOpen ? `places__options--opened` : ``}`}>
-          <li onClick={() => this._handleOptionClick(SortingTypes.POPULAR)} className={this._getMenuClass(SortingTypes.POPULAR)} tabIndex="0">Popular</li>
-          <li onClick={() => this._handleOptionClick(SortingTypes.PRICE_LOW_TO_HIGH)} className={this._getMenuClass(SortingTypes.PRICE_LOW_TO_HIGH)} tabIndex="0">Price: low to high</li>
-          <li onClick={() => this._handleOptionClick(SortingTypes.PRICE_HIGH_TO_LOW)} className={this._getMenuClass(SortingTypes.PRICE_HIGH_TO_LOW)} tabIndex="0">Price: high to low</li>
-          <li onClick={() => this._handleOptionClick(SortingTypes.TOP_RATED_FIRST)} className={this._getMenuClass(SortingTypes.TOP_RATED_FIRST)} tabIndex="0">Top rated first</li>
+          <li onClick={() => this.handleOptionClick(SortingTypes.POPULAR)} className={this._getMenuClass(SortingTypes.POPULAR)} tabIndex="0">Popular</li>
+          <li onClick={() => this.handleOptionClick(SortingTypes.PRICE_LOW_TO_HIGH)} className={this._getMenuClass(SortingTypes.PRICE_LOW_TO_HIGH)} tabIndex="0">Price: low to high</li>
+          <li onClick={() => this.handleOptionClick(SortingTypes.PRICE_HIGH_TO_LOW)} className={this._getMenuClass(SortingTypes.PRICE_HIGH_TO_LOW)} tabIndex="0">Price: high to low</li>
+          <li onClick={() => this.handleOptionClick(SortingTypes.TOP_RATED_FIRST)} className={this._getMenuClass(SortingTypes.TOP_RATED_FIRST)} tabIndex="0">Top rated first</li>
         </ul>
       </form>
     );

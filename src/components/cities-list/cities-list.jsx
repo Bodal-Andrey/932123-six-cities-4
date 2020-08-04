@@ -1,5 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {getCity, getCities} from "../../reducer/data/selectors.js";
+import {ActionCreator} from "../../reducer/data/data.js";
 
 class CitiesList extends React.PureComponent {
   render() {
@@ -31,4 +34,19 @@ CitiesList.propTypes = {
   onCityButtonClick: PropTypes.func.isRequired,
 };
 
-export default CitiesList;
+const mapStateToProps = (state) => {
+  return {
+    city: getCity(state),
+    cities: getCities(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onCityButtonClick(city) {
+    dispatch(ActionCreator.cityChange(city));
+  }
+});
+
+export {CitiesList};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CitiesList);
