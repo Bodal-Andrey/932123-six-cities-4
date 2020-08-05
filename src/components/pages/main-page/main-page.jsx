@@ -7,7 +7,9 @@ import MainEmpty from "../../main-empty/main-empty.jsx";
 import {getFilteredOffers} from "../../../reducer/data/selectors.js";
 import Header from "../../header/header.jsx";
 
-const MainPage = (activeOffers) => {
+const MainPage = (props) => {
+  const {activeOffers} = props;
+
   return (
     <React.Fragment>
       <div className="page page--gray page--main">

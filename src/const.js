@@ -31,7 +31,7 @@ const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
   FAVORITES: `/favorites`,
-  ROOM: `/offer/:id`,
+  ROOM: `/offer`,
 };
 
 const Error = {UNAUTHORIZED: 401};

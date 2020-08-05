@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import CardsList from "../cards-list/cards-list.jsx";
 import {CardType} from "../../const.js";
 
-const FavoritesCities = (offers, city) => {
+const FavoritesCities = (props) => {
+  const {offers, city} = props;
+
   return (
     <li key={city} className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
@@ -24,7 +26,7 @@ const FavoritesCities = (offers, city) => {
   );
 };
 
-FavoritesCities.PropTypes = {
+FavoritesCities.propTypes = {
   offers: PropTypes.array.isRequired,
   city: PropTypes.string.isRequired,
 };

@@ -62,7 +62,7 @@ const Card = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={AppRoute.ROOM}>{title}</Link>
+          <Link to={`${AppRoute.ROOM}/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{firstLetter(type)}</p>
       </div>

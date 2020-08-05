@@ -107,6 +107,7 @@ const testStore = {
   },
   [NameSpace.USER]: {
     authorizationStatus: `NO_AUTH`,
+    isSignIn: true,
     authInfo: {
       avatarUrl: ``,
       name: ``,

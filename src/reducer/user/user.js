@@ -4,6 +4,7 @@ import {AuthorizationStatus} from "../../const.js";
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  isSignIn: false,
   authInfo: {
     avatarUrl: ``,
     name: ``,
@@ -16,17 +17,28 @@ const initialState = {
 const ActionType = {
   AUTH_STATUS_CHANGE: `AUTH_STATUS_CHANGE`,
   AUTH_INFO_CHANGE: `AUTH_INFO_CHANGE`,
+  SIGN_IN: `SIGN_IN`,
 };
 
 const ActionCreator = {
-  authStatusChange: (authStatus) => ({
-    type: ActionType.AUTH_STATUS_CHANGE,
-    payload: authStatus,
-  }),
-  authInfoChange: (authStatus) => ({
-    type: ActionType.AUTH_INFO_CHANGE,
-    payload: authStatus,
-  }),
+  authStatusChange: (authStatus) => {
+    return {
+      type: ActionType.AUTH_STATUS_CHANGE,
+      payload: authStatus,
+    };
+  },
+  authInfoChange: (authStatus) => {
+    return {
+      type: ActionType.AUTH_INFO_CHANGE,
+      payload: authStatus,
+    };
+  },
+  signingIn: () => {
+    return {
+      type: ActionType.SIGN_IN,
+      payload: null,
+    };
+  },
 };
 
 const Operation = {
@@ -35,6 +47,7 @@ const Operation = {
     .then((response) => {
       dispatch(ActionCreator.authInfoChange(createAuth(response.data)));
       dispatch(ActionCreator.authStatusChange(AuthorizationStatus.AUTH));
+      dispatch(ActionCreator.signingIn());
     }).catch((err) => {
       throw err;
     });
@@ -44,6 +57,7 @@ const Operation = {
     .then((response) => {
       dispatch(ActionCreator.authInfoChange(createAuth(response.data)));
       dispatch(ActionCreator.authStatusChange(AuthorizationStatus.AUTH));
+      dispatch(ActionCreator.signingIn());
     });
   },
 };
@@ -54,6 +68,8 @@ const reducer = (state = initialState, action) => {
       return extend(state, {authorizationStatus: action.payload});
     case ActionType.AUTH_INFO_CHANGE:
       return extend(state, {authInfo: action.payload});
+    case ActionType.SIGN_IN:
+      return extend(state, {isSignIn: true});
   }
   return state;
 };

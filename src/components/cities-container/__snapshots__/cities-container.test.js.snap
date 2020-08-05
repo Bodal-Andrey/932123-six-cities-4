@@ -165,7 +165,7 @@ exports[`CitiesContainer test 1`] = `
             className="place-card__name"
           >
             <a
-              href="/offer/:id"
+              href="/offer/1"
               onClick={[Function]}
             >
               Beautiful & luxurious apartment at great location
@@ -264,7 +264,7 @@ exports[`CitiesContainer test 1`] = `
             className="place-card__name"
           >
             <a
-              href="/offer/:id"
+              href="/offer/5"
               onClick={[Function]}
             >
               Not bad!

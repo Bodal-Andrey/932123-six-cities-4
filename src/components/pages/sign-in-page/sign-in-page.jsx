@@ -1,12 +1,14 @@
 import React, {createRef} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
 import {Operation as UserOperation} from "../../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../../reducer/data/data.js";
 import Header from "../../header/header.jsx";
 import {AppRoute} from "../../../const.js";
 import history from "../../../history.js";
 import withActiveItem from "../../../hocs/with-active-item/with-active-item.js";
+import {getAuthStatus} from "../../../reducer/user/selectors.js";
 
 class SignInPage extends React.PureComponent {
   constructor(props) {
@@ -37,6 +39,12 @@ class SignInPage extends React.PureComponent {
   }
 
   render() {
+    const {isSignIn} = this.props;
+
+    if (isSignIn) {
+      return <Redirect to={AppRoute.ROOT}/>;
+    }
+
     return (
       <div className="page page--gray page--login">
         <Header isLogoActive={false} />
@@ -74,8 +82,12 @@ SignInPage.propTypes = {
   onUserAuthorization: PropTypes.func,
   loadFavoriteOffers: PropTypes.func.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
-  activeItemId: PropTypes.any.isRequired,
+  isSignIn: PropTypes.bool,
 };
+
+const mapStateToProps = (state) => ({
+  isSignIn: getAuthStatus(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onUserAuthorization(authInfo) {
@@ -88,4 +100,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {SignInPage};
 
-export default connect(null, mapDispatchToProps)(withActiveItem(SignInPage));
+export default connect(mapStateToProps, mapDispatchToProps)(withActiveItem(SignInPage));

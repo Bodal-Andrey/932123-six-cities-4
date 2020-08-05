@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import ReviewsRating from "../reviews-rating/reviews-rating.jsx";
 import withAddReviews from "../../hocs/with-add-reviews/with-add-reviews.js";
 
-const ReviewsForm = ({onSubmitForm, isActiveSubmit, onChange, rating}) => {
+const ReviewsForm = (props) => {
+  const {onSubmitForm, isActiveSubmit, onChange, rating} = props;
+
   return (
     <form
       onSubmit={(evt) => {

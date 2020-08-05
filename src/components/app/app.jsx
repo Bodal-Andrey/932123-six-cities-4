@@ -16,9 +16,9 @@ class App extends React.PureComponent {
       <Router history={history}>
         <Switch>
           <Route exact path={AppRoute.LOGIN} component={SignInPage}/>
-          <Route exact path={AppRoute.ROOM} component={RoomPage} />
+          <Route exact path={`${AppRoute.ROOM}/id`} component={RoomPage} />
           <Route exact path={AppRoute.FAVORITES} component={FavoritesPageWrapped} />
-          <Route path={AppRoute.ROOT} component={MainPage}/>
+          <Route path={AppRoute.ROOM} component={MainPage}/>
         </Switch>
       </Router>
     );

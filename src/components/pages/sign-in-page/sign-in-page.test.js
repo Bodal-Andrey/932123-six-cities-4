@@ -19,7 +19,6 @@ it(`Test component SignInPage`, () => {
             onUzerAuthorization={() => {}}
             loadFavoriteOffers={() => {}}
             onActiveItemChange={() => {}}
-            activeItemId={`Error`}
           />
         </Router>
       </Provider>,

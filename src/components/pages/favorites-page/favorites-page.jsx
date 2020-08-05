@@ -6,7 +6,9 @@ import FavoritesEmpty from "../../favorites-empty/favorites-empty.jsx";
 import Favorites from "../../favorites/favorites.jsx";
 import {getFavoritesOffers} from "../../../reducer/data/selectors.js";
 
-const FavoritesPage = (favoritesOffers) => {
+const FavoritesPage = (props) => {
+  const {favoritesOffers} = props;
+
   return (
     <div className={`page ${favoritesOffers.length ? `` : `page--favorites-empty`}`}>
       <Header isLogoActive={false} />

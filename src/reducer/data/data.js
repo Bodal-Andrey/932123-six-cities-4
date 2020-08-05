@@ -32,14 +32,18 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  cityChange: (city) => ({
-    type: ActionType.CITY_CHANGE,
-    payload: city,
-  }),
-  loadOffers: (loadedOffers) => ({
-    type: ActionType.LOAD_OFFERS,
-    payload: loadedOffers,
-  }),
+  cityChange: (city) => {
+    return {
+      type: ActionType.CITY_CHANGE,
+      payload: city,
+    };
+  },
+  loadOffers: (loadedOffers) => {
+    return {
+      type: ActionType.LOAD_OFFERS,
+      payload: loadedOffers,
+    };
+  },
   loadNearbyOffers: (nearbyOffers) => {
     return {
       type: ActionType.LOAD_NEARBY_OFFERS,
@@ -64,18 +68,24 @@ const ActionCreator = {
       payload: favoriteOffers
     };
   },
-  uploadReviews: (review) => ({
-    type: ActionType.REVIEW_CHANGE,
-    payload: review
-  }),
-  updateFavorite: (offer) => ({
-    type: ActionType.UPDATE_FAVORITE,
-    payload: offer
-  }),
-  sortChange: (sortType) => ({
-    type: ActionType.SORT_CHANGE,
-    payload: sortType,
-  }),
+  uploadReviews: (review) => {
+    return {
+      type: ActionType.REVIEW_CHANGE,
+      payload: review
+    };
+  },
+  updateFavorite: (offer) => {
+    return {
+      type: ActionType.UPDATE_FAVORITE,
+      payload: offer
+    };
+  },
+  sortChange: (sortType) => {
+    return {
+      type: ActionType.SORT_CHANGE,
+      payload: sortType,
+    };
+  },
 };
 
 const Operation = {
