@@ -16,6 +16,8 @@ const Navigation = (props) => {
             className="header__nav-link header__nav-link--profile"
             to={authStatus === AuthorizationStatus.AUTH ? AppRoute.FAVORITES : AppRoute.LOGIN}
           >
+            <div className="header__avatar-wrapper user__avatar-wrapper">
+            </div>
             {authStatus === AuthorizationStatus.AUTH
               ? <span className="header__user-name user__name">{authInfo.email}</span>
               : <span className="header__login">Sign in</span>}

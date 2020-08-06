@@ -82,7 +82,7 @@ SignInPage.propTypes = {
   onUserAuthorization: PropTypes.func,
   loadFavoriteOffers: PropTypes.func.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
-  isSignIn: PropTypes.bool,
+  isSignIn: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({

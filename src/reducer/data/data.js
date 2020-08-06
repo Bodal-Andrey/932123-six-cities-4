@@ -105,8 +105,7 @@ const Operation = {
   loadReviews: (id) => (dispatch, getState, api) => {
     return api.get(`/comments/${id}`)
       .then((response) => {
-        const loadedReviews = response.data.map((review) => reviewAdapter(review));
-        dispatch(ActionCreator.loadReviews(loadedReviews));
+        dispatch(ActionCreator.loadReviews(response.data));
       });
   },
   loadFavoriteOffers: () => (dispatch, getState, api) => {

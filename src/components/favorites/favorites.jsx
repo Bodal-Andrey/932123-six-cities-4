@@ -30,7 +30,7 @@ Favorites.propTypes = {
 const mapStateToProps = (state) => {
   return {
     favoritesOffers: getFavoritesOffers(state),
-    favoritesLocations: getFavoritesCities(state),
+    favoritesCities: getFavoritesCities(state),
   };
 };
 

@@ -30,7 +30,6 @@ class RoomPage extends React.PureComponent {
 
     if (this.offerId !== this.prevOfferId.offerId) {
       loadOfferData(this.offerId);
-      this.prevOfferId = this.offerId;
     }
   }
 
@@ -198,8 +197,8 @@ RoomPage.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = (state, {offerId}) => ({
-  offer: getCurrentOffer(offerId)(state),
+const mapStateToProps = (state, {match: {params}}) => ({
+  offer: getCurrentOffer(Number(params.id))(state),
   nearbyOffers: getNearbyOffers(state),
   isNearbyOffersLoading: getNearbyOffersStatus(state),
   reviews: getReviews(state),
