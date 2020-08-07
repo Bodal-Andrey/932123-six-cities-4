@@ -119,7 +119,7 @@ const Operation = {
     const favoriteStatus = isFavorite ? FavoriteStatus.IN_FAVORITES : FavoriteStatus.OUT_OF_FAVORITES;
     return api.post(`/favorite/${offerId}/${favoriteStatus}`, {})
       .then((response) => {
-        dispatch(Operation.updateFavorite(offerAdapter(response.data)));
+        dispatch(ActionCreator.updateFavorite(offerAdapter(response.data)));
       })
       .catch((error) => {
         if (error.response.status === 401) {

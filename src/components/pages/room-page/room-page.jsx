@@ -14,30 +14,33 @@ import {getAuthStatus} from "../../../reducer/user/selectors.js";
 class RoomPage extends React.PureComponent {
   constructor(props) {
     super(props);
-
-    this.offerId = parseInt(this.props.match.params.id, 10);
-    this.prevOfferId = this.offerId;
   }
 
   componentDidMount() {
-    const {loadOfferData} = this.props;
-    loadOfferData(this.offerId);
+    const {loadOfferData, match} = this.props;
+    const id = parseInt(match.params.id, 10);
+    loadOfferData(id);
   }
 
-  componentDidUpdate() {
-    const {loadOfferData} = this.props;
-    this.offerId = parseInt(this.props.match.params.id, 10);
-
-    if (this.offerId !== this.prevOfferId.offerId) {
-      loadOfferData(this.offerId);
+  componentDidUpdate(prevProps) {
+    const {loadOfferData, match} = this.props;
+    const {match: prevMatch} = prevProps;
+    const id = parseInt(match.params.id, 10);
+    const prevId = parseInt(prevMatch.params.id, 10);
+    if (id !== prevId) {
+      loadOfferData(id);
     }
   }
 
   render() {
-    const offerId = this.offerId;
-    const {offer, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser, onFavoritesToggle} = this.props;
+    const {offer, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser, onFavoritesToggle, match} = this.props;
     const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host} = offer;
     const {avatarUrl, name, isPro} = host;
+    const offerId = parseInt(match.params.id, 10);
+
+    if (!offer) {
+      return null;
+    }
 
     if (isReviewsLoading || isNearbyOffersLoading) {
       return false;

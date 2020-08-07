@@ -41,6 +41,9 @@ exports[`Render Header 1`] = `
               href="/login"
               onClick={[Function]}
             >
+              <div
+                className="header__avatar-wrapper user__avatar-wrapper"
+              />
               <span
                 className="header__login"
               >

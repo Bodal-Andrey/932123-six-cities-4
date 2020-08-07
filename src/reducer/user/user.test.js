@@ -24,6 +24,7 @@ const api = createAPI(() => {});
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    isSignIn: false,
     authInfo: {
       avatarUrl: ``,
       email: ``,
@@ -37,6 +38,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
 it(`Reducer should update AuthorizationStatus`, () => {
   expect(reducer({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    isSignIn: false,
     authInfo: {
       avatarUrl: ``,
       email: ``,
@@ -49,6 +51,7 @@ it(`Reducer should update AuthorizationStatus`, () => {
     payload: AuthorizationStatus.AUTH,
   })).toEqual({
     authorizationStatus: AuthorizationStatus.AUTH,
+    isSignIn: false,
     authInfo: {
       avatarUrl: ``,
       email: ``,
@@ -62,6 +65,7 @@ it(`Reducer should update AuthorizationStatus`, () => {
 it(`Reducer should update authorization info by authInfo`, () => {
   expect(reducer({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    isSignIn: false,
     authInfo: {
       avatarUrl: ``,
       email: ``,
@@ -74,6 +78,7 @@ it(`Reducer should update authorization info by authInfo`, () => {
     payload: AuthInfo,
   })).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    isSignIn: false,
     authInfo: {
       avatarUrl: `img/1.png`,
       email: `Oliver.conner@gmail.com`,
@@ -96,7 +101,7 @@ describe(`Operation work correctly`, () => {
 
     return authChecker(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.AUTH_STATUS_CHANGE,
           payload: AuthorizationStatus.AUTH,
@@ -115,7 +120,7 @@ describe(`Operation work correctly`, () => {
 
     return authLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.AUTH_INFO_CHANGE,
           payload: AuthInfo,

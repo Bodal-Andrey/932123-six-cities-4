@@ -17,7 +17,7 @@ it(`Render Favorites`, () => {
         <Provider store={store}>
           <Favorites
             favoritesOffers={offers}
-            FavoritesCities={[offers[0].city.name, offers[1].city.name]}
+            favoritesCities={[offers[0].city.name, offers[1].city.name]}
           />
         </Provider>
       </Router>

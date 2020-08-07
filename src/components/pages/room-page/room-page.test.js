@@ -24,6 +24,7 @@ it(`Render RoomPage`, () => {
             loadReviews={() => {}}
             loadNearbyOffers={() => {}}
             onFavoritesToggle={() => {}}
+            loadOfferData={() => {}}
           />
         </Router>
       </Provider>,

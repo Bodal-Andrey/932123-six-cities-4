@@ -75,7 +75,7 @@ const withAddReviews = (Component) => {
 
   WithAddReviews.propTypes = {
     uploadReviews: PropTypes.func,
-    offerId: PropTypes.string
+    offerId: PropTypes.number,
   };
 
   return connect(mapStateToProps, mapDispatchToProps)(WithAddReviews);

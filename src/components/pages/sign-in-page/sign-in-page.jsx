@@ -5,7 +5,7 @@ import {Redirect} from "react-router-dom";
 import {Operation as UserOperation} from "../../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../../reducer/data/data.js";
 import Header from "../../header/header.jsx";
-import {AppRoute} from "../../../const.js";
+import {AppRoute, AuthorizationStatus} from "../../../const.js";
 import history from "../../../history.js";
 import withActiveItem from "../../../hocs/with-active-item/with-active-item.js";
 import {getAuthStatus} from "../../../reducer/user/selectors.js";
@@ -41,7 +41,7 @@ class SignInPage extends React.PureComponent {
   render() {
     const {isSignIn} = this.props;
 
-    if (isSignIn) {
+    if (isSignIn === AuthorizationStatus.AUTH) {
       return <Redirect to={AppRoute.ROOT}/>;
     }
 
