@@ -6,47 +6,47 @@ class Map extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this._mapRef = React.createRef();
-    this._markersLayer = null;
-    this._map = null;
+    this.mapRef = React.createRef();
+    this.markersLayer = null;
+    this.map = null;
   }
 
   componentDidMount() {
     const {city, zoom} = this.props;
-    const currentMap = this._mapRef.current;
+    const currentMap = this.mapRef.current;
 
-    this._map = leaflet.map(currentMap, {
+    this.map = leaflet.map(currentMap, {
       center: city,
       zoom,
       zoomControl: false,
       marker: true
     });
 
-    this._map.setView(city, zoom);
+    this.map.setView(city, zoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
-    .addTo(this._map);
+    .addTo(this.map);
 
-    this._markersLayer = leaflet.layerGroup().addTo(this._map);
-    this._renderMarkers();
+    this.markersLayer = leaflet.layerGroup().addTo(this.map);
+    this.renderMarkers();
   }
 
   componentDidUpdate() {
     const {city, zoom} = this.props;
-    this._markersLayer.clearLayers();
-    this._map.setView(city, zoom);
-    this._renderMarkers();
+    this.markersLayer.clearLayers();
+    this.map.setView(city, zoom);
+    this.renderMarkers();
   }
 
   componentWillUnmount() {
-    const currentMap = this._mapRef.current;
+    const currentMap = this.mapRef.current;
     currentMap.remove();
   }
 
-  _renderMarkers() {
+  renderMarkers() {
     const {activeOfferId, offers} = this.props;
 
     const icon = leaflet.icon({
@@ -63,18 +63,18 @@ class Map extends React.PureComponent {
       if (item.id === activeOfferId) {
         leaflet
         .marker(item.location.coordinates, {activeIcon})
-        .addTo(this._markersLayer);
+        .addTo(this.markersLayer);
       } else {
         leaflet
         .marker(item.location.coordinates, {icon})
-        .addTo(this._markersLayer);
+        .addTo(this.markersLayer);
       }
     });
   }
 
   render() {
     const {className} = this.props;
-    return <section ref={this._mapRef} className={className}></section>;
+    return <section ref={this.mapRef} className={className}></section>;
   }
 }
 

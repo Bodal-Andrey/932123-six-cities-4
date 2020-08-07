@@ -4,11 +4,11 @@ import {connect} from "react-redux";
 import CitiesList from "../../cities-list/cities-list.jsx";
 import CitiesContainer from "../../cities-container/cities-container.jsx";
 import MainEmpty from "../../main-empty/main-empty.jsx";
-import {getFilteredOffers} from "../../../reducer/data/selectors.js";
+import {getFilteredOffers, getCity} from "../../../reducer/data/selectors.js";
 import Header from "../../header/header.jsx";
 
 const MainPage = (props) => {
-  const {activeOffers} = props;
+  const {activeOffers, activeCity} = props;
 
   return (
     <React.Fragment>
@@ -22,7 +22,7 @@ const MainPage = (props) => {
             </section>
           </div>
           <div className="cities">
-            {activeOffers.length ? <CitiesContainer /> : <MainEmpty />}
+            {activeOffers.length ? <CitiesContainer /> : <MainEmpty city={activeCity} />}
           </div>
         </main>
       </div>
@@ -32,11 +32,13 @@ const MainPage = (props) => {
 
 MainPage.propTypes = {
   activeOffers: PropTypes.array.isRequired,
+  activeCity: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     activeOffers: getFilteredOffers(state),
+    activeCity: getCity(state),
   };
 };
 

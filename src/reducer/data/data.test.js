@@ -87,6 +87,7 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     });
   });
 
@@ -99,6 +100,7 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     }, {
       type: ActionType.CITY_CHANGE,
       payload: `Dusseldorf`,
@@ -110,6 +112,7 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     });
   });
 
@@ -122,6 +125,7 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     }, {
       type: ActionType.LOAD_OFFERS,
       payload: offersInitial,
@@ -133,6 +137,7 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     });
   });
 
@@ -145,6 +150,7 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     }, {
       type: ActionType.LOAD_REVIEWS,
       payload: reviewsInitial,
@@ -156,6 +162,7 @@ describe(`Reducer work correctly`, () => {
       reviews: reviewsInitial,
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     });
   });
 
@@ -168,6 +175,7 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     }, {
       type: ActionType.UPDATE_FAVORITE,
       payload: offersResult[0],
@@ -179,6 +187,7 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     });
   });
 
@@ -191,6 +200,7 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     }, {
       type: ActionType.LOAD_FAVORITE_OFFERS,
       payload: [Object.assign({}, offersResult[0], {isFavorite: true})],
@@ -202,6 +212,7 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     });
   });
 
@@ -214,6 +225,7 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     }, {
       type: ActionType.LOAD_NEARBY_OFFERS,
       payload: offersInitial,
@@ -225,6 +237,7 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     });
   });
 
@@ -237,6 +250,7 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
+      errorText: ``,
     }, {
       type: ActionType.SORT_CHANGE,
       payload: SortingTypes.PRICE_LOW_TO_HIGH
@@ -248,6 +262,32 @@ describe(`Reducer work correctly`, () => {
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.PRICE_LOW_TO_HIGH,
+      errorText: ``,
+    });
+  });
+
+  it(`Reducer should change error`, () => {
+    expect(reducer({
+      city: ``,
+      offers: [],
+      nearbyOffers: [],
+      isNearbyOffersLoading: true,
+      reviews: [],
+      isReviewsLoading: true,
+      sortType: SortingTypes.POPULAR,
+      errorText: ``,
+    }, {
+      type: ActionType.ERROR_CHANGE,
+      payload: `error`
+    })).toEqual({
+      city: ``,
+      offers: [],
+      nearbyOffers: [],
+      isNearbyOffersLoading: true,
+      reviews: [],
+      isReviewsLoading: true,
+      sortType: SortingTypes.POPULAR,
+      errorText: `error`,
     });
   });
 });
@@ -299,6 +339,13 @@ describe(`Operation work correctly`, () => {
     expect(ActionCreator.sortChange(SortingTypes.TOP_RATED_FIRST)).toEqual({
       type: ActionType.SORT_CHANGE,
       payload: SortingTypes.TOP_RATED_FIRST,
+    });
+  });
+
+  it(`Action creator for changing error returns correct action`, () => {
+    expect(ActionCreator.errorChange(`error`)).toEqual({
+      type: ActionType.ERROR_CHANGE,
+      payload: `error`,
     });
   });
 });
@@ -406,7 +453,7 @@ describe(`Operation work correctly`, () => {
   it(`Should make a correct API call to /hotels/id/nearby`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const nearbyOffersLoader = Operation.getNearbyOffers(1);
+    const nearbyOffersLoader = Operation.loadNearbyOffers(1);
 
     apiMock
       .onGet(`/hotels/1/nearby`)

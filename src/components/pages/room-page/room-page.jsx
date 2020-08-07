@@ -7,7 +7,7 @@ import Map from "../../map/map.jsx";
 import CardsList from "../../cards-list/cards-list.jsx";
 import Header from "../../header/header.jsx";
 import {AuthorizationStatus, CardType} from "../../../const.js";
-import {getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus, getCurrentOffer} from "../../../reducer/data/selectors.js";
+import {getNearbyOffersStatus, getReviewsStatus, getCurrentOffer, getSortedReviews, getActualNearbyOffers} from "../../../reducer/data/selectors.js";
 import {Operation as DataOperation} from '../../../reducer/data/data.js';
 import {getAuthStatus} from "../../../reducer/user/selectors.js";
 
@@ -34,9 +34,10 @@ class RoomPage extends React.PureComponent {
 
   render() {
     const {offer, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser, onFavoritesToggle, match} = this.props;
-    const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host} = offer;
+    const {title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host} = offer;
     const {avatarUrl, name, isPro} = host;
     const offerId = parseInt(match.params.id, 10);
+    const mapOffers = [].concat(nearbyOffers, offer);
 
     if (!offer) {
       return null;
@@ -137,9 +138,9 @@ class RoomPage extends React.PureComponent {
               </div>
             </div>
             <Map
-              offers={nearbyOffers}
+              offers={mapOffers}
               city={offer.city.coordinates}
-              activeOfferId={id}
+              activeOfferId={offerId}
               zoom={offer.city.zoom}
               className={`property__map map`}
             />
@@ -164,7 +165,6 @@ class RoomPage extends React.PureComponent {
 
 RoomPage.propTypes = {
   offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
@@ -202,9 +202,9 @@ RoomPage.propTypes = {
 
 const mapStateToProps = (state, {match: {params}}) => ({
   offer: getCurrentOffer(Number(params.id))(state),
-  nearbyOffers: getNearbyOffers(state),
+  nearbyOffers: getActualNearbyOffers(state),
   isNearbyOffersLoading: getNearbyOffersStatus(state),
-  reviews: getReviews(state),
+  reviews: getSortedReviews(state),
   isReviewsLoading: getReviewsStatus(state),
   isAuthorizedUser: getAuthStatus(state),
 });

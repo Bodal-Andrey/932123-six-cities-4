@@ -7,8 +7,8 @@ import {Operation as DataOperation} from "../../../reducer/data/data.js";
 import Header from "../../header/header.jsx";
 import {AppRoute, AuthorizationStatus} from "../../../const.js";
 import history from "../../../history.js";
-import withActiveItem from "../../../hocs/with-active-item/with-active-item.js";
 import {getAuthStatus} from "../../../reducer/user/selectors.js";
+import SignInForm from "../../sign-in-form/sign-in-form.jsx";
 
 class SignInPage extends React.PureComponent {
   constructor(props) {
@@ -52,17 +52,11 @@ class SignInPage extends React.PureComponent {
           <div className="page__login-container container">
             <section className="login">
               <h1 className="login__title">Sign in</h1>
-              <form onSubmit={this.handleSubmit} className="login__form form" action="#" method="post">
-                <div className="login__input-wrapper form__input-wrapper">
-                  <label className="visually-hidden">E-mail</label>
-                  <input className="login__input form__input" type="email" name="email" placeholder="Email" required ref={this.email} />
-                </div>
-                <div className="login__input-wrapper form__input-wrapper">
-                  <label className="visually-hidden">Password</label>
-                  <input className="login__input form__input" type="password" name="password" placeholder="Password" required ref={this.password} />
-                </div>
-                <button className="login__submit form__submit button" type="submit">Sign in</button>
-              </form>
+              <SignInForm
+                onSubmit = {this.handleSubmit}
+                emailRef = {this.email}
+                passwordRef = {this.password}
+              />
             </section>
             <section className="locations locations--login locations--current">
               <div className="locations__item">
@@ -100,4 +94,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {SignInPage};
 
-export default connect(mapStateToProps, mapDispatchToProps)(withActiveItem(SignInPage));
+export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);

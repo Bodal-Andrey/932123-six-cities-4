@@ -104,6 +104,7 @@ const testStore = {
     reviews: [],
     nearbyOffers: [],
     sortType: `popular`,
+    errorText: ``,
   },
   [NameSpace.USER]: {
     authorizationStatus: `NO_AUTH`,

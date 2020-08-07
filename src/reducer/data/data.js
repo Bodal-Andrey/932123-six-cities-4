@@ -17,6 +17,7 @@ const initialState = {
   reviews: [],
   isReviewsLoading: true,
   sortType: SortingTypes.POPULAR,
+  errorText: ``,
 };
 
 const ActionType = {
@@ -29,6 +30,7 @@ const ActionType = {
   REVIEW_CHANGE: `REVIEW_CHANGE`,
   UPDATE_FAVORITE: `UPDATE_FAVORITE`,
   SORT_CHANGE: `SORT_CHANGE`,
+  ERROR_CHANGE: `ERROR_CHANGE`,
 };
 
 const ActionCreator = {
@@ -86,6 +88,10 @@ const ActionCreator = {
       payload: sortType,
     };
   },
+  errorChange: (errorText) => ({
+    type: ActionType.ERROR_CHANGE,
+    payload: errorText
+  }),
 };
 
 const Operation = {
@@ -179,6 +185,8 @@ const reducer = (state = initialState, action) => {
         return offerIndex !== -1 ? action.payload[offerIndex] : offer;
       });
       return extend(state, {offers: newOffers});
+    case ActionType.ERROR_CHANGE:
+      return extend(state, {errorText: action.payload});
   }
   return state;
 };

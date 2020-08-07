@@ -4,7 +4,9 @@ import MainEmpty from "./main-empty.jsx";
 
 it(`Test MainEmpty`, () => {
   const tree = renderer.create(
-      <MainEmpty />
+      <MainEmpty
+        city={`Dusseldorf`}
+      />
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -28,7 +28,7 @@ const ReviewsRating = (props) => {
 
 ReviewsRating.propTypes = {
   onChange: PropTypes.func.isRequired,
-  rating: PropTypes.string.isRequired,
+  rating: PropTypes.string,
 };
 
 export default ReviewsRating;

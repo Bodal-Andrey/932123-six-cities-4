@@ -40,7 +40,7 @@ const CitiesContainer = (props) => {
 
 CitiesContainer.propTypes = {
   activeOffers: PropTypes.array.isRequired,
-  activeItemId: PropTypes.any.isRequired,
+  activeItemId: PropTypes.any,
   city: PropTypes.string.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
   sortedActiveOffers: PropTypes.array.isRequired,

@@ -10,7 +10,7 @@ import withPrivateRoute from "./with-private-route.js";
 const mockStore = configureStore([]);
 
 const MockComponent = () => <div />;
-const MockComponentWrapped = withPrivateRoute(MockComponent, `/login`);
+const MockComponentWrapped = withPrivateRoute(`AUTH`, MockComponent, `/login`);
 
 it(`Render withAuthRoute wrapped component renders correct`, () => {
   const store = mockStore({[NameSpace.USER]: {authorizationStatus: `AUTH`}});
