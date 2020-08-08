@@ -90,25 +90,6 @@ it(`Reducer should update authorization info by authInfo`, () => {
 });
 
 describe(`Operation work correctly`, () => {
-  it(`Should make a correct API GET call to /login`, function () {
-    const apiMock = new MockAdapter(api);
-    const dispatch = jest.fn();
-    const authChecker = Operation.authCheck();
-
-    apiMock
-      .onGet(`/login`)
-      .reply(200, {fake: true});
-
-    return authChecker(dispatch, () => {}, api)
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(3);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.AUTH_STATUS_CHANGE,
-          payload: AuthorizationStatus.AUTH,
-        });
-      });
-  });
-
   it(`Should make a correct API POST call to /login`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();

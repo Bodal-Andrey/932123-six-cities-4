@@ -1,4 +1,4 @@
-import {extend, parseOffer} from "../../utils.js";
+import {extend} from "../../utils.js";
 import offerAdapter from "../adapter/offer-adapter/offer-adapter.js";
 import reviewAdapter from "../adapter/review-adapter/review-adapter.js";
 import {AppRoute, SortingTypes} from "../../const.js";
@@ -58,12 +58,6 @@ const ActionCreator = {
       payload: reviews
     };
   },
-  addToFavorite: (offer) => {
-    return {
-      type: ActionType.ADD_TO_FAVORITE,
-      payload: offer,
-    };
-  },
   loadFavoriteOffers: (favoriteOffers) => {
     return {
       type: ActionType.LOAD_FAVORITE_OFFERS,
@@ -98,27 +92,30 @@ const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
         .then((response) => {
-          dispatch(ActionCreator.loadOffers(response.data));
-          dispatch(ActionCreator.cityChange(response.data[0].city.name));
+          const loadedOffers = response.data.map((offer) => offerAdapter(offer));
+          dispatch(ActionCreator.loadOffers(loadedOffers));
+          dispatch(ActionCreator.cityChange(loadedOffers[0].city.name));
         });
   },
-  loadNearbyOffers: (id) => (dispatch, getState, api) => {
-    return api.get(`/hotels/${id}/nearby`)
+  loadNearbyOffers: (offerId) => (dispatch, getState, api) => {
+    return api.get(`/hotels/${offerId}/nearby`)
       .then((response) => {
-        dispatch(ActionCreator.loadNearbyOffers(response.data));
+        const loadedNearbyOffers = response.data.map((offer) => offerAdapter(offer));
+        dispatch(ActionCreator.loadNearbyOffers(loadedNearbyOffers));
       });
   },
-  loadReviews: (id) => (dispatch, getState, api) => {
-    return api.get(`/comments/${id}`)
+  loadReviews: (offerId) => (dispatch, getState, api) => {
+    return api.get(`/comments/${offerId}`)
       .then((response) => {
-        dispatch(ActionCreator.loadReviews(response.data));
+        const loadedReviews = response.data.map((review) => reviewAdapter(review));
+        dispatch(ActionCreator.loadReviews(loadedReviews));
       });
   },
   loadFavoriteOffers: () => (dispatch, getState, api) => {
     return api.get(`/favorite`)
       .then((response) => {
-        const loadedFavorites = response.data.map((offer) => offerAdapter(offer));
-        dispatch(ActionCreator.loadFavoriteOffers(loadedFavorites));
+        const loadedFavoriteOffers = response.data.map((offer) => offerAdapter(offer));
+        dispatch(ActionCreator.loadFavoriteOffers(loadedFavoriteOffers));
       });
   },
   addToFavorite: (offerId, isFavorite) => (dispatch, getState, api) => {
@@ -153,29 +150,19 @@ const reducer = (state = initialState, action) => {
     case ActionType.CITY_CHANGE:
       return extend(state, {city: action.payload});
     case ActionType.LOAD_OFFERS:
-      return extend(state, {offers: action.payload.map(offerAdapter)});
+      return extend(state, {offers: action.payload});
     case ActionType.LOAD_NEARBY_OFFERS:
       return extend(state, {
-        nearbyOffers: action.payload.map(offerAdapter),
+        nearbyOffers: action.payload,
         isNearbyOffersLoading: false
       });
     case ActionType.LOAD_REVIEWS:
       return extend(state, {
-        reviews: action.payload.map(reviewAdapter),
+        reviews: action.payload,
         isReviewsLoading: false
       });
     case ActionType.SORT_CHANGE:
       return extend(state, {sortType: action.payload});
-    case ActionType.ADD_TO_FAVORITE:
-      let parsedOffer = parseOffer(action.payload);
-      const reloadedOffers = state.offers.slice();
-      const index = reloadedOffers.findIndex((el) => el.id === parsedOffer.id);
-      reloadedOffers.splice(index, 1, parsedOffer);
-      const reloadFavoriteOffers = reloadedOffers.filter((offer) => offer.isFavorite === true);
-      return extend(state, {
-        offers: reloadedOffers,
-        favoriteOffers: reloadFavoriteOffers
-      });
     case ActionType.UPDATE_FAVORITE:
       const indexFavorite = state.offers.findIndex((item) => item.id === action.payload.id);
       return extend(state, {offers: [].concat(...state.offers.slice(0, indexFavorite), action.payload, ...state.offers.slice(indexFavorite + 1, state.offers.length))});

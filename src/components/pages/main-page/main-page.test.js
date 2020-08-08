@@ -17,6 +17,7 @@ it(`MainPage component test`, () => {
         <Router history={history}>
           <MainPage
             activeOffers={offers}
+            activeCity={offers[0].city.name}
           />
         </Router>
       </Provider>,

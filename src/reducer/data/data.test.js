@@ -160,7 +160,7 @@ describe(`Reducer work correctly`, () => {
       nearbyOffers: [],
       isNearbyOffersLoading: true,
       reviews: reviewsInitial,
-      isReviewsLoading: true,
+      isReviewsLoading: false,
       sortType: SortingTypes.POPULAR,
       errorText: ``,
     });
@@ -233,7 +233,7 @@ describe(`Reducer work correctly`, () => {
       city: ``,
       offers: [],
       nearbyOffers: offersInitial,
-      isNearbyOffersLoading: true,
+      isNearbyOffersLoading: false,
       reviews: [],
       isReviewsLoading: true,
       sortType: SortingTypes.POPULAR,
@@ -369,7 +369,7 @@ describe(`Operation work correctly`, () => {
           });
           expect(dispatch).toHaveBeenNthCalledWith(2, {
             type: ActionType.CITY_CHANGE,
-            payload: `Hamburg`,
+            payload: `Dusseldorf`,
           });
         });
   });
@@ -384,25 +384,6 @@ describe(`Operation work correctly`, () => {
       .reply(200, [...reviewsInitial]);
 
     return loadReviews(dispatch, () => {}, api)
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.LOAD_REVIEWS,
-          payload: [...reviewsResult],
-        });
-      });
-  });
-
-  it(`Should make a correct API call to apload /reviews/1`, function () {
-    const apiMock = new MockAdapter(api);
-    const dispatch = jest.fn();
-    const uploadReviews = Operation.uploadReviews(1, {comment: `test`, rating: `5`});
-
-    apiMock
-      .onPost(`/comments/1`)
-      .reply(200, [...reviewsInitial]);
-
-    return uploadReviews(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
