@@ -12,7 +12,7 @@ it(`Test Card with first offer name`, () => {
         <Card
           offer={offers[0]}
           onActiveItemChange={() => {}}
-          onFavotiteToggle= {() => {}}
+          onFavoriteToggle= {() => {}}
           cardType={CardType.MAIN}
         />
       </Router>

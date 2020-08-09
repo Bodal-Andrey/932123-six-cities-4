@@ -19,7 +19,7 @@ const typeToWrapperClass = {
 };
 
 const Card = (props) => {
-  const {offer, onActiveItemChange, onFavotiteToggle, cardType} = props;
+  const {offer, onActiveItemChange, onFavoriteToggle, cardType} = props;
   const {id, title, previewImage, price, type, rating, isPremium, isFavorite} = offer;
 
   return (
@@ -48,7 +48,7 @@ const Card = (props) => {
             <b className="place-card__price-value">€{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button onClick={() => onFavotiteToggle(id, isFavorite)} className={`place-card__bookmark-button button ${isFavorite ? ` place-card__bookmark-button--active` : ``}`} type="button">
+          <button onClick={() => onFavoriteToggle(id, !isFavorite)} className={`place-card__bookmark-button button ${isFavorite ? ` place-card__bookmark-button--active` : ``}`} type="button">
             <svg className="place-card__bookmark-icon" width={18} height={19}>
               <use xlinkHref="#icon-bookmark" />
             </svg>
@@ -82,7 +82,7 @@ Card.propTypes = {
     isFavorite: PropTypes.bool.isRequired,
   }),
   onActiveItemChange: PropTypes.func.isRequired,
-  onFavotiteToggle: PropTypes.func,
+  onFavoriteToggle: PropTypes.func,
   cardType: PropTypes.oneOf([CardType.MAIN, CardType.PROPERTY, CardType.FAVORITES]).isRequired,
 };
 

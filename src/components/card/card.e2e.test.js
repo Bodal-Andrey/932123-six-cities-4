@@ -17,7 +17,7 @@ describe(`Mouse testing on the Card`, () => {
       <Card
         offer={offers[0]}
         onActiveItemChange={onActiveItemChange}
-        onFavotiteToggle={onFavoriteToggle}
+        onFavoriteToggle={onFavoriteToggle}
         cardType={CardType.MAIN}
       />
   );

@@ -33,7 +33,7 @@ class RoomPage extends React.PureComponent {
   }
 
   render() {
-    const {offer, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser, onFavoritesToggle, match} = this.props;
+    const {offer, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser, onFavoriteToggle, match} = this.props;
     const {title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host} = offer;
     const {avatarUrl, name, isPro} = host;
     const offerId = parseInt(match.params.id, 10);
@@ -72,7 +72,7 @@ class RoomPage extends React.PureComponent {
                   <h1 className="property__name">
                     {title}
                   </h1>
-                  <button onClick={() => onFavoritesToggle(offerId, !isFavorite)} className= {`property__bookmark-button button ${isFavorite ? ` property__bookmark-button--active` : ``}`} type="button">
+                  <button onClick={() => onFavoriteToggle(offerId, !isFavorite)} className= {`property__bookmark-button button ${isFavorite ? ` property__bookmark-button--active` : ``}`} type="button">
                     <svg className="property__bookmark-icon" width={31} height={33}>
                       <use xlinkHref="#icon-bookmark" />
                     </svg>
@@ -192,7 +192,7 @@ RoomPage.propTypes = {
   isReviewsLoading: PropTypes.bool,
   loadOfferData: PropTypes.func,
   isAuthorizedUser: PropTypes.string.isRequired,
-  onFavoritesToggle: PropTypes.func.isRequired,
+  onFavoriteToggle: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -214,7 +214,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(DataOperation.loadNearbyOffers(id));
     dispatch(DataOperation.loadReviews(id));
   },
-  onFavoritesToggle(offerId, favoriteStatus) {
+  onFavoriteToggle(offerId, favoriteStatus) {
     dispatch(DataOperation.addToFavorite(offerId, favoriteStatus));
   },
 });

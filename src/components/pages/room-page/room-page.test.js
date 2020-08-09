@@ -23,7 +23,7 @@ it(`Render RoomPage`, () => {
             isAuthorizedUser={`AUTH`}
             loadReviews={() => {}}
             loadNearbyOffers={() => {}}
-            onFavoritesToggle={() => {}}
+            onFavoriteToggle={() => {}}
             loadOfferData={() => {}}
           />
         </Router>
