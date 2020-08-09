@@ -18,7 +18,8 @@ exports[`App component test 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
@@ -40,7 +41,7 @@ exports[`App component test 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
                 onClick={[Function]}
               >
                 <div
@@ -199,9 +200,9 @@ exports[`App component test 1`] = `
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height={200}
+                    height="200"
                     src="img/apartment-01.jpg"
-                    width={260}
+                    width="260"
                   />
                 </a>
               </div>
@@ -228,6 +229,7 @@ exports[`App component test 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button button "
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -270,7 +272,7 @@ exports[`App component test 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/1"
                     onClick={[Function]}
                   >
                     Beautiful & luxurious apartment at great location

@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import SortingOptions from "../sorting-options/sorting-options.jsx";
 import CardsList from "../cards-list/cards-list.jsx";
 import Map from "../map/map.jsx";
-import {CardsClass, SortingTypes} from "../../const.js";
-import {sortingOffers} from "../../utils.js";
+import {CardType} from "../../const.js";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import {getFilteredOffers, getCity, getSortedFilteredOffers} from "../../reducer/data/selectors.js";
 
 const CitiesContainer = (props) => {
-  const {activeOffers, activeItemId, city, onActiveItemChange, sortType} = props;
-  const sortedOffers = sortingOffers(activeOffers, sortType);
+  const {activeOffers, activeItemId, city, onActiveItemChange, sortedActiveOffers} = props;
 
   return (
     <div className="cities__places-container container">
@@ -17,11 +17,13 @@ const CitiesContainer = (props) => {
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{activeOffers.length} places to stay in {city}</b>
         <SortingOptions />
-        <CardsList
-          offers={sortedOffers}
-          cardsClass={CardsClass.CITIES}
-          onActiveItemChange={onActiveItemChange}
-        />
+        <div className="cities__places-list places__list tabs__content">
+          <CardsList
+            offers={sortedActiveOffers}
+            onActiveItemChange={onActiveItemChange}
+            cardType={CardType.MAIN}
+          />
+        </div>
       </section>
       <div className="cities__right-section">
         <Map
@@ -38,16 +40,20 @@ const CitiesContainer = (props) => {
 
 CitiesContainer.propTypes = {
   activeOffers: PropTypes.array.isRequired,
-  activeItemId: PropTypes.any.isRequired,
+  activeItemId: PropTypes.any,
   city: PropTypes.string.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
-  sortType: PropTypes.oneOf([
-    SortingTypes.POPULAR,
-    SortingTypes.PRICE_LOW_TO_HIGH,
-    SortingTypes.PRICE_HIGH_TO_LOW,
-    SortingTypes.TOP_RATED_FIRST]).isRequired,
+  sortedActiveOffers: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    city: getCity(state),
+    activeOffers: getFilteredOffers(state),
+    sortedActiveOffers: getSortedFilteredOffers(state),
+  };
 };
 
 export {CitiesContainer};
 
-export default withActiveItem(CitiesContainer);
+export default connect(mapStateToProps, null)(withActiveItem(CitiesContainer));

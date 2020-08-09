@@ -16,11 +16,8 @@ it(`MainPage component test`, () => {
       <Provider store={store}>
         <Router history={history}>
           <MainPage
-            city={`Brussels`}
-            cities={[`Amsterdam`, `Paris`, `Brussels`, `Hamburg`]}
             activeOffers={offers}
-            onCityButtonClick={() => {}}
-            sortType={`popular`}
+            activeCity={offers[0].city.name}
           />
         </Router>
       </Provider>,

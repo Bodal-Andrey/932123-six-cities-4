@@ -6,33 +6,42 @@ import ReviewsForm from "../../reviews-form/reviews-form.jsx";
 import Map from "../../map/map.jsx";
 import CardsList from "../../cards-list/cards-list.jsx";
 import Header from "../../header/header.jsx";
-import {CardsClass, AuthorizationStatus, AppRoute} from "../../../const.js";
-import {getNearbyOffers, getNearbyOffersStatus, getReviews, getReviewsStatus, getCurrentOffer} from "../../../reducer/data/selectors.js";
+import {AuthorizationStatus, CardType} from "../../../const.js";
+import {getNearbyOffersStatus, getReviewsStatus, getCurrentOffer, getSortedReviews, getActualNearbyOffers} from "../../../reducer/data/selectors.js";
 import {Operation as DataOperation} from '../../../reducer/data/data.js';
 import {getAuthStatus} from "../../../reducer/user/selectors.js";
-import history from "../../../history.js";
 
-class InfoAboutOfferPage extends React.PureComponent {
+class RoomPage extends React.PureComponent {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    const {offerId, loadOfferData} = this.props;
-    loadOfferData(offerId);
+    const {loadOfferData, match} = this.props;
+    const id = parseInt(match.params.id, 10);
+    loadOfferData(id);
   }
 
   componentDidUpdate(prevProps) {
-    const {offerId, loadOfferData} = this.props;
-    if (this.props.offerId !== prevProps.offerId) {
-      loadOfferData(offerId);
+    const {loadOfferData, match} = this.props;
+    const {match: prevMatch} = prevProps;
+    const id = parseInt(match.params.id, 10);
+    const prevId = parseInt(prevMatch.params.id, 10);
+    if (id !== prevId) {
+      loadOfferData(id);
     }
   }
 
   render() {
-    const {offer, offerId, onChangeScreen, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser, onFavoriteToggle} = this.props;
-    const {id, title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host} = offer;
+    const {offer, nearbyOffers, isNearbyOffersLoading, reviews, isReviewsLoading, isAuthorizedUser, onFavoriteToggle, match} = this.props;
+    const {title, price, type, rating, isPremium, isFavorite, pictures, description, bedrooms, guests, features, host} = offer;
     const {avatarUrl, name, isPro} = host;
+    const offerId = parseInt(match.params.id, 10);
+    const mapOffers = [].concat(nearbyOffers, offer);
+
+    if (!offer) {
+      return null;
+    }
 
     if (isReviewsLoading || isNearbyOffersLoading) {
       return false;
@@ -63,7 +72,7 @@ class InfoAboutOfferPage extends React.PureComponent {
                   <h1 className="property__name">
                     {title}
                   </h1>
-                  <button className= {`property__bookmark-button button ${isFavorite ? ` property__bookmark-button--active` : ``}`} type="button">
+                  <button onClick={() => onFavoriteToggle(offerId, !isFavorite)} className= {`property__bookmark-button button ${isFavorite ? ` property__bookmark-button--active` : ``}`} type="button">
                     <svg className="property__bookmark-icon" width={31} height={33}>
                       <use xlinkHref="#icon-bookmark" />
                     </svg>
@@ -129,9 +138,9 @@ class InfoAboutOfferPage extends React.PureComponent {
               </div>
             </div>
             <Map
-              offers={nearbyOffers}
+              offers={mapOffers}
               city={offer.city.coordinates}
-              activeOfferId={id}
+              activeOfferId={offerId}
               zoom={offer.city.zoom}
               className={`property__map map`}
             />
@@ -139,13 +148,13 @@ class InfoAboutOfferPage extends React.PureComponent {
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <CardsList
-                offers={nearbyOffers}
-                onChangeScreen={onChangeScreen}
-                onActiveItemChange={() => {}}
-                cardsClass={CardsClass.NEAR_PLACES}
-                onFavoriteToggle={onFavoriteToggle}
-              />
+              <div className="near-places__list places__list">
+                <CardsList
+                  offers={nearbyOffers}
+                  onActiveItemChange={() => {}}
+                  cardType={CardType.PROPERTY}
+                />
+              </div>
             </section>
           </div>
         </main>
@@ -154,33 +163,8 @@ class InfoAboutOfferPage extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state, {offerId}) => ({
-  offer: getCurrentOffer(offerId)(state),
-  nearbyOffers: getNearbyOffers(state),
-  isNearbyOffersLoading: getNearbyOffersStatus(state),
-  reviews: getReviews(state),
-  isReviewsLoading: getReviewsStatus(state),
-  isAuthorizedUser: getAuthStatus(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  loadOfferData(id) {
-    dispatch(DataOperation.loadNearbyOffers(id));
-    dispatch(DataOperation.loadReviews(id));
-  },
-  onFavoriteToggle(offerId, favoriteStatus) {
-    dispatch(DataOperation.addToFavorite(offerId, favoriteStatus))
-    .catch((error) => {
-      if (error.response.status === 401) {
-        history.push(AppRoute.LOGIN);
-      }
-    });
-  },
-});
-
-InfoAboutOfferPage.propTypes = {
+RoomPage.propTypes = {
   offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     type: PropTypes.string.isRequired,
@@ -202,17 +186,39 @@ InfoAboutOfferPage.propTypes = {
       zoom: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
-  onChangeScreen: PropTypes.func,
   reviews: PropTypes.array.isRequired,
   nearbyOffers: PropTypes.array.isRequired,
-  isNearbyOffersLoading: PropTypes.bool.isRequired,
-  isReviewsLoading: PropTypes.bool.isRequired,
+  isNearbyOffersLoading: PropTypes.bool,
+  isReviewsLoading: PropTypes.bool,
   loadOfferData: PropTypes.func,
   isAuthorizedUser: PropTypes.string.isRequired,
-  offerId: PropTypes.number.isRequired,
   onFavoriteToggle: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
-export {InfoAboutOfferPage};
+const mapStateToProps = (state, {match: {params}}) => ({
+  offer: getCurrentOffer(Number(params.id))(state),
+  nearbyOffers: getActualNearbyOffers(state),
+  isNearbyOffersLoading: getNearbyOffersStatus(state),
+  reviews: getSortedReviews(state),
+  isReviewsLoading: getReviewsStatus(state),
+  isAuthorizedUser: getAuthStatus(state),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(InfoAboutOfferPage);
+const mapDispatchToProps = (dispatch) => ({
+  loadOfferData(id) {
+    dispatch(DataOperation.loadNearbyOffers(id));
+    dispatch(DataOperation.loadReviews(id));
+  },
+  onFavoriteToggle(offerId, favoriteStatus) {
+    dispatch(DataOperation.addToFavorite(offerId, favoriteStatus));
+  },
+});
+
+export {RoomPage};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RoomPage);

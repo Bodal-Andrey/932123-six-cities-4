@@ -4,13 +4,11 @@ import {connect} from "react-redux";
 import CitiesList from "../../cities-list/cities-list.jsx";
 import CitiesContainer from "../../cities-container/cities-container.jsx";
 import MainEmpty from "../../main-empty/main-empty.jsx";
-import {ActionCreator} from '../../../reducer/data/data.js';
-import {getSortType} from "../../../reducer/app/selectors.js";
-import {getCity, getFilteredOffers, getCities} from "../../../reducer/data/selectors.js";
+import {getFilteredOffers, getCity} from "../../../reducer/data/selectors.js";
 import Header from "../../header/header.jsx";
 
 const MainPage = (props) => {
-  const {city, activeOffers, cities, onCityButtonClick, sortType} = props;
+  const {activeOffers, activeCity} = props;
 
   return (
     <React.Fragment>
@@ -20,23 +18,11 @@ const MainPage = (props) => {
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
-              <CitiesList
-                cities={cities}
-                city={city}
-                onCityButtonClick={onCityButtonClick}
-              />
+              <CitiesList />
             </section>
           </div>
           <div className="cities">
-            {activeOffers.length
-              ?
-              <CitiesContainer
-                activeOffers={activeOffers}
-                city={city}
-                sortType={sortType}
-              />
-              :
-              <MainEmpty />}
+            {activeOffers.length ? <CitiesContainer /> : <MainEmpty city={activeCity} />}
           </div>
         </main>
       </div>
@@ -45,28 +31,17 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  city: PropTypes.string.isRequired,
   activeOffers: PropTypes.array.isRequired,
-  cities: PropTypes.array.isRequired,
-  onCityButtonClick: PropTypes.func.isRequired,
-  sortType: PropTypes.string.isRequired,
+  activeCity: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     activeOffers: getFilteredOffers(state),
-    city: getCity(state),
-    cities: getCities(state),
-    sortType: getSortType(state),
+    activeCity: getCity(state),
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onCityButtonClick(city) {
-    dispatch(ActionCreator.cityChange(city));
-  },
-});
-
 export {MainPage};
 
-export default connect(mapStateToProps, mapDispatchToProps)((MainPage));
+export default connect(mapStateToProps, null)(MainPage);

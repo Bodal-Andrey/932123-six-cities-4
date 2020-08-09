@@ -2,17 +2,13 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import CitiesList from "./cities-list.jsx";
-import {offers} from "../../data-test.js";
+import {CitiesList} from "./cities-list.jsx";
+import {testStore} from "../../data-test.js";
 
 const mockStore = configureStore([]);
 
 it(`Render CitiesList`, () => {
-  const store = mockStore({
-    offers,
-    city: offers[0].city.name,
-    cities: Array.from(new Set(offers.map((item) => item.city.name)))
-  });
+  const store = mockStore(testStore);
 
   const tree = renderer.create(
       <Provider store={store}>

@@ -3,28 +3,52 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Operation} from "../../reducer/data/data.js";
 import {firstLetter} from "../../utils.js";
+import {CardType, AppRoute} from "../../const.js";
+import {Link} from 'react-router-dom';
+
+const typeToArticleClass = {
+  [CardType.MAIN]: `cities__place-card`,
+  [CardType.PROPERTY]: `near-places__card`,
+  [CardType.FAVORITES]: `favorites__card`,
+};
+
+const typeToWrapperClass = {
+  [CardType.MAIN]: `cities__image-wrapper`,
+  [CardType.PROPERTY]: `near-places__image-wrapper`,
+  [CardType.FAVORITES]: `favorites__image-wrapper`,
+};
 
 const Card = (props) => {
-  const {offer, cardsClass, onActiveItemChange, onFavotiteToggle} = props;
+  const {offer, onActiveItemChange, onFavoriteToggle, cardType} = props;
   const {id, title, previewImage, price, type, rating, isPremium, isFavorite} = offer;
 
   return (
-    <article onMouseEnter={() => onActiveItemChange(offer.id)} onMouseLeave={() => onActiveItemChange(-1)} className={`${cardsClass === `near-places` ? `near-places__card` : `cities__place-card`} place-card`}>
+    <article
+      onMouseEnter={() => onActiveItemChange(offer.id)}
+      onMouseLeave={() => onActiveItemChange(-1)}
+      className={`${typeToArticleClass[cardType]} place-card`}
+    >
       {isPremium && <div className="place-card__mark">
         <span>Premium</span>
       </div>}
-      <div className={`${cardsClass === `near-places` ? `near-places__image-wrapper` : `cities__image-wrapper`} place-card__image-wrapper`}>
+      <div className={`${typeToWrapperClass[cardType]} place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={previewImage} width={260} height={200} alt="Place image" />
+          <img
+            className="place-card__image"
+            src={previewImage}
+            width={cardType === CardType.FAVORITES ? `150` : `260`}
+            height={cardType === CardType.FAVORITES ? `110` : `200`}
+            alt="Place image"
+          />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`${cardType === CardType.FAVORITES ? `favorites__card-info ` : ``}place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">€{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button onClick={() => onFavotiteToggle(id, isFavorite)} className={`place-card__bookmark-button button ${isFavorite ? ` place-card__bookmark-button--active` : ``}`} type="button">
+          <button onClick={() => onFavoriteToggle(id, !isFavorite)} className={`place-card__bookmark-button button ${isFavorite ? ` place-card__bookmark-button--active` : ``}`} type="button">
             <svg className="place-card__bookmark-icon" width={18} height={19}>
               <use xlinkHref="#icon-bookmark" />
             </svg>
@@ -38,7 +62,7 @@ const Card = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${AppRoute.ROOM}/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{firstLetter(type)}</p>
       </div>
@@ -57,9 +81,9 @@ Card.propTypes = {
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
   }),
-  cardsClass: PropTypes.string.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
-  onFavotiteToggle: PropTypes.func,
+  onFavoriteToggle: PropTypes.func,
+  cardType: PropTypes.oneOf([CardType.MAIN, CardType.PROPERTY, CardType.FAVORITES]).isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

@@ -22,9 +22,9 @@ exports[`Test Card with first offer name 1`] = `
       <img
         alt="Place image"
         className="place-card__image"
-        height={200}
+        height="200"
         src="img/apartment-01.jpg"
-        width={260}
+        width="260"
       />
     </a>
   </div>
@@ -94,7 +94,8 @@ exports[`Test Card with first offer name 1`] = `
       className="place-card__name"
     >
       <a
-        href="#"
+        href="/offer/1"
+        onClick={[Function]}
       >
         Beautiful & luxurious apartment at great location
       </a>

@@ -18,7 +18,8 @@ exports[`MainPage component test 1`] = `
         >
           <a
             className="header__logo-link header__logo-link--active"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
@@ -43,6 +44,9 @@ exports[`MainPage component test 1`] = `
                 href="/login"
                 onClick={[Function]}
               >
+                <div
+                  className="header__avatar-wrapper user__avatar-wrapper"
+                />
                 <span
                   className="header__login"
                 >
@@ -76,7 +80,7 @@ exports[`MainPage component test 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item "
+              className="locations__item-link tabs__item tabs__item--active"
               href="#"
               onClick={[Function]}
             >
@@ -95,32 +99,6 @@ exports[`MainPage component test 1`] = `
             >
               <span>
                 Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item tabs__item--active"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Hamburg
               </span>
             </a>
           </li>
@@ -144,9 +122,9 @@ exports[`MainPage component test 1`] = `
           <b
             className="places__found"
           >
-            2
+            1
              places to stay in 
-            Brussels
+            Amsterdam
           </b>
           <form
             action="#"
@@ -222,9 +200,9 @@ exports[`MainPage component test 1`] = `
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height={200}
+                    height="200"
                     src="img/apartment-01.jpg"
-                    width={260}
+                    width="260"
                   />
                 </a>
               </div>
@@ -294,7 +272,8 @@ exports[`MainPage component test 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/1"
+                    onClick={[Function]}
                   >
                     Beautiful & luxurious apartment at great location
                   </a>
@@ -303,104 +282,6 @@ exports[`MainPage component test 1`] = `
                   className="place-card__type"
                 >
                   Apartment
-                </p>
-              </div>
-            </article>
-            <article
-              className="cities__place-card place-card"
-              onMouseEnter={[Function]}
-              onMouseLeave={[Function]}
-            >
-              <div
-                className="cities__image-wrapper place-card__image-wrapper"
-              >
-                <a
-                  href="#"
-                >
-                  <img
-                    alt="Place image"
-                    className="place-card__image"
-                    height={200}
-                    src="img/apartment-03.jpg"
-                    width={260}
-                  />
-                </a>
-              </div>
-              <div
-                className="place-card__info"
-              >
-                <div
-                  className="place-card__price-wrapper"
-                >
-                  <div
-                    className="place-card__price"
-                  >
-                    <b
-                      className="place-card__price-value"
-                    >
-                      €
-                      999
-                    </b>
-                    <span
-                      className="place-card__price-text"
-                    >
-                      / night
-                    </span>
-                  </div>
-                  <button
-                    className="place-card__bookmark-button button "
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    <svg
-                      className="place-card__bookmark-icon"
-                      height={19}
-                      width={18}
-                    >
-                      <use
-                        xlinkHref="#icon-bookmark"
-                      />
-                    </svg>
-                    <span
-                      className="visually-hidden"
-                    >
-                      To bookmarks
-                    </span>
-                  </button>
-                </div>
-                <div
-                  className="place-card__rating rating"
-                >
-                  <div
-                    className="place-card__stars rating__stars"
-                  >
-                    <span
-                      style={
-                        Object {
-                          "width": "60%",
-                        }
-                      }
-                    />
-                    <span
-                      className="visually-hidden"
-                    >
-                      Rating
-                    </span>
-                  </div>
-                </div>
-                <h2
-                  className="place-card__name"
-                >
-                  <a
-                    href="#"
-                  >
-                    Not bad!
-                  </a>
-                </h2>
-                <p
-                  className="place-card__type"
-                >
-                  Hotel
                 </p>
               </div>
             </article>

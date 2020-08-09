@@ -5,7 +5,7 @@ const withActiveItem = (Component) => {
     constructor(props) {
       super(props);
 
-      this.state = {activeItemId: -1};
+      this.state = {activeItemId: null};
 
       this.onActiveItemChange = this.onActiveItemChange.bind(this);
     }

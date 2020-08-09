@@ -1,10 +1,5 @@
 const Months = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
 
-const CardsClass = {
-  CITIES: `cities`,
-  NEAR_PLACES: `near-places`
-};
-
 const SortingTypes = {
   POPULAR: `popular`,
   PRICE_LOW_TO_HIGH: `priceLowToHigh`,
@@ -36,17 +31,25 @@ const AppRoute = {
   ROOT: `/`,
   LOGIN: `/login`,
   FAVORITES: `/favorites`,
+  ROOM: `/offer`,
+  ERROR: `/error`,
 };
 
 const Error = {UNAUTHORIZED: 401};
 
+const CardType = {
+  MAIN: `MAIN`,
+  PROPERTY: `PROPERTY`,
+  FAVORITES: `FAVORITES`,
+};
+
 export {
   Months,
-  CardsClass,
   SortingTypes,
   SortingTypeNames,
   AuthorizationStatus,
   ratingTitle,
   AppRoute,
   Error,
+  CardType,
 };
