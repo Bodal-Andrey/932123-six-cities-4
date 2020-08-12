@@ -13,20 +13,18 @@ import withPrivateRoute from "../../hocs/with-private-route/with-private-route.j
 const FavoritesPageWrapped = withPrivateRoute(AuthorizationStatus.AUTH, FavoritesPage, AppRoute.LOGIN);
 const SignInPageWrapped = withActiveItem(withPrivateRoute(AuthorizationStatus.NO_AUTH, SignInPage, AppRoute.ROOT));
 
-class App extends React.PureComponent {
-  render() {
-    return (
-      <Router history={history}>
-        <Switch>
-          <Route exact path={AppRoute.LOGIN} component={SignInPageWrapped} />
-          <Route exact path={`${AppRoute.ROOM}/:id`} component={RoomPage} />
-          <Route exact path={AppRoute.FAVORITES} component={FavoritesPageWrapped} />
-          <Route exact path={AppRoute.ERROR} component={ErrorPage} />
-          <Route path={AppRoute.ROOT} component={MainPage} />
-        </Switch>
-      </Router>
-    );
-  }
-}
+const App = () => {
+  return (
+    <Router history={history}>
+      <Switch>
+        <Route exact path={AppRoute.LOGIN} component={SignInPageWrapped} />
+        <Route exact path={`${AppRoute.ROOM}/:id`} component={RoomPage} />
+        <Route exact path={AppRoute.FAVORITES} component={FavoritesPageWrapped} />
+        <Route exact path={AppRoute.ERROR} component={ErrorPage} />
+        <Route path={AppRoute.ROOT} component={MainPage} />
+      </Switch>
+    </Router>
+  );
+};
 
 export default App;

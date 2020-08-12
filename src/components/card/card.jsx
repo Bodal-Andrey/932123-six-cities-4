@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Operation} from "../../reducer/data/data.js";
-import {firstLetter} from "../../utils.js";
+import {getFirstLetter} from "../../utils.js";
 import {CardType, AppRoute} from "../../const.js";
 import {Link} from 'react-router-dom';
 
@@ -64,7 +64,7 @@ const Card = (props) => {
         <h2 className="place-card__name">
           <Link to={`${AppRoute.ROOM}/${id}`}>{title}</Link>
         </h2>
-        <p className="place-card__type">{firstLetter(type)}</p>
+        <p className="place-card__type">{getFirstLetter(type)}</p>
       </div>
     </article>
   );

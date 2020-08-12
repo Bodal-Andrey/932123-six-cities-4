@@ -7,15 +7,15 @@ const withSortingOptions = (Component) => {
 
       this.state = {isOpen: false};
 
-      this.onMenuClick = this.onMenuClick.bind(this);
-      this.onMenuExit = this.onMenuExit.bind(this);
+      this.handleMenuClick = this.handleMenuClick.bind(this);
+      this.handleMenuExit = this.handleMenuExit.bind(this);
     }
 
-    onMenuClick() {
+    handleMenuClick() {
       this.setState((state) => ({isOpen: !state.isOpen}));
     }
 
-    onMenuExit() {
+    handleMenuExit() {
       this.setState({isOpen: false});
     }
 
@@ -23,8 +23,8 @@ const withSortingOptions = (Component) => {
       return (
         <Component
           {...this.props}
-          onMenuClick={this.onMenuClick}
-          onMenuExit={this.onMenuExit}
+          onMenuClick={this.handleMenuClick}
+          onMenuExit={this.handleMenuExit}
           isOpen={this.state.isOpen}
         />
       );

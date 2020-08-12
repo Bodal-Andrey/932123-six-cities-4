@@ -4,7 +4,7 @@ const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
-const sortingOffers = (offers, sortType) => {
+const getSortingOffers = (offers, sortType) => {
   let sortedOffers = [];
 
   switch (sortType) {
@@ -25,7 +25,7 @@ const sortingOffers = (offers, sortType) => {
   return sortedOffers;
 };
 
-const firstLetter = (string) => {
+const getFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
@@ -63,8 +63,8 @@ const parseOffer = (data) => {
 
 export {
   extend,
-  sortingOffers,
-  firstLetter,
+  getSortingOffers,
+  getFirstLetter,
   getReviewDate,
   parseOffer,
 };

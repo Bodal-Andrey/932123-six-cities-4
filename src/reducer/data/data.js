@@ -1,8 +1,9 @@
 import {extend} from "../../utils.js";
 import offerAdapter from "../adapter/offer-adapter/offer-adapter.js";
 import reviewAdapter from "../adapter/review-adapter/review-adapter.js";
-import {AppRoute, SortingTypes} from "../../const.js";
+import {AppRoute, SortingTypes, Error} from "../../const.js";
 import history from "../../history.js";
+import NameSpace from "../name-space.js";
 
 const FavoriteStatus = {
   IN_FAVORITES: `1`,
@@ -115,17 +116,25 @@ const Operation = {
     return api.get(`/favorite`)
       .then((response) => {
         const loadedFavoriteOffers = response.data.map((offer) => offerAdapter(offer));
-        dispatch(ActionCreator.loadFavoriteOffers(loadedFavoriteOffers));
+        const newOffers = getState()[NameSpace.DATA].offers.map((offer) => {
+          const offerIndex = loadedFavoriteOffers.findIndex((it) => it.id === offer.id);
+          return offerIndex !== -1 ? loadedFavoriteOffers[offerIndex] : offer;
+        });
+        dispatch(ActionCreator.loadOffers(newOffers));
       });
   },
   addToFavorite: (offerId, isFavorite) => (dispatch, getState, api) => {
     const favoriteStatus = isFavorite ? FavoriteStatus.IN_FAVORITES : FavoriteStatus.OUT_OF_FAVORITES;
     return api.post(`/favorite/${offerId}/${favoriteStatus}`, {})
       .then((response) => {
-        dispatch(ActionCreator.updateFavorite(offerAdapter(response.data)));
+        const changedOffer = offerAdapter(response.data);
+        const stateOffers = getState()[NameSpace.DATA].offers;
+        const index = stateOffers.findIndex((it) => it.id === changedOffer.id);
+        const newOffers = [].concat(...stateOffers.slice(0, index), changedOffer, ...stateOffers.slice(index + 1, stateOffers.length));
+        dispatch(ActionCreator.loadOffers(newOffers));
       })
       .catch((error) => {
-        if (error.response.status === 401) {
+        if (error.response.status === Error.UNAUTHORIZED) {
           history.push(AppRoute.LOGIN);
         }
       });
