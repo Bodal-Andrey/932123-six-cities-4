@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const SignInForm = (props) => {
-  const {onSubmit, emailRef, passwordRef} = props;
+  const { onSubmit, emailRef, passwordRef } = props;
 
   return (
     <form onSubmit={onSubmit} className="login__form form" action="#" method="post">
